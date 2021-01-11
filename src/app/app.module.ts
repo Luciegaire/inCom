@@ -12,6 +12,7 @@ import { OffersListComponent } from './components/offers-list/offers-list.compon
 import { ProfileCompanyComponent } from './components/Profile/profile-company/profile-company.component';
 import { ProfileCandidateComponent } from './components/Profile/profile-candidate/profile-candidate.component';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './components/login/login.component';
     OffersListComponent,
     ProfileCompanyComponent,
     ProfileCandidateComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
