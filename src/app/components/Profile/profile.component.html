@@ -1,0 +1,11 @@
+<button (click)="changeTab(1)"> tab 1</button>
+<button (click)="changeTab(2)"> tab 2</button>
+<button (click)="changeTab(3)"> tab 3</button>
+
+<div *ngIf="tab == 1"> coucou tab 1</div>
+<div *ngIf="tab == 2">coucou tab 2</div>
+<div *ngIf="tab == 3"> coucou tab 3</div>
+
+<h1 style="margin-top: 50px" *ngFor="let elem of rows">
+   {{ elem }}
+</h1>
