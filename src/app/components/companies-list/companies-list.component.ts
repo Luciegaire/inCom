@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesListComponent implements OnInit {
 
+  listCompany= [
+    {
+      id:0,
+      name:"orange",
+      content:"entreprise de téléphonie"
+    }
+  ]
   constructor() { }
 
   ngOnInit(): void {
