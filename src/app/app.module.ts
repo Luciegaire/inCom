@@ -14,6 +14,7 @@ import { ProfileCandidateComponent } from './components/profile/profile-candidat
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/companies-list/company/company.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CompanyComponent } from './components/companies-list/company/company.co
     ProfileCandidateComponent,
     LoginComponent,
     HomeComponent,
-    CompanyComponent
+    CompanyComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

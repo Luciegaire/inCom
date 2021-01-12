@@ -5,6 +5,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { GenerateCvComponent } from './components/generate-cv/generate-cv.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { OffersListComponent } from './components/offers-list/offers-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'generate-cv', component: GenerateCvComponent},
   { path: 'companies-list', component: CompaniesListComponent},
   { path: 'offers-list', component: OffersListComponent},
+  { path: 'menu', component: MenuComponent},
 ];
 
 @NgModule({

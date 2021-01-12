@@ -1,27 +1,16 @@
-<p>companies-list works!</p>
-<div *ngFor="let el of listCompany">
-    <div class="card-body">
-        <h2>{{el.name}}</h2>
+<h2>Liste des entreprises</h2>
+<div *ngFor="let el of listCompany" class="card-body col-md-3">
+    <div class="card card-custom gutter-b">
+        <div class="card-header">
+            <div class="card-title">
+                <h3 class="card-label">
+                    {{el.name}}
+                    <small>{{el.sector}}</small>
+                </h3>
+            </div>
+        </div>
+        <div style="display: 'flex'; justify-content: 'center'; align-items: 'center';" class="card-body">
+            <img class="img" src="{{el.img}}"/>
+        </div>
     </div>
 </div>
-<div class="card card-custom bg-primary">
-    <div class="card-header border-0">
-     <div class="card-title">
-               <span class="card-icon">
-                   <i class="flaticon2-chat-1 text-white"></i>
-               </span>
-      <h3 class="card-label text-white">
-       Primary Background Color
-      </h3>
-     </div>
-           <div class="card-toolbar">
-               <a href="#" class="btn btn-sm btn-white">
-                   <i class="flaticon2-cube"></i> Settings
-               </a>
-           </div>
-    </div>
-       <div class="separator separator-solid separator-white opacity-20"></div>
-    <div class="card-body text-white">
-           ...
-       </div>
-   </div>

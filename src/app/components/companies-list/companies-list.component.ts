@@ -10,32 +10,34 @@ export class CompaniesListComponent implements OnInit {
   listCompany= [
     {
       id:0,
-      name:"orange",
-      content:"entreprise de téléphonie",
-      img:""
+      name:"Orange",
+      sector:"entreprise de téléphonie",
+      img:"../../../assets/img/orange.png"
     },
     {
       id:1,
       name:"Mcdonald's",
-      content:"Restauration rapide",
-      img:""
+      sector:"Restauration rapide",
+      img:"../../../assets/img/mcdo.png"
     },
     {
       id:2,
       name:"Naval Group",
-      content:"entreprise pour l'armée",
-      img:""
+      sector:"entreprise pour l'armée",
+      img:"../../../assets/img/naval.jpg"
     },
     {
       id:3,
       name:"Mcdonald's",
-      content:"Restauration rapide",
-      img:""
+      sector:"Restauration rapide",
+      img:"../../../assets/img/mcdo.png"
     }
   ]
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
