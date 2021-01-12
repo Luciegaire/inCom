@@ -25,7 +25,9 @@
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/assets/css/style.bundle.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/plugins/global/plugins.bundle.css"
             ],
             "scripts": ["./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"]

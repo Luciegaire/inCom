@@ -13,6 +13,7 @@ import { ProfileCompanyComponent } from './components/profile/profile-company/pr
 import { ProfileCandidateComponent } from './components/profile/profile-candidate/profile-candidate.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { CompanyComponent } from './components/companies-list/company/company.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HomeComponent } from './components/home/home.component';
     ProfileCompanyComponent,
     ProfileCandidateComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
