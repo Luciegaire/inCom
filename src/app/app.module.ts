@@ -14,6 +14,9 @@ import { ProfileCandidateComponent } from './components/profile/profile-candidat
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/companies-list/company/company.component';
+import { ProfileCompanyProfileComponent } from './components/profile/profile-company/profile-company-profile/profile-company-profile.component';
+import { ProfileCompanyOffersComponent } from './components/profile/profile-company/profile-company-offers/profile-company-offers.component';
+import { ProfileCompanyAccountsComponent } from './components/profile/profile-company/profile-company-accounts/profile-company-accounts.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CompanyComponent } from './components/companies-list/company/company.co
     ProfileCandidateComponent,
     LoginComponent,
     HomeComponent,
-    CompanyComponent
+    CompanyComponent,
+    ProfileCompanyProfileComponent,
+    ProfileCompanyOffersComponent,
+    ProfileCompanyAccountsComponent
   ],
   imports: [
     BrowserModule,
