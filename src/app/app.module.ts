@@ -14,6 +14,9 @@ import { ProfileCandidateComponent } from './components/profile/profile-candidat
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/companies-list/company/company.component';
+import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PostEditorComponent } from './components/feed/post-editor/post-editor.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +31,14 @@ import { CompanyComponent } from './components/companies-list/company/company.co
     ProfileCandidateComponent,
     LoginComponent,
     HomeComponent,
-    CompanyComponent
+    CompanyComponent,
+    PostEditorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

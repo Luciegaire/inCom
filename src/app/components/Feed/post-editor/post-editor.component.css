@@ -1,0 +1,14 @@
+.btn-post{
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  font-size: 1.4rem;;
+  color:rgb(88, 85, 85);
+}
+
+.btn-post:hover{
+  background-color: rgb(219, 219, 219);
+}
