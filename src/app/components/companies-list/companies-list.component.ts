@@ -50,6 +50,7 @@ export class CompaniesListComponent implements OnInit {
     this.backService.getCompanies().subscribe((response)=>{
       let value = response["hydra:member"]
       this.listCompany = value
+      console.log(value)
       this.loading = false;
     })
   }
