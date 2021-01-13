@@ -19,6 +19,9 @@ import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostEditorComponent } from './components/feed/post-editor/post-editor.component';
 
+//HTTP
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,8 @@ import { PostEditorComponent } from './components/feed/post-editor/post-editor.c
     BrowserModule,
     AppRoutingModule,
     QuillModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

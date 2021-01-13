@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.back.toto()
     // avant de charger la vue 
   }
 

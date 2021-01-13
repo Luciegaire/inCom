@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-companies-list',
@@ -34,10 +35,16 @@ export class CompaniesListComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  companies = []
+
+  constructor(
+    public backService: BackendService
+    ) { }
 
   ngOnInit(): void {
-
+    this.backService.getCompanies().subscribe((response)=>{
+      console.log(response)
+    })
   }
 
 }
