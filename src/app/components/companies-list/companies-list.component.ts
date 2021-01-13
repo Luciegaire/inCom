@@ -42,10 +42,7 @@ export class CompaniesListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.backService.getCompanies().subscribe((response)=>{
-      let value = response["hydra:member"]
-      this.listCompany = value
-    })
+
   }
 
 }

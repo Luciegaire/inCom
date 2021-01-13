@@ -4,7 +4,6 @@ import Quill from 'quill';
 import { QuillConfiguration } from "./quill-configuration";
 import { BackendService } from 'src/app/services/backend.service';
 
-
 @Component({
   selector: 'app-post-editor',
   templateUrl: './post-editor.component.html',
