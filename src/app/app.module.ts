@@ -19,6 +19,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostEditorComponent } from './components/feed/post-editor/post-editor.component';
+import { LottieModule } from 'ngx-lottie';
 
 //HTTP
 import {HttpClientModule} from '@angular/common/http';
@@ -31,6 +32,10 @@ import { ProfilePasswordComponent } from './components/profile/profile-password/
 import { ProfileInformationsComponent } from './components/profile/profile-informations/profile-informations.component';
 import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
 
+
+export function playerFactory() {
+  return import('lottie-web');
+}
 
 @NgModule({
   declarations: [
@@ -62,6 +67,7 @@ import { ProfilePageComponent } from './components/profile/profile-page/profile-
     QuillModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

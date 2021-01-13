@@ -1,16 +1,19 @@
 <h2>Liste des entreprises</h2>
-<div *ngFor="let el of listCompany" class="card-body col-md-3">
-    <div class="card card-custom gutter-b">
-        <div class="card-header">
-            <div class="card-title">
-                <h3 class="card-label">
-                    {{el.name}}
-                    <small>{{el.sector}}</small>
-                </h3>
+<ng-lottie *ngIf="loading==true" style="margin: auto; width: 300px;display: block;" class="my-15" width="300px" [options]="options"></ng-lottie>
+<div *ngIf="loading==false" >
+    <div *ngFor="let el of listCompany" class="card-body col-md-3">
+        <div class="card card-custom gutter-b">
+            <div class="card-header">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        {{el.name}}
+                        <small>{{el.sector}}</small>
+                    </h3>
+                </div>
             </div>
-        </div>
-        <div style="display: 'flex'; justify-content: 'center'; align-items: 'center';" class="card-body">
-            <img class="img" src="../../../assets/img/mcdo.png"/>
+            <div style="display: 'flex'; justify-content: 'center'; align-items: 'center';" class="card-body">
+                <img class="img" src="../../../assets/img/{{el.image}}"/>
+            </div>
         </div>
     </div>
 </div>

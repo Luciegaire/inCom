@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import Quill from 'quill';
 import { QuillConfiguration } from "./quill-configuration";
 
 
@@ -14,7 +13,6 @@ export class PostEditorComponent implements OnInit {
   @Input() control: FormControl
 
   constructor() { }
-
 
   ngOnInit(): void {
     this.control = this.control ?? new FormControl()
