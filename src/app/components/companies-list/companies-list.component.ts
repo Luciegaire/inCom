@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-companies-list',
