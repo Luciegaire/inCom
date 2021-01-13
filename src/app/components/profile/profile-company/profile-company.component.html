@@ -21,12 +21,13 @@
 <section class="profile-company-header mb-8">
     <a *ngIf="companyProfile" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()" style="font-weight: bold;text-decoration: underline;">Mon entreprise</a>
     <a *ngIf="companyProfile == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()">Mon entreprise</a>
-    <a *ngIf="companyOffers" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()" style="font-weight: bold;text-decoration: underline;">Nos offres</a>
-    <a *ngIf="companyOffers == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()">Nos offres</a>
+    <a *ngIf="companyOffers || companyOffers2" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()" style="font-weight: bold;text-decoration: underline;">Nos offres</a>
+    <a *ngIf="companyOffers == false && companyOffers2 == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()">Nos offres</a>
     <a *ngIf="companyAccounts" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()" style="font-weight: bold;text-decoration: underline;">Comptes utilisateurs</a>
     <a *ngIf="companyAccounts == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()">Comptes utilisateurs</a>
 </section>
 
 <app-profile-company-profile *ngIf="companyProfile"></app-profile-company-profile>
 <app-profile-company-offers *ngIf="companyOffers"></app-profile-company-offers>
+<app-profile-company-offers2 *ngIf="companyOffers2"></app-profile-company-offers2>
 <app-profile-company-accounts *ngIf="companyAccounts"></app-profile-company-accounts>

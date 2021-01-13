@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileCompanyComponent implements OnInit {
   companyProfile = true;
   companyOffers = false;
+  companyOffers2 = false;
   companyAccounts = false;
 
   constructor() { }
@@ -16,6 +17,7 @@ export class ProfileCompanyComponent implements OnInit {
   DisplayProfile() {
     this.companyProfile = true;
     this.companyOffers = false;
+    this.companyOffers2 = false;
     this.companyAccounts = false;
   }
 
@@ -23,6 +25,15 @@ export class ProfileCompanyComponent implements OnInit {
   DisplayOffers() {
     this.companyProfile = false;
     this.companyOffers = true;
+    this.companyOffers2 = false;
+    this.companyAccounts = false;
+  }
+
+  // tslint:disable-next-line: typedef
+  DisplayOffers2() {
+    this.companyProfile = false;
+    this.companyOffers = false;
+    this.companyOffers2 = true;
     this.companyAccounts = false;
   }
 
@@ -30,6 +41,7 @@ export class ProfileCompanyComponent implements OnInit {
   DisplayAccounts() {
     this.companyProfile = false;
     this.companyOffers = false;
+    this.companyOffers2 = false;
     this.companyAccounts = true;
   }
 

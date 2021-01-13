@@ -17,6 +17,7 @@ import { CompanyComponent } from './components/companies-list/company/company.co
 import { ProfileCompanyProfileComponent } from './components/profile/profile-company/profile-company-profile/profile-company-profile.component';
 import { ProfileCompanyOffersComponent } from './components/profile/profile-company/profile-company-offers/profile-company-offers.component';
 import { ProfileCompanyAccountsComponent } from './components/profile/profile-company/profile-company-accounts/profile-company-accounts.component';
+import { ProfileCompanyOffers2Component } from './components/profile/profile-company/profile-company-offers2/profile-company-offers2.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProfileCompanyAccountsComponent } from './components/profile/profile-co
     CompanyComponent,
     ProfileCompanyProfileComponent,
     ProfileCompanyOffersComponent,
-    ProfileCompanyAccountsComponent
+    ProfileCompanyAccountsComponent,
+    ProfileCompanyOffers2Component
   ],
   imports: [
     BrowserModule,
