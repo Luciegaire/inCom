@@ -8,11 +8,22 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OffersListComponent } from './components/offers-list/offers-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
+<<<<<<< HEAD
 import { ProfileCompanyComponent } from './components/profile/profile-company/profile-company.component';
+=======
+import {ProfileCandidateComponent} from './components/profile/profile-candidate/profile-candidate.component';
+import {ProfilePasswordComponent} from './components/profile/profile-password/profile-password.component';
+import {ProfileInformationsComponent} from './components/profile/profile-informations/profile-informations.component';
+import {ProfilePageComponent} from './components/profile/profile-page/profile-page.component';
+>>>>>>> loic
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'profile-candidate', component: ProfileCandidateComponent},
+  { path: 'profile-password', component: ProfilePasswordComponent},
+  { path: 'profile-informations', component: ProfileInformationsComponent},
+  { path: 'profile-page', component: ProfilePageComponent},
   { path: 'feed', component: FeedComponent},
   { path: 'login', component: LoginComponent},
   { path: 'generate-cv', component: GenerateCvComponent},

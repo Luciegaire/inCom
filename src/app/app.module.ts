@@ -14,6 +14,7 @@ import { ProfileCandidateComponent } from './components/profile/profile-candidat
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/companies-list/company/company.component';
+
 import { MenuComponent } from './components/menu/menu.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +26,11 @@ import { ProfileCompanyProfileComponent } from './components/profile/profile-com
 import { ProfileCompanyOffersComponent } from './components/profile/profile-company/profile-company-offers/profile-company-offers.component';
 import { ProfileCompanyAccountsComponent } from './components/profile/profile-company/profile-company-accounts/profile-company-accounts.component';
 import { ProfileCompanyOffers2Component } from './components/profile/profile-company/profile-company-offers2/profile-company-offers2.component';
+
+import { ProfilePasswordComponent } from './components/profile/profile-password/profile-password.component';
+import { ProfileInformationsComponent } from './components/profile/profile-informations/profile-informations.component';
+import { ProfilePageComponent } from './components/profile/profile-page/profile-page.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +51,10 @@ import { ProfileCompanyOffers2Component } from './components/profile/profile-com
     ProfileCompanyProfileComponent,
     ProfileCompanyOffersComponent,
     ProfileCompanyAccountsComponent,
-    ProfileCompanyOffers2Component
+    ProfileCompanyOffers2Component,
+    ProfilePasswordComponent,
+    ProfileInformationsComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
