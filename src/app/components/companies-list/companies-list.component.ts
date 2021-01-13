@@ -11,25 +11,25 @@ export class CompaniesListComponent implements OnInit {
     {
       id:0,
       name:"Orange",
-      sector:"entreprise de téléphonie",
+      sector:"Société francaise de télécommunications",
       img:"../../../assets/img/orange.png"
     },
     {
       id:1,
       name:"Mcdonald's",
-      sector:"Restauration rapide",
+      sector:"Chaine de restauration rapide",
       img:"../../../assets/img/mcdo.png"
     },
     {
       id:2,
       name:"Naval Group",
-      sector:"entreprise pour l'armée",
+      sector:"Leader européen du naval de défense",
       img:"../../../assets/img/naval.jpg"
     },
     {
       id:3,
       name:"Mcdonald's",
-      sector:"Restauration rapide",
+      sector:"Chaine de estauration rapide",
       img:"../../../assets/img/mcdo.png"
     }
   ]
@@ -37,7 +37,7 @@ export class CompaniesListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 }
