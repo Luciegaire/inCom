@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +7,8 @@ import { environment } from 'src/environments/environment';
 export class BackendService {
 
   constructor(private http: HttpClient) { }
-  
-  // COMPANIES
-  getCompanies(){
-    return this.http.get<any>(`${environment.backUrl}/companies`);
-  }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
   createPost(data) {
@@ -24,4 +19,7 @@ export class BackendService {
     return "toto"
   }
 >>>>>>> Stashed changes
+=======
+  toto() { return "ok" }
+>>>>>>> parent of 6539626... mise en place back pour requêtes
 }
