@@ -11,19 +11,12 @@
               <div class="mr-3">
                 <!--begin::Name-->
 
-                <h4 class="card-label text-dark"><i class="flaticon-user icon-2x"></i>{{ post.first_name}} {{post.last_name}}
+                <h4 class="card-label text-dark"><i class="flaticon-user icon-2x"></i>{{ post.author}}
                   <small style="color:gray">postée le :
-                    {{ post.posted_at }}</small></h4>
+                    {{ post.postedAt }}</small></h4>
 
 
                 <!--end::Name-->
-                <!--begin::Contacts-->
-                <div class="d-flex flex-wrap my-2">
-
-                  <p> {{post.infos}} </p>
-
-                </div>
-                <!--end::Contacts-->
               </div>
               <!--begin::User-->
             </div>

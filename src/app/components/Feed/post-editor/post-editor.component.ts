@@ -14,17 +14,31 @@ export class PostEditorComponent implements OnInit {
   @Input() control: FormControl
 
   constructor(
-    public backService: BackendService
-  ) { }
+    public backService: BackendService,
+  ) {
+
+   }
 
 
   ngOnInit(): void {
     this.control = this.control ?? new FormControl()
   }
 
-  printValue(): void {
+  dateNow(onlyDate = false): string {
+    var date = new Date();
+    var now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+      date.getUTCHours() + 2, date.getUTCMinutes(), date.getUTCSeconds());
+
+    var finalDate = new Date(now_utc).toISOString().replace(/T/, " ").replace(/\..+/, "");
+    finalDate = onlyDate ? finalDate.substring(0, 10) : finalDate
+    return finalDate
+  }
+
+  sendPost(): void {
+
+    let currentDate = this.dateNow()
     let data = {
-      postedAt : "2021-01-13T13:49:49.472Z",
+      postedAt : currentDate,
       author : "Florent Ricciardi",
       content : this.control.value
     }
