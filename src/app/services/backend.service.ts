@@ -14,4 +14,14 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/companies`);
   }
 
+<<<<<<< Updated upstream
+=======
+  createPost(data) {
+    return this.http.post<any>(`${environment.backUrl}/posts`, data)
+  }
+
+  toto(){
+    return "toto"
+  }
+>>>>>>> Stashed changes
 }
