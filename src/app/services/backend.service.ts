@@ -8,10 +8,17 @@ import { environment } from 'src/environments/environment';
 export class BackendService {
 
   constructor(private http: HttpClient) { }
-  
-  // COMPANIES
-  getCompanies(){
-    return this.http.get<any>(`${environment.backUrl}/companies`);
+
+
+  createPost(data) {
+    return this.http.post<any>(`${environment.backUrl}/posts`, data)
   }
 
+  getPosts(){
+    return this.http.get<any>(`${environment.backUrl}/posts`)
+  }
+
+  toto(){
+    return "toto"
+  }
 }

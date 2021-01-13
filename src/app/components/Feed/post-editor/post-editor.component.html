@@ -16,14 +16,13 @@
             [placeholder]="''"
             [modules]="quillConfiguration"
             [styles]="{'min-height': '120px'}"
-            (keyup.enter)="printValue()"
             class="content-editor"
           >
           </quill-editor>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Annuler</button>
-              <button type="button" id="submit-post" class="btn btn-primary font-weight-bold" (click)="printValue()">Publier</button>
+              <button type="button" id="submit-post" class="btn btn-primary font-weight-bold" (click)="sendPost()">Publier</button>
           </div>
       </div>
   </div>
