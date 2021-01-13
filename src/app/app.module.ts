@@ -40,15 +40,12 @@ import { ProfileCompanyOffers2Component } from './components/profile/profile-com
     LoginComponent,
     HomeComponent,
     CompanyComponent,
-<<<<<<< HEAD
     MenuComponent,
     PostEditorComponent,
-=======
     ProfileCompanyProfileComponent,
     ProfileCompanyOffersComponent,
     ProfileCompanyAccountsComponent,
     ProfileCompanyOffers2Component
->>>>>>> viggiano
   ],
   imports: [
     BrowserModule,
