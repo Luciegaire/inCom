@@ -14,7 +14,7 @@ export class ProfilePageComponent implements OnInit {
 
   constructor() { }
   mycount = 2;
-  // tslint:disable-next-line:typedef
+  
   countChange(event){
     this.mycount = event;
     console.log(this.mycount)
