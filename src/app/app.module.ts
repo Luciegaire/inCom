@@ -15,6 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CompanyComponent } from './components/companies-list/company/company.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PostEditorComponent } from './components/feed/post-editor/post-editor.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,14 @@ import { MenuComponent } from './components/menu/menu.component';
     LoginComponent,
     HomeComponent,
     CompanyComponent,
-    MenuComponent
+    MenuComponent,
+    PostEditorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
