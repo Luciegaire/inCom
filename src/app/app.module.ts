@@ -36,7 +36,6 @@ import { ProfilePageComponent } from './components/profile/profile-page/profile-
 export function playerFactory() {
   return import('lottie-web');
 }
-import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

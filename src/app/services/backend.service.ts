@@ -18,7 +18,7 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/posts`)
   }
 
-  toto(){
-    return "toto"
+  getCompanies(){
+    return this.http.get<any>(`${environment.backUrl}/companies`)
   }
 }
