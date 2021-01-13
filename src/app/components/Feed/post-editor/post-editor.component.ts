@@ -24,11 +24,9 @@ export class PostEditorComponent implements OnInit {
 
   printValue(): void {
     let data = {
-      postedAt : "13/01/2021",
+      postedAt : "2021-01-13T13:49:49.472Z",
       author : "Florent Ricciardi",
-      content : this.control.value,
-      employee : "",
-      media : "",
+      content : this.control.value
     }
     this.backService.createPost(data).subscribe((response) =>{
       console.log(response)

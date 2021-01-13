@@ -18,7 +18,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostEditorComponent } from './components/feed/post-editor/post-editor.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { HttpClient } from '@angular/common/http';
     AppRoutingModule,
     QuillModule.forRoot(),
     ReactiveFormsModule,
-    HttpClient
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
