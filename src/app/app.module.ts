@@ -21,6 +21,10 @@ import { PostEditorComponent } from './components/feed/post-editor/post-editor.c
 
 //HTTP
 import {HttpClientModule} from '@angular/common/http';
+import { ProfileCompanyProfileComponent } from './components/profile/profile-company/profile-company-profile/profile-company-profile.component';
+import { ProfileCompanyOffersComponent } from './components/profile/profile-company/profile-company-offers/profile-company-offers.component';
+import { ProfileCompanyAccountsComponent } from './components/profile/profile-company/profile-company-accounts/profile-company-accounts.component';
+import { ProfileCompanyOffers2Component } from './components/profile/profile-company/profile-company-offers2/profile-company-offers2.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +40,15 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     CompanyComponent,
+<<<<<<< HEAD
     MenuComponent,
     PostEditorComponent,
+=======
+    ProfileCompanyProfileComponent,
+    ProfileCompanyOffersComponent,
+    ProfileCompanyAccountsComponent,
+    ProfileCompanyOffers2Component
+>>>>>>> viggiano
   ],
   imports: [
     BrowserModule,
