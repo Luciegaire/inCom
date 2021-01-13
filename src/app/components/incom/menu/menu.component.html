@@ -18,17 +18,17 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="nav-item mr-3">
-                        <a routerLink="/feed" class="nav-link py-4 px-6" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Fil d'actualité</a>
+                        <a routerLink="/incom/feed" class="nav-link py-4 px-6" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Fil d'actualité</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="nav-item mr-3">
-                        <a routerLink="/companies-list" class="nav-link py-4 px-6" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Entreprises</a>
+                        <a routerLink="/incom/companies" class="nav-link py-4 px-6" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Entreprises</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="nav-item mr-3">
-                        <a routerLink="/offers-list" class="nav-link py-4 px-6" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Offres</a>
+                        <a routerLink="/incom/offers" class="nav-link py-4 px-6" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Offres</a>
                     </li>
                     <!--end::Item-->
                 </ul>
@@ -36,7 +36,7 @@
             </div>
             <div class="topbar bg-primary">
                 <div class="topbar-item">
-                    <div routerLink="/profile" class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                    <div routerLink="/incom/profile" class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                         <div class="d-flex flex-column text-right pr-sm-3">
                             <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-sm-inline">Lucie</span>
                             <span class="text-white font-weight-bolder font-size-sm d-none d-sm-inline">Candidat</span>
