@@ -28,6 +28,10 @@ export class PostComponent implements OnInit {
 
   }
 
+  onClick(id) {
+    console.log(id)
+  }
+
 }
 
 

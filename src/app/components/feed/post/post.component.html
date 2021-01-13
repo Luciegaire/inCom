@@ -1,4 +1,4 @@
-  <div *ngFor="let post of posts">
+  <div *ngFor="let post of posts" (click)="onClick(post.postId)">
     <div class="card card-custom gutter-b">
       <div class="card-body">
         <!--begin::Top-->
@@ -11,7 +11,7 @@
               <div class="mr-3">
                 <!--begin::Name-->
 
-                <h4 class="card-label text-dark"><i class="flaticon-user icon-2x"></i>{{ post.author}}
+                <h4 class="card-label text-dark"><i class="flaticon-user icon-2x"></i>{{post.author}}
                   <small style="color:gray">postée le :
                     {{ post.postedAt }}</small></h4>
 
