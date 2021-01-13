@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div *ngFor="let post of posts">
+    <div class="card card-custom gutter-b">
+      <div class="card-body">
+        <!--begin::Top-->
+        <div class="d-flex">
+          <!--begin: Info-->
+          <div class="flex-grow-1">
+            <!--begin::Title-->
+            <div class="d-flex align-items-center justify-content-between flex-wrap mt-2">
+              <!--begin::User-->
+              <div class="mr-3">
+                <!--begin::Name-->
+
+                <h4 class="card-label text-dark"><i class="flaticon-user icon-2x"></i>{{ post.first_name}} {{post.last_name}}
+                  <small style="color:gray">postée le :
+                    {{ post.posted_at }}</small></h4>
+
+
+                <!--end::Name-->
+                <!--begin::Contacts-->
+                <div class="d-flex flex-wrap my-2">
+
+                  <p> {{post.infos}} </p>
+
+                </div>
+                <!--end::Contacts-->
+              </div>
+              <!--begin::User-->
+            </div>
+            <!--end::Title-->
+            <!--begin::Content-->
+            <div class="d-flex align-items-center flex-wrap justify-content-between">
+              <!--begin::Description-->
+              <div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5">
+                {{ post.content }}
+              </div>
+              <!--end::Description-->
+            </div>
+            <!--end::Content-->
+          </div>
+          <!--end::Info-->
+        </div>
+        <!--end::Top-->
+      </div>
+    </div>
+  </div>
+
+</div>
