@@ -18,9 +18,14 @@ import { MenuComponent } from './components/menu/menu.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostEditorComponent } from './components/feed/post-editor/post-editor.component';
+import { LottieModule } from 'ngx-lottie';
 
 //HTTP
 import {HttpClientModule} from '@angular/common/http';
+
+export function playerFactory() {
+  return import('lottie-web');
+}
 
 @NgModule({
   declarations: [
@@ -45,6 +50,7 @@ import {HttpClientModule} from '@angular/common/http';
     QuillModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]

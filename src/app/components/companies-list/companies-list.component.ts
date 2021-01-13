@@ -34,8 +34,13 @@ export class CompaniesListComponent implements OnInit {
   //     img:"../../../assets/img/mcdo.png"
   //   }
   // ]
-
+  loading = true;
   listCompany= []
+
+    options : any = {
+        path: '/assets/lottie/loader_file.json',
+    };
+
 
   constructor(
     public backService: BackendService
@@ -45,6 +50,7 @@ export class CompaniesListComponent implements OnInit {
     this.backService.getCompanies().subscribe((response)=>{
       let value = response["hydra:member"]
       this.listCompany = value
+      this.loading = false;
     })
   }
 
