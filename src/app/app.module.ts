@@ -17,7 +17,7 @@ import { CompanyComponent } from './components/incom/companies-list/company/comp
 
 import { MenuComponent } from './components/incom/menu/menu.component';
 import { QuillModule } from 'ngx-quill';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PostEditorComponent } from './components/incom/feed/post-editor/post-editor.component';
 import { LottieModule } from 'ngx-lottie';
 
@@ -31,6 +31,11 @@ import { ProfileCompanyOffers2Component } from './components/incom/profile/profi
 import { ProfilePasswordComponent } from './components/incom/profile/profile-password/profile-password.component';
 import { ProfileInformationsComponent } from './components/incom/profile/profile-informations/profile-informations.component';
 import { ProfilePageComponent } from './components/incom/profile/profile-page/profile-page.component';
+import { SigninComponent } from './components/home/signin/signin.component';
+import { SignupCompanieComponent } from './components/home/signup-companie/signup-companie.component';
+import { SignupCandidatComponent } from './components/home/signup-candidat/signup-candidat.component';
+import { ForgotPasswordComponent } from './components/home/forgot-password/forgot-password.component';
+import { SignupComponent } from './components/home/signup/signup.component';
 
 
 export function playerFactory() {
@@ -51,6 +56,11 @@ export function playerFactory() {
     // ProfileCandidateComponent,
     LoginComponent,
     HomeComponent,
+    SigninComponent,
+    SignupCompanieComponent,
+    SignupCandidatComponent,
+    ForgotPasswordComponent,
+    SignupComponent,
     // CompanyComponent,
     // MenuComponent,
     // PostEditorComponent,
@@ -67,6 +77,7 @@ export function playerFactory() {
     AppRoutingModule,
     QuillModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory })
   ],
