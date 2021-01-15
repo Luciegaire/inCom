@@ -5,6 +5,7 @@ import { CompaniesListComponent } from './companies-list/companies-list.componen
 import { IncomComponent } from './incom.component';
 import { OffersListComponent } from './offers-list/offers-list.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 
 const routes: Routes = [
   {
@@ -13,10 +14,11 @@ const routes: Routes = [
       { path: 'feed', component: FeedComponent, },
       { path: 'offers', component: OffersListComponent, },
       { path: 'profile', component: ProfileComponent, },
+      { path: 'profile-company', component: ProfileCompanyComponent, },
       { path: '**', redirectTo: 'feed', pathMatch: 'full' },
     ]
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

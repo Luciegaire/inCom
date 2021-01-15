@@ -11,20 +11,23 @@
     </div>
     <!--end::User-->
     <!--begin::Nav-->
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" href="" [routerLink]="['/feed']">Fil d'actualité</a>
+    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" href="" [routerLink]="['/incom/feed']">Fil d'actualité</a>
     <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayProfile()">Mon entreprise</a>
     <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayOffers()">Nos offres</a>
+    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayOffers2()">Créer une offre</a>
     <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayAccounts()">Comptes utilisateurs</a>
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" href="" [routerLink]="['/companies-list']">Liste des entreprises</a>
+    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" href="" [routerLink]="['/incom/companies']">Liste des entreprises</a>
     <!--end::Nav-->
 </div>
 <section class="profile-company-header mb-8">
-    <a *ngIf="companyProfile" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()" style="font-weight: bold;text-decoration: underline;">Mon entreprise</a>
-    <a *ngIf="companyProfile == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()">Mon entreprise</a>
-    <a *ngIf="companyOffers || companyOffers2" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()" style="font-weight: bold;text-decoration: underline;">Nos offres</a>
-    <a *ngIf="companyOffers == false && companyOffers2 == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()">Nos offres</a>
-    <a *ngIf="companyAccounts" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()" style="font-weight: bold;text-decoration: underline;">Comptes utilisateurs</a>
-    <a *ngIf="companyAccounts == false" href="" [routerLink]="['/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()">Comptes utilisateurs</a>
+    <a *ngIf="companyProfile" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()" style="font-weight: bold;text-decoration: underline;">Mon entreprise</a>
+    <a *ngIf="companyProfile == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()">Mon entreprise</a>
+    <a *ngIf="companyOffers" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()" style="font-weight: bold;text-decoration: underline;">Nos offres</a>
+    <a *ngIf="companyOffers == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()">Nos offres</a>
+    <a *ngIf="companyOffers2" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers2()" style="font-weight: bold;text-decoration: underline;">Créer une offre</a>
+    <a *ngIf="companyOffers2 == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers2()">Créer une offre</a>
+    <a *ngIf="companyAccounts" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()" style="font-weight: bold;text-decoration: underline;">Comptes utilisateurs</a>
+    <a *ngIf="companyAccounts == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()">Comptes utilisateurs</a>
 </section>
 
 <app-profile-company-profile *ngIf="companyProfile"></app-profile-company-profile>
