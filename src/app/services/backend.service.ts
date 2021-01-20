@@ -28,4 +28,8 @@ export class BackendService {
   getBusinessSectors(){
     return this.http.get<any>(`${environment.backUrl}/business_sector`)
   }
+
+  getNumberOffers(){
+    return this.http.get<any>(`${environment.backUrl}/nbOffers`)
+  }
 }

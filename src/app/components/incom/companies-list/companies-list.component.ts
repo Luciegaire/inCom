@@ -12,6 +12,7 @@ export class CompaniesListComponent implements OnInit {
 
   loading = true;
   listCompany= []
+  nbOffers=[]
 
   selectedCompany = [];
   selectedSectors = [];
@@ -49,8 +50,6 @@ export class CompaniesListComponent implements OnInit {
     })
   }
 
-  
-
   getBusinessSectors(){
     this.backService.getBusinessSectors().subscribe((response)=>{
       this.sectors = response
@@ -65,9 +64,24 @@ export class CompaniesListComponent implements OnInit {
     else return ""
   }
 
+  getNbOf(){
+    this.backService.getNumberOffers().subscribe((response)=>{
+      this.nbOffers = response
+    })
+  }
+
+  getNunber(id :number){
+    let array = this.nbOffers.filter(x => x.company_id === id);
+    if(array.length != 0){
+      return array[0].nbOffers
+    }
+    else return "0"
+  }
+
   ngOnInit(): void {
     this.getCompanies()
     this.getBusinessSectors()
+    this.getNbOf()
   }
 
 }
