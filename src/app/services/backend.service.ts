@@ -21,4 +21,8 @@ export class BackendService {
   getCompanies(){
     return this.http.get<any>(`${environment.backUrl}/companies`)
   }
+
+  getCandidate(){
+    return this.http.get<any>(`${environment.backUrl}/candidate`)
+  }
 }

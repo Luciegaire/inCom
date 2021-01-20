@@ -53,7 +53,5 @@ export class CompaniesListComponent implements OnInit {
       console.log(value)
       this.loading = false;
     })
-
   }
-
 }

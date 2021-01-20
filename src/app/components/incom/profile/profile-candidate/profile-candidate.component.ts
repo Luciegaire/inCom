@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-profile-candidate',
@@ -7,22 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileCandidateComponent implements OnInit {
 
-  candidates = [
-    {
-      id : 1,
-      lastname : "farace",
-      firstname: "loic",
-      email: "loic.farace@gmail.com",
-      birthdate: "28/06/1995",
-      address: "645 rue du piemont",
-      postcode: 13090,
-      city: "Aix-En-Provence",
-      phone : "0654345643"
-    }]
+  candidates = [];
 
-  constructor() { }
+  constructor(
+    public backService: BackendService
+  ) { }
 
   ngOnInit(): void {
+    this.backService.getCandidate().subscribe((response) => {
+      console.log(response);
+    });
   }
-
 }
