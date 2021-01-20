@@ -14,7 +14,6 @@ export class ProfilePageComponent implements OnInit {
 
   constructor() { }
   mycount = 2;
-  
   countChange(event){
     this.mycount = event;
     console.log(this.mycount)
