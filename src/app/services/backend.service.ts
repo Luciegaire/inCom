@@ -9,6 +9,7 @@ export class BackendService {
 
   constructor(private http: HttpClient) { }
 
+  //FEED
 
   createPost(data) {
     return this.http.post<any>(`${environment.backUrl}/posts`, data)
@@ -18,7 +19,13 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/posts`)
   }
 
+  //COMPANIES
+
   getCompanies(){
-    return this.http.get<any>(`${environment.backUrl}/companies`)
+    return this.http.get<any>(`${environment.backUrl}/company`)
+  }
+
+  getBusinessSectors(){
+    return this.http.get<any>(`${environment.backUrl}/business_sector`)
   }
 }

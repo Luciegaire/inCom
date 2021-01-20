@@ -1,4 +1,12 @@
 .activeBtn{
     background-color: white;
-    color:black!important;
+    color:#757575!important;
+}
+
+.coucou{
+    background-color: #1BC5BD;
+}
+
+.menu-text{
+    color:white!important;
 }

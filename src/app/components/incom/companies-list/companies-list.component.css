@@ -8,3 +8,37 @@
     height: fit-content;
     background-color: blue;
 }
+
+.card-entreprise{
+    background-color: #EEEEEE;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.textoffres{
+    font-size: 12px;
+}
+
+.card-img {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 150px;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.titleEntreprise{
+    padding-left: 5px;
+    padding-right: 5px;
+    justify-content: center!important;
+    align-items: center;
+    min-height: 228px!important;
+}
+
+.cardMar{
+    margin-right: 0px!important;
+}
+

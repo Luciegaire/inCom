@@ -1,52 +1,40 @@
-<div id="kt_header" class="header flex-column header-fixed">
-    <div class="header-top">
-        <div class="container">
-            <div class="d-none d-lg-flex align-items-center mr-3">
-                <!--begin::Logo-->
-                <a href="/metronic/demo7/index.html" class="mr-20">
-                  <iframe src="../../../assets/img/logo.svg" width="100" height="70" sandbox>
-                    <img src="../../../assets/img/logo.svg" alt="Un triangle avec trois côtés inégaux" />
-                  </iframe>
-                </a>
-                <!--end::Logo-->
-                <!--begin::Tab Navs(for desktop mode)-->
-                <ul class="header-tabs nav align-self-end font-size-lg" role="tablist">
-                    <!--begin::Item-->
-                    <li class="nav-item">
-                        <a routerLink="/" class="nav-link py-4 px-6" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" data-target="#kt_header_tab_1" role="tab" aria-selected="true">Home</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a routerLink="/incom/feed" class="nav-link py-4 px-6" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Fil d'actualité</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a routerLink="/incom/companies" class="nav-link py-4 px-6" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Entreprises</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a routerLink="/incom/offers" class="nav-link py-4 px-6" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Offres</a>
-                    </li>
-                    <!--end::Item-->
-                </ul>
-                <!--begin::Tab Navs-->
-            </div>
-            <div class="topbar bg-primary">
-                <div class="topbar-item">
-                    <div routerLink="/incom/profile" class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
-                        <div class="d-flex flex-column text-right pr-sm-3">
-                            <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-sm-inline">Lucie</span>
-                            <span class="text-white font-weight-bolder font-size-sm d-none d-sm-inline">Candidat</span>
-                        </div>
-                        <span class="symbol symbol-35">
-                            <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">L</span>
-                        </span>
-                    </div>
+<div id="kt_header" class="header coucou header-fixed">
+    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+        <div class="d-flex align-items-stretch mr-2">
+            <h3 class="d-none text-dark d-lg-flex align-items-center mr-10 mb-0">inEvents</h3>
+            <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                    <ul class="menu-nav">
+                        <li class="menu-item" aria-haspopup="true">
+                            <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="menu-link">
+                                <span class="menu-text">Fil d'actualité</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="menu-link">
+                                <span class="menu-text">Entreprises</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="menu-link">
+                                <span class="menu-text">Offres</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <!--end::User-->
+            </div>
+        </div>
+        <div class="topbar">
+            <div class="topbar-item">
+                <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                    <div class="d-flex flex-column text-right pr-3">
+                        <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">Lucie</span>
+                        <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">Développeur</span>
+                    </div>
+                    <span class="symbol symbol-35 symbol-light-primary">
+                        <span class="symbol-label font-size-h5 font-weight-bold">L</span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
