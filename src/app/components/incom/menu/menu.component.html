@@ -1,41 +1,25 @@
-<div id="kt_header" class="header coucou header-fixed">
-    <div class="container-fluid d-flex align-items-stretch justify-content-between">
-        <div class="d-flex align-items-stretch mr-2">
-            <h3 class="d-none text-dark d-lg-flex align-items-center mr-10 mb-0">inEvents</h3>
-            <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-                <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
-                    <ul class="menu-nav">
-                        <li class="menu-item" aria-haspopup="true">
-                            <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="menu-link">
-                                <span class="menu-text">Fil d'actualité</span>
-                            </a>
-                        </li>
-                        <li class="menu-item" aria-haspopup="true">
-                            <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="menu-link">
-                                <span class="menu-text">Entreprises</span>
-                            </a>
-                        </li>
-                        <li class="menu-item" aria-haspopup="true">
-                            <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="menu-link">
-                                <span class="menu-text">Offres</span>
-                            </a>
-                        </li>
-                    </ul>
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center mr-2">
+            <img class="logo" src="../../../../assets/img/logo-summer-white.png">
+            <div class="bande">
+                <div class="">
+                    <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==1)?'activeLogo':''" class="flaticon-network"></i>Fil d'actualité
+                    </a>
+                    <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==2)?'activeLogo':''" class="flaticon-suitcase"></i>Entreprises
+                    </a>
+                    <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="topbar">
-            <div class="topbar-item">
-                <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
-                    <div class="d-flex flex-column text-right pr-3">
-                        <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">Lucie</span>
-                        <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">Développeur</span>
-                    </div>
-                    <span class="symbol symbol-35 symbol-light-primary">
-                        <span class="symbol-label font-size-h5 font-weight-bold">L</span>
-                    </span>
-                </div>
-            </div>
+        <div class="">
+            <a routerLink="/incom/profile" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
+                <i [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile"></i>
+            </a>
         </div>
     </div>
 </div>
