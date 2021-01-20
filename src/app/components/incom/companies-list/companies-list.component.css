@@ -1,6 +1,6 @@
 .img{
-    width: 200px;
-    height: 150px;
+    max-width: 200px;
+    max-height: 150px;
 }
 
 .containerCompany{
@@ -40,5 +40,15 @@
 
 .cardMar{
     margin-right: 0px!important;
+}
+
+@media (max-width: 640px) {
+.containerCompanies{
+    flex-direction: column;
+}
+.listSectors{
+    max-height: 150px;
+    overflow: scroll;
+}
 }
 

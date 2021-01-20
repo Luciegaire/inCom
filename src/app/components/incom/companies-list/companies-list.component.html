@@ -1,5 +1,5 @@
-<div style="display:'flex'">
-    <div class="card-body pt-4 col_md-3">
+<div class="containerCompanies" style="display:'flex'">
+    <div class="card-body pt-4 col_md-3 col-sm-12">
         <div style="border-bottom: 2px solid grey; padding-bottom: 5px;" class="d-flex align-items-center">
             <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
               <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
@@ -20,7 +20,7 @@
                     d'activité</a>
             </div>
         </div>
-        <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+        <div class=" listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
             <div *ngFor="let elem of sectors" class="navi-item mb-2">
                 <label style="display: 'flex';" class="checkbox">
                     <input type="checkbox" (change)="clickedCheck($event.target.checked, elem.business_sector_id)"/>
@@ -30,12 +30,12 @@
             </div>
         </div>
     </div>
-    <div style="background-color: '#ffffff'" class="col-md-9">
+    <div style="background-color: '#ffffff'" class="col-md-9 col-sm-12">
         <h2>Liste des entreprises</h2>
         <ng-lottie *ngIf="loading==true" style="margin: auto; width: 300px;display: block;" class="my-15" width="300px"
             [options]="options"></ng-lottie>
         <div *ngIf="loading==false">
-            <div *ngFor="let el of selectedCompany" class="card-container card-body col-md-3 col-sm-3 col-xs-6">
+            <div *ngFor="let el of selectedCompany" class="card-container card-body col-md-3 col-sm-3">
                 <div class="card-entreprise card card-custom gutter-b">
                     <div class=" titleEntreprise card-header">
                         <div style="background-image:url('../../../assets/img/{{el.image}}')" 
