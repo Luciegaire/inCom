@@ -2,35 +2,114 @@
 <div class="login-form login-signup">
   <div class="text-center mb-10 mb-lg-20">
     <h3 class="font-size-h1">Inscription Entreprise</h3>
-    <p class="text-muted font-weight-bold">Enter your details to create your account</p>
+    <p class="text-muted font-weight-bold">Renseignez les informations pour créer votre compte</p>
   </div>
   <!--begin::Form-->
-  <form class="form" novalidate="novalidate" id="kt_login_signup_form">
-    <div class="form-group">
-      <input class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Fullname" name="fullname"
-        autocomplete="off" />
+  <form class="form needs-validation" id="kt_login_signup_form">
+
+    <div class="form-row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.companyName" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+          placeholder="Nom de l'entreprise" name="companyName" autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <select [(ngModel)]="this.formdata.sector" class="form-control form-control-solid h-auto py-5 px-6"  name="gender" required>
+          <option *ngFor="let sec of sectors" [ngValue]="sec.sectors">{{sec.name}}</option>
+        </select>
+      </div>
     </div>
+
     <div class="form-group">
-      <input class="form-control form-control-solid h-auto py-5 px-6" type="email" placeholder="Email" name="email"
-        autocomplete="off" />
+      <label class="form-label" for="customFile">Logo de l'entreprise</label>
+      <input type="file"  class="form-control form-control-solid h-auto py-5 px-6" id="customFile"  required/>
     </div>
-    <div class="form-group">
-      <input class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Password"
-        name="password" autocomplete="off" />
+
+
+    <div class="form-row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.firstname" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+          placeholder="Prénom du référant" name="firstname" autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.lastname" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+          placeholder="Nom du référant" name="lastname" autocomplete="off" required />
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Confirm password"
-        name="cpassword" autocomplete="off" />
+
+    <div class="form-row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.email" class="form-control form-control-solid h-auto py-5 px-6" type="email" placeholder="Email du référant" name="email"
+          autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.phonenumber" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="N° de téléphone du référant"
+          name="phonenumber" autocomplete="off" required />
+      </div>
     </div>
-    <div class="form-group">
-      <label class="checkbox mb-0">
-        <input type="checkbox" name="agree" />
-        <span></span>I Agree the
-        <a href="#">terms and conditions</a></label>
+
+    <div class="form-row">
+      <div class="col form-group">
+        <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6"  name="gender" required>
+          <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
+        </select>
+      </div>
+
+      <div class="col form-group">
+        <input  autocomplete="off" [(ngModel)]="this.birthdate" class="form-control form-control-solid h-auto py-5 px-6" placeholder="Date de naissance"
+          (click)="d.toggle()"name="dp" [(ngModel)]="model"  ngbDatepicker #d="ngbDatepicker" name="birthdate" required>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Password"
+          name="password" autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input  [(ngModel)]="this.formdata.cpassword"  class="cpassword form-control form-control-solid h-auto py-5 px-6" type="password"
+          placeholder="Confirm password" name="cpassword" autocomplete="off" required />
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-check form-group">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" style="margin-left:15px" for="invalidCheck">
+          Je suis d'accord avec les conditions d'utilisation
+        </label>
+        <div class="invalid-feedback">
+          Vous devez être d'accord avec les conditions d'utilisation avant de valider.
+        </div>
+      </div>
+    </div>
+
+    <div class = "panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
+      <div class = "panel-body">
+         Votre compte a été créé avec succès!
+      </div>
+    </div>
+
+   <div class = "panel panel-default panelInvalid" [ngClass]="{'companyInvalid': statusForm == 2}">
+    <div class = "panel-body">
+       L'entreprise existe déjà!
+    </div>
+   </div>
+
+   <div class = "panel panel-default panelInvalid" [ngClass]="{'userExist': statusForm == 3}">
+    <div class = "panel-body">
+       L'adresse mail est déjà utilisée
+    </div>
+   </div>
+
+   <div class = "panel panel-default panelInvalid" [ngClass]="{'passwordInvalid': statusForm == 4}">
+    <div class = "panel-body">
+       Les mots de passe ne correspondent pas!
+    </div>
+   </div>
+
     <div class="form-group d-flex flex-wrap flex-center">
-      <button type="button" id="kt_login_signup_submit"
-        class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Submit</button>
+      <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4"
+      (click)="validate()">Submit</button>
       <button type="button" id="kt_login_signup_cancel"
         class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4" (click)="changed(0)">Cancel</button>
     </div>

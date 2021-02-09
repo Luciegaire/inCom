@@ -8,15 +8,15 @@ import {  Input, Output, EventEmitter} from '@angular/core';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  status: number = 0;
+  @Input()
+  status: number = 1;
 
   @Output()
-  change: EventEmitter<number> = new EventEmitter<number>();
+  changeStatus: EventEmitter<number> = new EventEmitter<number>();
 
-  // tslint:disable-next-line:typedef
   changed(id:number){
     this.status = id;
-    this.change.emit(id);
+    this.changeStatus.emit(id);
   }
 
   constructor() { }

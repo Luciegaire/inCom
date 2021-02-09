@@ -45,17 +45,16 @@
 
         <!--begin::Content body-->
         <div  class="d-flex flex-column-fluid flex-center mt-30 mt-lg-0">
-          <app-signin *ngIf="status == 0" [status]="status" (change)="statusChange($event)"></app-signin>
-          <app-signup-candidat *ngIf="status == 1" class="signup-candidat"  (change)="statusChange($event)" ></app-signup-candidat>
-          <app-signup-companie *ngIf="status == 2" class="signup-companie" (change)="statusChange($event)"></app-signup-companie>
+          <app-signin *ngIf="status == 0" [status]="status" (changeStatus)="statusChange($event)"></app-signin>
+          <app-signup-candidat *ngIf="status == 1" [status]="status" class="signup-candidat"  (changeStatus)="statusChange($event)" ></app-signup-candidat>
+          <app-signup-companie *ngIf="status == 2" class="signup-companie" (changeStatus)="statusChange($event)"></app-signup-companie>
           <div *ngIf="status == 3" class="container">
             <div class="row justify-content-around btn-choose">
               <button type="button" class="btn btn-outline-secondary" (click)="status = 1"> Vous êtes un candidat?</button>
               <button type="button" class="btn btn-outline-secondary" (click)="status = 2"> Vous êtes une entreprise?</button>
             </div>
-
           </div>
-          <app-forgot-password *ngIf="status == 4" (change)="statusChange($event)" ></app-forgot-password>
+          <app-forgot-password *ngIf="status == 4" (changeStatus)="statusChange($event)" ></app-forgot-password>
         </div>
         <!--end::Content body-->
 
