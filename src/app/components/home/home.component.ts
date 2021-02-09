@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+
+  status: number = 2
   constructor() { }
 
+  statusChange(event){
+    console.log("changement")
+    this.status = event;
+    console.log(this.status)
+  }
+
   ngOnInit(): void {
+
   }
 
 }
