@@ -20,7 +20,6 @@ import { ProfileInformationsComponent } from './profile/profile-informations/pro
 import { ProfileCompanyOffers2Component } from './profile/profile-company/profile-company-offers2/profile-company-offers2.component';
 import { ProfilePasswordComponent } from './profile/profile-password/profile-password.component';
 import { FeedComponent } from './feed/feed.component';
-
 import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';

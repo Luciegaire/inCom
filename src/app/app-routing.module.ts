@@ -13,11 +13,11 @@ import {ProfileCandidateComponent} from './components/incom/profile/profile-cand
 import {ProfilePasswordComponent} from './components/incom/profile/profile-password/profile-password.component';
 import {ProfileInformationsComponent} from './components/incom/profile/profile-informations/profile-informations.component';
 import {ProfilePageComponent} from './components/incom/profile/profile-page/profile-page.component';
-
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: 'incom',
-    loadChildren: () => import('./components/incom/incom.module').then(m => m.IncomModule),
+    loadChildren: () => import('./components/incom/incom.module').then(m => m.IncomModule),canActivate: [AuthGuard],
   },
   { path: '', component: HomeComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' },
@@ -27,7 +27,7 @@ const routes: Routes = [
   // { path: 'profile-informations', component: ProfileInformationsComponent},
   // { path: 'profile-page', component: ProfilePageComponent},
   // { path: 'feed', component: FeedComponent},
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   // { path: 'generate-cv', component: GenerateCvComponent},
   // { path: 'companies-list', component: CompaniesListComponent},
   // { path: 'offers-list', component: OffersListComponent},

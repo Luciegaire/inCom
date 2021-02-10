@@ -7,6 +7,8 @@ import { OffersListComponent } from './offers-list/offers-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileCandidateComponent } from './profile/profile-candidate/profile-candidate.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
+import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
+import {ProfilePageComponent} from './profile/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -16,11 +18,12 @@ const routes: Routes = [
       { path: 'offers', component: OffersListComponent, },
       { path: 'profile', component: ProfileComponent, },
       { path: 'profile-page', component: ProfilePageComponent},
+      { path: 'profile-company', component: ProfileCompanyComponent, },
       { path: '**', redirectTo: 'feed', pathMatch: 'full' },
 
     ]
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

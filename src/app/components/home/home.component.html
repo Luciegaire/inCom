@@ -1,48 +1,77 @@
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>Summer festival & Job</h1>
-  <p>Le seul festival qui te permet de trouver un job</p>
-</div>
+  <!--begin::Main-->
+  <div class="d-flex flex-column flex-root home">
+    <!--begin::Login-->
+    <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
+      <!--begin::Aside-->
+      <div class="login-aside d-flex flex-row-auto bgi-size-cover bgi-no-repeat p-10 p-lg-10" style="background-image: url(assets/media/bg/festival2.png);">
+        <!--begin: Aside Container-->
+        <div class="d-flex flex-row-fluid flex-column justify-content-between">
+          <!--begin: Aside header-->
+          <a href="#" class="flex-column-auto mt-5 pb-lg-0 pb-10">
+            <img src="assets/img/logo-inevents.png" class="max-h-70px" alt="" />
+          </a>
+          <!--end: Aside header-->
+          <!--begin: Aside content-->
+          <div class="flex-column-fluid d-flex flex-column justify-content-center">
+            <h3 class="font-size-h1 mb-5 text-white">Welcome to Metronic!</h3>
+            <p class="font-weight-lighter text-white opacity-80">The ultimate Bootstrap, Angular 8, React &amp; VueJS admin theme framework for next generation web apps.</p>
+          </div>
+          <!--end: Aside content-->
+          <!--begin: Aside footer for desktop-->
+          <div class="d-none flex-column-auto d-lg-flex justify-content-between mt-10">
+            <div class="opacity-70 font-weight-bold text-white">© 2021 InEvent</div>
+            <div class="d-flex">
+              <a href="#" class="text-white">Privacy</a>
+              <a href="#" class="text-white ml-10">Legal</a>
+              <a href="#" class="text-white ml-10">Contact</a>
+            </div>
+          </div>
+          <!--end: Aside footer for desktop-->
+        </div>
+        <!--end: Aside Container-->
+      </div>
+      <!--begin::Aside-->
 
-<div class="container" style="margin-top:30px">
-  <div class="row">
-    <div class="col-sm-4">
-      <h2></h2>
-      <h5></h5>
-      <input id="image" type="image" width="380" height="250" alt="" title= "forum metier"
-             src="https://emploi.summer-marseille.com/wp-content/uploads/2019/10/HOME_SummerJob.jpg">
-      <p></p>
-      <h3>Tout est là </h3>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="" [routerLink]="['/']" >Menu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="" [routerLink]="['/carte']" >Carte</a>
-        </li>
+      <!--begin::Content-->
+      <div class="d-flex flex-column flex-row-fluid position-relative p-7 overflow-hidden">
+
+        <!--begin::Content header-->
+        <div class="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
+          <span class="font-weight-bold text-dark-50">Vous n'avez pas encore de compte?</span>
+          <a  href="javascript:void(0);" class="font-weight-bold ml-2" id="kt_login_signup" (click)="status=3">S'inscrire!</a>
+        </div>
+        <!--end::Content header-->
 
 
-      </ul>
-      <hr class="d-sm-none">
+        <!--begin::Content body-->
+        <div  class="d-flex flex-column-fluid flex-center mt-30 mt-lg-0">
+          <app-signin *ngIf="status == 0" [status]="status" (changeStatus)="statusChange($event)"></app-signin>
+          <app-signup-candidat *ngIf="status == 1" [status]="status" class="signup-candidat"  (changeStatus)="statusChange($event)" ></app-signup-candidat>
+          <app-signup-companie *ngIf="status == 2" class="signup-companie" (changeStatus)="statusChange($event)"></app-signup-companie>
+          <div *ngIf="status == 3" class="container">
+            <div class="row justify-content-around btn-choose">
+              <button type="button" class="btn btn-outline-secondary" (click)="status = 1"> Vous êtes un candidat?</button>
+              <button type="button" class="btn btn-outline-secondary" (click)="status = 2"> Vous êtes une entreprise?</button>
+            </div>
+          </div>
+          <app-forgot-password *ngIf="status == 4" (changeStatus)="statusChange($event)" ></app-forgot-password>
+        </div>
+        <!--end::Content body-->
+
+
+        <!--begin::Content footer for mobile-->
+        <div class="d-flex d-lg-none flex-column-auto flex-column flex-sm-row justify-content-between align-items-center mt-5 p-5">
+          <div class="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">© 2020 Metronic</div>
+          <div class="d-flex order-1 order-sm-2 my-2">
+            <a href="#" class="text-dark-75 text-hover-primary">Privacy</a>
+            <a href="#" class="text-dark-75 text-hover-primary ml-4">Legal</a>
+            <a href="#" class="text-dark-75 text-hover-primary ml-4">Contact</a>
+          </div>
+        </div>
+        <!--end::Content footer for mobile-->
+      </div>
+      <!--end::Content-->
     </div>
-    <div class="col-sm-8">
-      <h2></h2>
-      <h5>Pourquoi Utiliser nos services ? </h5>
-
-      <p>Pour trouver un job pendant que vous participez au summer festival ! </p>
-
-      <p>blablabla
-
-
-      </p>
-      <br>
-      <h2>Comment trouver un job ? </h2>
-      <h5></h5>
-
-      <p>1) Rends toi sur notre site internet : Summer festival & job </p>
-      <p>2) Accèdes à la section : offres</p>
-      <p>3) Parcours les offres et séléctionne celle qui t'interesse.</p>
-      <p>4) L'entreprise te proposera ensuite un entretien  !
-      </p>
-    </div>
+    <!--end::Login-->
   </div>
-</div>
+  <!--end::Main-->

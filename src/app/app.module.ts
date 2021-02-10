@@ -17,12 +17,12 @@ import { CompanyComponent } from './components/incom/companies-list/company/comp
 
 import { MenuComponent } from './components/incom/menu/menu.component';
 import { QuillModule } from 'ngx-quill';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PostEditorComponent } from './components/incom/feed/post-editor/post-editor.component';
 import { LottieModule } from 'ngx-lottie';
 
 //HTTP
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ProfileCompanyProfileComponent } from './components/incom/profile/profile-company/profile-company-profile/profile-company-profile.component';
 import { ProfileCompanyOffersComponent } from './components/incom/profile/profile-company/profile-company-offers/profile-company-offers.component';
 import { ProfileCompanyAccountsComponent } from './components/incom/profile/profile-company/profile-company-accounts/profile-company-accounts.component';
@@ -31,6 +31,12 @@ import { ProfileCompanyOffers2Component } from './components/incom/profile/profi
 import { ProfilePasswordComponent } from './components/incom/profile/profile-password/profile-password.component';
 import { ProfileInformationsComponent } from './components/incom/profile/profile-informations/profile-informations.component';
 import { ProfilePageComponent } from './components/incom/profile/profile-page/profile-page.component';
+import { SigninComponent } from './components/home/signin/signin.component';
+import { SignupCompanieComponent } from './components/home/signup-companie/signup-companie.component';
+import { SignupCandidatComponent } from './components/home/signup-candidat/signup-candidat.component';
+import { ForgotPasswordComponent } from './components/home/forgot-password/forgot-password.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 
 export function playerFactory() {
@@ -51,6 +57,11 @@ export function playerFactory() {
     // ProfileCandidateComponent,
     LoginComponent,
     HomeComponent,
+    SigninComponent,
+    SignupCompanieComponent,
+    SignupCandidatComponent,
+    ForgotPasswordComponent,
+
     // CompanyComponent,
     // MenuComponent,
     // PostEditorComponent,
@@ -67,10 +78,12 @@ export function playerFactory() {
     AppRoutingModule,
     QuillModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
+    NgbModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory })
   ],
-  providers: [],
+  providers: [[{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
