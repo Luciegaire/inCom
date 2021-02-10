@@ -20,44 +20,41 @@ export class BackendService {
 
   createPost(data) {
     return this.http.post<any>(`${environment.backUrl}/posts`, data, this.optionRequete)
-  }
+  };
 
   getPosts(){
     return this.http.get<any>(`${environment.backUrl}/posts`)
-  }
+  };
 
   //COMPANIES
 
-  getCompanies(){
-    return this.http.get<any>(`${environment.backUrl}/company`)
-  }
-
   getBusinessSectors(){
     return this.http.get<any>(`${environment.backUrl}/business_sector`)
-  }
+  };
 
   getNumberOffers(){
     return this.http.get<any>(`${environment.backUrl}/nbOffers`)
+  };
 
   createCompany(data){
     return this.http.post<any>(`${environment.backUrl}/company`, data, this.optionRequete)
-  }
+  };
+
   getCompanies(){
     return this.http.get<any>(`${environment.backUrl}/company`, {headers : this.headers})
-  }
+  };
 
   getCompaniesByName(name){
     return this.http.get<any>(`${environment.backUrl}/company/name/`+name)
-  }
-
+  };
 
   createUser(data) {
     return this.http.post<any>(`${environment.backUrl}/user`, data, this.optionRequete)
-  }
+  };
 
   getUserByEmail(email){
     return this.http.get<any>(`${environment.backUrl}/user/email/`+email)
-  }
+  };
 
   createCandidate(data) {
     return this.http.post<any>(`${environment.backUrl}/candidate`, data, this.optionRequete)

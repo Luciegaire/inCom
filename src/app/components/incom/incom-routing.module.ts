@@ -6,7 +6,6 @@ import { IncomComponent } from './incom.component';
 import { OffersListComponent } from './offers-list/offers-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileCandidateComponent } from './profile/profile-candidate/profile-candidate.component';
-import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 import {ProfilePageComponent} from './profile/profile-page/profile-page.component';
 
