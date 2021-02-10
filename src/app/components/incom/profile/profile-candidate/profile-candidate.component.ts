@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile-candidate',
@@ -8,15 +9,32 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class ProfileCandidateComponent implements OnInit {
 
-  candidates = [];
+  page = 1;
+  statusForm: number = -1;
+  @Output()
+  changeStatus: EventEmitter<number> = new EventEmitter<number>();
+  @Input()
+  status: number = 1;
 
-  constructor(
-    public backService: BackendService
-  ) { }
+  constructor(public backService: BackendService, private router: Router) {
+  }
+
+  mycount = 2;
+  id = localStorage.getItem('user_id');
+
+  countChange(event) {
+    this.mycount = event;
+    console.log(this.mycount)
+  }
+
 
   ngOnInit(): void {
-    this.backService.getCandidate().subscribe((response) => {
-      console.log(response);
-    });
   }
+
+  changed(id: number) {
+    this.status = id;
+    this.changeStatus.emit(id);
+  }
+
+
 }

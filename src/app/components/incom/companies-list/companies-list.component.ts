@@ -48,7 +48,7 @@ export class CompaniesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.backService.getCompanies().subscribe((response)=>{
-      let value = response["hydra:member"]
+      let value = response
       this.listCompany = value
       console.log(value)
       this.loading = false;

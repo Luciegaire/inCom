@@ -1,0 +1,113 @@
+<!--begin::Signup-->
+<div class="login-form login-signup">
+  <div class="text-center mb-10 mb-lg-20">
+    <h3 class="font-size-h1">Inscription Candidat</h3>
+    <p class="text-muted font-weight-bold">Renseignez les informations pour créer votre compte</p>
+  </div>
+  <!--begin::Form-->
+  <form class="form needs-validation" id="kt_login_signup_form">
+
+    <div class="form-row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.firstname" class="form-control form-control-solid h-auto py-5 px-6"
+          type="text" placeholder="Prénom" name="firstname" autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.lastname" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Nom" name="lastname"
+          autocomplete="off" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.email" class="form-control form-control-solid h-auto py-5 px-6" type="email" placeholder="Email" name="email"
+          autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.phonenumber" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Numéro de téléphone"
+          name="phonenumber" autocomplete="off" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col form-group">
+        <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6"  name="gender" required>
+          <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
+        </select>
+      </div>
+
+
+      <div class="col form-group">
+        <input  autocomplete="off" [(ngModel)]="this.birthdate" class="form-control form-control-solid h-auto py-5 px-6" placeholder="Date de naissance"
+          (click)="d.toggle()"name="dp" [(ngModel)]="model"  ngbDatepicker #d="ngbDatepicker" name="birthdate" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.address" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Adresse" name="address"
+          autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.city" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Ville" name="city"
+          autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.postcode" class="form-control form-control-solid w-2 h-auto py-5 px-6" type="text" placeholder="Code Postal"
+          name="postcode" autocomplete="off" required />
+      </div>
+    </div>
+
+    
+    <div class="row">
+      <div class="col form-group">
+        <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Password"
+          name="password" autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <input  [(ngModel)]="this.formdata.cpassword"  class="cpassword form-control form-control-solid h-auto py-5 px-6" type="password"
+          placeholder="Confirm password" name="cpassword" autocomplete="off" required />
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-check form-group">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" style="margin-left:15px" for="invalidCheck">
+          Je suis d'accord avec les conditions d'utilisation
+        </label>
+        <div class="invalid-feedback">
+          Vous devez être d'accord avec les conditions d'utilisation avant de valider.
+        </div>
+      </div>
+    </div>
+
+    <div class = "panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
+      <div class = "panel-body">
+         Votre compte a été créé avec succès!
+      </div>
+    </div>
+
+   <div class = "panel panel-default panelInvalid" [ngClass]="{'passwordInvalid': statusForm == 2}">
+    <div class = "panel-body">
+       Les mots de passe ne correspondent pas
+    </div>
+   </div>
+
+   <div class = "panel panel-default panelInvalid" [ngClass]="{'userExist': statusForm == 3}">
+    <div class = "panel-body">
+       L'adresse mail est déjà utilisée
+    </div>
+   </div>
+
+
+    <div class="form-group d-flex flex-wrap flex-center">
+      <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4"
+      (click)="validate()">Submit</button>
+      <button type="button" id="kt_login_signup_cancel"
+        class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4" (click)="changed(0)">Cancel</button>
+    </div>
+  </form>
+  <!--end::Form-->
+</div>
+<!--end::Signup-->
