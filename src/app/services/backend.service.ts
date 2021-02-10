@@ -26,6 +26,14 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/post`)
   }
 
+  getBusinessSectors(){
+    return this.http.get<any>(`${environment.backUrl}/business_sector`)
+  };
+
+  getNumberOffers(){
+    return this.http.get<any>(`${environment.backUrl}/nbOffers`)
+  };
+
   createCompany(data){
     return this.http.post<any>(`${environment.backUrl}/company`, data, this.optionRequete)
   };

@@ -34,14 +34,12 @@ export class PostEditorComponent implements OnInit {
 
   sendPost(): void {
     let currentDate = this.dateNow()
-    let empl_id = localStorage.getItem('user_id')
+    var user = JSON.parse(localStorage.getItem('user'));
 
-
-
-    this.backService.getEmployeeById(empl_id).subscribe((response) => {
+    this.backService.getEmployeeById(user.user_id).subscribe((response) => {
       let author = response.firstname+ " " +response.lastname
       let data = {
-        employee_id : empl_id,
+        employee_id : user.user_id,
         posted_at : currentDate,
         author : author,
         content : this.control.value
