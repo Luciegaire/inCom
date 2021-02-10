@@ -18,11 +18,11 @@ export class BackendService {
   headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
 
   createPost(data) {
-    return this.http.post<any>(`${environment.backUrl}/posts`, data, this.optionRequete)
+    return this.http.post<any>(`${environment.backUrl}/post`, data, this.optionRequete)
   }
 
   getPosts(){
-    return this.http.get<any>(`${environment.backUrl}/posts`)
+    return this.http.get<any>(`${environment.backUrl}/post`)
   }
 
   createCompany(data){

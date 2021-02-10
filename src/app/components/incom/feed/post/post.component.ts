@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
 
   constructor(public backService: BackendService) {
 
-   }
+  }
 
   ngOnInit(): void {
     this.backService.getPosts().subscribe((response)=>{
