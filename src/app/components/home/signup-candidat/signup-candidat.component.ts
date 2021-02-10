@@ -99,7 +99,7 @@ export class SignupCandidatComponent implements OnInit {
       next: (response) => {
         console.log(response)
         this.statusForm = 1
-        this.router.navigateByUrl('/');
+        this.changed(0)
       },
       error: () =>{
         console.log("erreur création candidat")

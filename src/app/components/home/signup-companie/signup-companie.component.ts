@@ -12,7 +12,8 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class SignupCompanieComponent implements OnInit {
 
-  status: number = 0;
+  @Input()
+  status: number = 2;
 
   @Output()
   changeStatus: EventEmitter<number> = new EventEmitter<number>();
@@ -73,7 +74,7 @@ export class SignupCompanieComponent implements OnInit {
     this.backService.createEmployee(employee).subscribe({
       next: (response) => {
         console.log(response)
-        this.router.navigateByUrl('/');
+        this.changed(0)
       },
       error: () =>{
         console.log("erreur création employé")
