@@ -1,53 +1,25 @@
-<div id="kt_header" class="header flex-column header-fixed">
-    <div class="header-top">
-        <div class="container">
-            <div class="d-none d-lg-flex align-items-center mr-3">
-                <!--begin::Logo-->
-                <a href="/metronic/demo7/index.html" class="mr-20">
-                  <iframe src="../../../assets/img/logo.svg" width="100" height="70" sandbox>
-                    <img src="../../../assets/img/logo.svg" alt="Un triangle avec trois côtés inégaux" />
-                  </iframe>
-                </a>
-                <!--end::Logo-->
-                <!--begin::Tab Navs(for desktop mode)-->
-                <ul class="header-tabs nav align-self-end font-size-lg" role="tablist">
-                    <!--begin::Item-->
-                    <li class="nav-item">
-                        <a routerLink="/" class="nav-link py-4 px-6" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" data-target="#kt_header_tab_1" role="tab" aria-selected="true">Home</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a routerLink="/incom/feed" class="nav-link py-4 px-6" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Fil d'actualité</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a routerLink="/incom/companies" class="nav-link py-4 px-6" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Entreprises</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="nav-item mr-3">
-                        <a routerLink="/incom/offers" class="nav-link py-4 px-6" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" data-target="#kt_header_tab_2" role="tab" aria-selected="false">Offres</a>
-                    </li>
-                    <!--end::Item-->
-                </ul>
-                <!--begin::Tab Navs-->
-            </div>
-            <div class="topbar bg-primary">
-                <div class="topbar-item">
-                    <div routerLink="/incom/profile" class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
-                        <div class="d-flex flex-column text-right pr-sm-3">
-                            <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-sm-inline">Lucie</span>
-                            <span class="text-white font-weight-bolder font-size-sm d-none d-sm-inline">Candidat</span>
-                        </div>
-                        <span class="symbol symbol-35">
-                            <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">L</span>
-                        </span>
-                    </div>
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center mr-2">
+            <img class="logo" src="../../../../assets/img/logo-summer-white.png">
+            <div class="bande">
+                <div class="">
+                    <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==1)?'activeLogo':''" class="flaticon-network"></i>Fil d'actualité
+                    </a>
+                    <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==2)?'activeLogo':''" class="flaticon-suitcase"></i>Entreprises
+                    </a>
+                    <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres
+                    </a>
                 </div>
-                <!--end::User-->
             </div>
+        </div>
+        <div class="">
+            <a routerLink="/incom/profile" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
+                <i [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile"></i>
+            </a>
         </div>
     </div>
 </div>
