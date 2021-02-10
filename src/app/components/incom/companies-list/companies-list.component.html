@@ -6,8 +6,8 @@
               <i class="symbol-badge bg-success"></i>
             </div>
             <div>
-              <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Loic Farace</a>
-              <div class="text-muted">Recherche d'alternance</div>
+              <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">{{user['lastname']}} {{user['firstname']}}</a>
+              <div class="text-muted">Recherche machin</div>
               <div style="display: 'flex';" class="mt-2">
                 <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" >Mon CV</a>
                 <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
@@ -38,7 +38,7 @@
             <div *ngFor="let el of selectedCompany" class="card-container card-body col-md-3 col-sm-3">
                 <div class="card-entreprise card card-custom gutter-b">
                     <div class=" titleEntreprise card-header">
-                        <div style="background-image:url('../../../assets/img/{{el.image}}')" 
+                        <div style="background-image:url('../../../assets/img/{{el.image}}')"
                         class="card-img card-body">
                         </div>
                         <div style="align-self: center;text-align:center" class="card-title">

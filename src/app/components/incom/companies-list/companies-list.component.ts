@@ -17,10 +17,11 @@ export class CompaniesListComponent implements OnInit {
   selectedCompany = [];
   selectedSectors = [];
 
-    options : any = {
-        path: '/assets/lottie/loader_file.json',
-    };
+  options : any = {
+    path: '/assets/lottie/loader_file.json',
+  };
 
+  user : {}
 
   constructor(
     public backService: BackendService
@@ -82,6 +83,7 @@ export class CompaniesListComponent implements OnInit {
     this.getCompanies()
     this.getBusinessSectors()
     this.getNbOf()
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
 }

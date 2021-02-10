@@ -31,14 +31,14 @@
 
     <div class="form-row">
       <div class="col form-group">
-        <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6"  name="gender" required>
+        <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6" name="gender" required>
           <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
         </select>
       </div>
 
 
       <div class="col form-group">
-        <input  autocomplete="off" [(ngModel)]="this.birthdate" class="form-control form-control-solid h-auto py-5 px-6" placeholder="Date de naissance"
+        <input autocomplete="off" [(ngModel)]="this.birthdate" class="form-control form-control-solid h-auto py-5 px-6" placeholder="Date de naissance"
           (click)="d.toggle()"name="dp" [(ngModel)]="model"  ngbDatepicker #d="ngbDatepicker" name="birthdate" required>
       </div>
     </div>
@@ -53,20 +53,20 @@
           autocomplete="off" required />
       </div>
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.postcode" class="form-control form-control-solid w-2 h-auto py-5 px-6" type="text" placeholder="Code Postal"
+        <input [(ngModel)]="this.formdata.postcode" class="form-control form-control-solid w-2 h-auto py-5 px-6" type="number" placeholder="Code Postal"
           name="postcode" autocomplete="off" required />
       </div>
     </div>
 
-    
+
     <div class="row">
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Password"
+        <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Mot de passe"
           name="password" autocomplete="off" required />
       </div>
       <div class="col form-group">
         <input  [(ngModel)]="this.formdata.cpassword"  class="cpassword form-control form-control-solid h-auto py-5 px-6" type="password"
-          placeholder="Confirm password" name="cpassword" autocomplete="off" required />
+          placeholder="Confirmer le mot de passe" name="cpassword" autocomplete="off" required />
       </div>
     </div>
 
@@ -74,10 +74,10 @@
       <div class="form-check form-group">
         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
         <label class="form-check-label" style="margin-left:15px" for="invalidCheck">
-          Je suis d'accord avec les conditions d'utilisation
+          J'accepte les conditions d'utilisation
         </label>
         <div class="invalid-feedback">
-          Vous devez être d'accord avec les conditions d'utilisation avant de valider.
+          Vous devez accepter les conditions d'utilisation avant de valider.
         </div>
       </div>
     </div>
@@ -103,9 +103,9 @@
 
     <div class="form-group d-flex flex-wrap flex-center">
       <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4"
-      (click)="validate()">Submit</button>
+      (click)="validate()">Créer</button>
       <button type="button" id="kt_login_signup_cancel"
-        class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4" (click)="changed(0)">Cancel</button>
+        class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4" (click)="changed(0)">Annuler</button>
     </div>
   </form>
   <!--end::Form-->

@@ -9,17 +9,17 @@
       <input class="form-control form-control-solid h-auto py-5 px-6"  [(ngModel)]="this.formdata.email" type="text" placeholder="Email" name="email" autocomplete="off" required>
     </div>
     <div class="form-group">
-      <input class="form-control form-control-solid h-auto py-5 px-6" [(ngModel)]="this.formdata.password"  type="password" placeholder="Password" name="password" autocomplete="off" required>
+      <input class="form-control form-control-solid h-auto py-5 px-6" [(ngModel)]="this.formdata.password"  type="password" placeholder="Mot de passe" name="password" autocomplete="off" required>
     </div>
     <div class = "panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
       <div class = "panel-body">
-         Votre compte a été créé avec succès!
+         Vous allez être redirigé !
       </div>
     </div>
 
     <div class = "panel panel-default panelInvalid" [ngClass]="{'credentialInvalid': statusForm == 2}">
       <div class = "panel-body">
-         L'adresse mail et/ou le mot de passe ne sont pas bons.
+         L'adresse mail et/ou le mot de passe n'existent pas.
       </div>
      </div>
     <!--begin::Action-->
