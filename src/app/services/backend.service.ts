@@ -49,8 +49,17 @@ export class BackendService {
     return this.http.post<any>(`${environment.backUrl}/candidate`, data, this.optionRequete)
   }
 
+  getCandidateById(id){
+    return this.http.get<any>(`${environment.backUrl}/candidate/`+id)
+  }
+
   createEmployee(data){
     return this.http.post<any>(`${environment.backUrl}/employee`, data, this.optionRequete)
   }
+
+  getEmployeeById(id){
+    return this.http.get<any>(`${environment.backUrl}/employee/`+id)
+  }
+
 
 }

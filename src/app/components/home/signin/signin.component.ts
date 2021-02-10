@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  Input, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-signin',
@@ -28,7 +29,7 @@ export class SigninComponent implements OnInit {
     this.changeStatus.emit(id);
   }
 
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, public backService: BackendService, private router: Router) { }
 
   ngOnInit(): void {
       this.statusForm = -1
@@ -49,11 +50,20 @@ export class SigninComponent implements OnInit {
       this.authService.login(this.formdata.email, this.formdata.password)
           .subscribe({
             next: (response) => {
-              console.log(response)
+              console.log(response.user.user_id)
               console.log("User is logged in");
               if(response.token){
                 this.statusForm = 1
                 localStorage.setItem('token', response.token);
+                localStorage.setItem('user_id', response.user.user_id)
+                this.backService.getCandidateById(response.user.user_id).subscribe({
+                  next: () => {
+                    localStorage.setItem('status', "candidate");
+                  },
+                  error: () => {
+                    localStorage.setItem('status', "employee");
+                  }
+                })
                 this.router.navigateByUrl('/incom/feed');
               }
             },

@@ -27,7 +27,7 @@ const routes: Routes = [
   // { path: 'profile-informations', component: ProfileInformationsComponent},
   // { path: 'profile-page', component: ProfilePageComponent},
   // { path: 'feed', component: FeedComponent},
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   // { path: 'generate-cv', component: GenerateCvComponent},
   // { path: 'companies-list', component: CompaniesListComponent},
   // { path: 'offers-list', component: OffersListComponent},

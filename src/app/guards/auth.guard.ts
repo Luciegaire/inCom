@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,8 +17,7 @@ export class AuthGuard implements CanActivate {
     }
     else {
       this.router.navigateByUrl('/login');
-    return false;
+      return false;
     }
-
   }
 }
