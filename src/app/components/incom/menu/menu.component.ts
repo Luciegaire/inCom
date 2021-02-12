@@ -7,13 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  tab=0
+  clicked = false;
 
-  changeTab(index :number){
-    this.tab = index
+  clickBurger() {
+    this.clicked = !this.clicked
   }
 
-  status : boolean
+  tab = 0
+
+  changeTab(index: number) {
+    this.tab = index
+    if (this.clicked == true) {
+      this.clickBurger();
+    }
+  }
+
+  status: boolean
 
   constructor() { }
 
