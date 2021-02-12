@@ -13,9 +13,12 @@ export class MenuComponent implements OnInit {
     this.tab = index
   }
 
+  status : boolean
+
   constructor() { }
 
   ngOnInit(): void {
+    this.status = localStorage.getItem('status').toString() == "candidate"
   }
 
 }
