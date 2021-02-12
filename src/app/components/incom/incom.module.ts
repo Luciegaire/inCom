@@ -24,6 +24,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
+import { CreateOfferComponent } from './create-offer/create-offer.component';
 
 
 export function playerFactory() {
@@ -52,7 +53,8 @@ export function playerFactory() {
     ProfileCompanyOffers2Component,
     ProfilePasswordComponent,
     ProfileInformationsComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    CreateOfferComponent
   ],
   imports: [
     CommonModule,

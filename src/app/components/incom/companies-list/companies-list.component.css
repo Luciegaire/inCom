@@ -46,27 +46,12 @@
     overflow: scroll;
 }
 }
-
 .profile_class {
   float: left;
   width: 250px;
 }
 
 .btn {width: 100%;}
-
-/* .profile-company-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-} */
-
-/* .profile-company-header-elem {
-  padding: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
-  font-size: medium;
-  color: black;
-} */
 
 .card-header {
   border: none;
@@ -75,9 +60,3 @@
 .card-footer {
   border: none;
 }
-
-/* .card-title {
-  left: 40%;
-  right: 40%;
-} */
-
