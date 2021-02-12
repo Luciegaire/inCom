@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="">
-            <a routerLink="{{status ? '/incom/profile-page' : 'incom/profil-company'}}" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
+            <a routerLink="{{status ? '/incom/profile-page' : '/incom/profile-company'}}" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
                 <i [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile"></i>
             </a>
         </div>

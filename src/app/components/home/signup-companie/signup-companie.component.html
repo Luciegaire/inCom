@@ -9,28 +9,33 @@
 
     <div class="form-row">
       <div class="col form-group">
+        <label>Nom de l'entreprise</label>
         <input [(ngModel)]="this.formdata.companyName" class="form-control form-control-solid h-auto py-5 px-6" type="text"
           placeholder="Nom de l'entreprise" name="companyName" autocomplete="off" required />
       </div>
       <div class="col form-group">
-        <select [(ngModel)]="this.formdata.sector" class="form-control form-control-solid h-auto py-5 px-6"  name="gender" required>
-          <option *ngFor="let sec of sectors" [ngValue]="sec.sectors">{{sec.name}}</option>
+        <label>Secteur d'activité</label>
+        <select [(ngModel)]="this.formdata.sector" class="form-control form-control-solid h-auto py-5 px-6"
+          name="sector" required>
+          <option *ngFor="let elem of sectors" value="{{elem.business_sector_id}}">{{elem.name}}</option>
         </select>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="customFile">Logo de l'entreprise</label>
-      <input type="file"  class="form-control form-control-solid h-auto py-5 px-6" id="customFile" (change)="encodeImageFileAsURL(this)"  required/>
+      <label>Veuillez entrer l'URL de votre Logo</label>
+      <input [(ngModel)]="this.formdata.logo" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+      placeholder="URL du logo" name="logo" autocomplete="off" required />
     </div>
-
 
     <div class="form-row">
       <div class="col form-group">
+        <label>Prénom du référent</label>
         <input [(ngModel)]="this.formdata.firstname" class="form-control form-control-solid h-auto py-5 px-6" type="text"
           placeholder="Prénom du référent" name="firstname" autocomplete="off" required />
       </div>
       <div class="col form-group">
+        <label>Nom du référent</label>
         <input [(ngModel)]="this.formdata.lastname" class="form-control form-control-solid h-auto py-5 px-6" type="text"
           placeholder="Nom du référent" name="lastname" autocomplete="off" required />
       </div>
@@ -38,10 +43,12 @@
 
     <div class="form-row">
       <div class="col form-group">
+        <label>Email du référent</label>
         <input [(ngModel)]="this.formdata.email" class="form-control form-control-solid h-auto py-5 px-6" type="email" placeholder="Email du référent" name="email"
           autocomplete="off" required />
       </div>
       <div class="col form-group">
+        <label>Numéro de téléphone du référent</label>
         <input [(ngModel)]="this.formdata.phonenumber" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="N° de téléphone du référent"
           name="phonenumber" autocomplete="off" required />
       </div>
@@ -49,23 +56,27 @@
 
     <div class="form-row">
       <div class="col form-group">
+        <label>Genre du référent</label>
         <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6"  name="gender" required>
           <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
         </select>
       </div>
 
       <div class="col form-group">
-        <input  autocomplete="off" [(ngModel)]="this.birthdate" class="form-control form-control-solid h-auto py-5 px-6" placeholder="Date de naissance"
-          (click)="d.toggle()"name="dp" [(ngModel)]="model"  ngbDatepicker #d="ngbDatepicker" name="birthdate" required>
+        <label>Date de naissance du référent</label>
+        <input type="date" autocomplete="off" [(ngModel)]="this.formdata.birthdate"
+          class="form-control form-control-solid h-auto" placeholder="Date de naissance" name="birthdate" required>
       </div>
     </div>
 
     <div class="row">
       <div class="col form-group">
+        <label>Mot de passe</label>
         <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Mot de passe"
           name="password" autocomplete="off" required />
       </div>
       <div class="col form-group">
+        <label>Confirmation du mot de passe</label>
         <input  [(ngModel)]="this.formdata.cpassword"  class="cpassword form-control form-control-solid h-auto py-5 px-6" type="password"
           placeholder="Confirmation du mot de passe" name="cpassword" autocomplete="off" required />
       </div>

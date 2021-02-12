@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-offers-list',
@@ -44,9 +45,44 @@ export class OffersListComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  user : {}
+  candidate : {}
+  current_situation = ""
+
+  constructor(private backService : BackendService) { }
+
+  getCurrentSituation(id:number){
+    this.backService.getSituationById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.current_situation = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération situation")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
+  getCandidate(id : number){
+    this.backService.getCandidateById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.candidate = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getCurrentSituation(this.candidate['current_situation_id'])
+      }
+    })
+  }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getCandidate(this.user['user_id'])
   }
 
 }

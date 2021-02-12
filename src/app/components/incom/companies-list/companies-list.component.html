@@ -1,56 +1,59 @@
-<div class="containerCompanies" style="display:'flex'">
-    <div class="card-body pt-4 col_md-3 col-sm-12">
-        <div style="border-bottom: 2px solid grey; padding-bottom: 5px;" class="d-flex align-items-center">
-            <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
-              <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
-              <i class="symbol-badge bg-success"></i>
-            </div>
-            <div>
-              <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">{{user['lastname']}} {{user['firstname']}}</a>
-              <div class="text-muted">Recherche machin</div>
-              <div style="display: 'flex';" class="mt-2">
-                <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" >Mon CV</a>
-                <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
-              </div>
-            </div>
-        </div>
-        <div style="margin-top: 5px;" class="d-flex align-items-center">
-            <div>
-                <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Secteurs
-                    d'activité</a>
-            </div>
-        </div>
-        <div class=" listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
-            <div *ngFor="let elem of sectors" class="navi-item mb-2">
-                <label style="display: 'flex';" class="checkbox">
-                    <input type="checkbox" (change)="clickedCheck($event.target.checked, elem.business_sector_id)"/>
-                    <span style="margin-right: '5px';"></span>
-                    {{elem.name}}
-                </label>
-            </div>
-        </div>
+<div class="card-body pt-15 profile_class">
+  <div class="mb-10 text-center">
+    <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+      <div class="symbol-label" *ngIf="candidate != undefined"
+        style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
     </div>
-    <div style="background-color: '#ffffff'" class="col-md-9 col-sm-12">
-        <h2>Liste des entreprises</h2>
-        <ng-lottie *ngIf="loading==true" style="margin: auto; width: 300px;display: block;" class="my-15" width="300px"
-            [options]="options"></ng-lottie>
-        <div *ngIf="loading==false">
-            <div *ngFor="let el of selectedCompany" class="card-container card-body col-md-3 col-sm-3">
-                <div class="card-entreprise card card-custom gutter-b">
-                    <div class=" titleEntreprise card-header">
-                        <div style="background-image:url('../../../assets/img/{{el.image}}')"
-                        class="card-img card-body">
-                        </div>
-                        <div style="align-self: center;text-align:center" class="card-title">
-                            <h3 style="display: flex; flex-direction: column; text-align: center;" class="cardMar card-label">
-                                {{el.name}}
-                                <small>{{getSector(el.business_sector_id)}}</small>
-                                <small class="textoffres">({{getNunber(el.company_id)}} Offres à pourvoir)</small>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <h4 class="font-weight-bold my-2">{{user['lastname']}} {{user['firstname']}}</h4>
+    <div *ngIf="current_situation != 'Alternance'" class="mb-2">A la recherche d'un {{current_situation}}</div>
+    <div *ngIf="current_situation == 'Alternance'" class="mb-2">A la recherche d'une {{current_situation}}</div>
+    <div style="display: 'flex';" class="mt-2">
+      <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
+      <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
     </div>
+  </div>
+  <div style="margin-top: 5px;" class="d-flex align-items-center">
+    <div>
+      <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Secteurs
+        d'activité</a>
+    </div>
+  </div>
+  <div class=" listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
+    <div *ngFor="let elem of sectors" class="navi-item mb-2">
+      <label style="display: 'flex';" class="checkbox">
+        <input type="checkbox" (change)="clickedCheck($event.target.checked, elem.business_sector_id)" />
+        <span style="margin-right: '5px';"></span>
+        {{elem.name}}
+      </label>
+    </div>
+  </div>
+</div>
+
+<div style="margin: 3%;" class="card card-custom">
+  <div class="card-header">
+    <h3 style="justify-content: center; text-align:center; font-size: x-large !important;" class="card-title col-md-12">
+      Liste des entreprises
+    </h3>
+  </div>
+  <div class="card-body">
+    <ng-lottie *ngIf="loading==true" style="margin: auto; width: 300px;display: block;" class="my-15" width="300px"
+      [options]="options"></ng-lottie>
+    <div *ngIf="loading==false">
+      <div *ngFor="let el of selectedCompany" class="card-container card-body col-md-3 col-sm-3">
+        <div class="card-entreprise card card-custom gutter-b">
+          <div class=" titleEntreprise card-header">
+            <div style="background-image:url('{{el.logo}}')" class="card-img card-body">
+            </div>
+            <div style="align-self: center;text-align:center" class="card-title">
+              <h3 style="display: flex; flex-direction: column; text-align: center;" class="cardMar card-label">
+                {{el.name}}
+                <small>{{getSector(el.business_sector_id)}}</small>
+                <small class="textoffres">({{getNunber(el.company_id)}} Offres à pourvoir)</small>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
