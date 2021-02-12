@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,11 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/company`, {headers : this.headers})
   };
 
+  getCompanyByID(id){
+    return this.http.get<any>(`${environment.backUrl}/company/`+id)
+  };
+
+
   getCompaniesByName(name){
     return this.http.get<any>(`${environment.backUrl}/company/name/`+name)
   };
@@ -70,5 +76,15 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/employee/`+id)
   }
 
+  insertImageCompany(id, data){
+    return this.http.post<any>(`${environment.backUrl}/company/${id}/img`, data, this.optionRequete)
+  }
 
+  postImage(id, fd ): Observable<string>{
+    return this.http.post<string>(`${environment.backUrl}/company/${id}/img`, fd, this.optionRequete);
+  }
+
+  getCommentsByID(id){
+    return this.http.get<any>(`${environment.backUrl}/comments/${id}`, {headers : this.headers})
+  };
 }

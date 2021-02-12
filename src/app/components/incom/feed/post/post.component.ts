@@ -1,31 +1,41 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 
 export class PostComponent implements OnInit {
 
 
-
-  posts = []
+  @Input() post: any
+  comments: any[] = []
 
   constructor(public backService: BackendService) {
 
   }
 
-  ngOnInit(): void {
-    this.backService.getPosts().subscribe((response)=>{
-      let value = response["hydra:member"]
-      this.posts = value
-      console.log(value)
-
+  getComments() {
+    this.backService.getCommentsByID(this.post.post_id).subscribe({
+      next : (response) =>{
+        console.log("trouvé")
+        this.comments = response
+        console.log(this.comments)
+      },
+      error: () => {
+        console.log("Error retrieving comments")
+      }
     })
+  }
 
+  ngOnInit(): void {
+    console.log("post: " + this.post)
+    this.getComments()
   }
 
   onClick(id) {
