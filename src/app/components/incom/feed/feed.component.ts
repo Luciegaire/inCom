@@ -13,11 +13,13 @@ export class FeedComponent implements OnInit {
 
   posts:any[] = []
 
+  currentUser: any =""
+  currentStatusUser: any = ""
   constructor(public backend: BackendService) {
 
   }
 
-  ngOnInit(): void {
+  getPosts(){
     this.backend.getPosts().subscribe({
       next : (response) =>{
         this.posts = response
@@ -27,6 +29,18 @@ export class FeedComponent implements OnInit {
         console.log("Error retrieving posts")
       },
     })
+  }
+
+  ngOnInit(): void {
+    this.currentUser = localStorage.getItem("user")
+    this.currentStatusUser = localStorage.getItem("status")
+    this.getPosts()
+  }
+
+  reloadPosts(isPost){
+    if(isPost){
+      this.getPosts()
+    }
   }
 
 }
