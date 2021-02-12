@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -7,23 +7,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  clicked = false;
+  tab=0
 
-  clickBurger() {
-    this.clicked = !this.clicked
-  }
-
-
-  tab = 0
-
-  changeTab(index: number) {
+  changeTab(index :number){
     this.tab = index
-    if (this.clicked == true) {
-      this.clickBurger();
-    }
   }
 
-  status: boolean
+  status : boolean
 
   constructor() { }
 
