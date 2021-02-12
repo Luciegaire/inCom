@@ -22,8 +22,9 @@ import { ProfilePasswordComponent } from './profile/profile-password/profile-pas
 import { FeedComponent } from './feed/feed.component';
 import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
+import { CommentComponent } from './feed/comment/comment.component';
 
 
 export function playerFactory() {
@@ -52,13 +53,15 @@ export function playerFactory() {
     ProfileCompanyOffers2Component,
     ProfilePasswordComponent,
     ProfileInformationsComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
     IncomRoutingModule,
     QuillModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory })
   ]

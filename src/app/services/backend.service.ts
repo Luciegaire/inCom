@@ -60,6 +60,10 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/user/email/`+email)
   };
 
+  getUserByID(id){
+    return this.http.get<any>(`${environment.backUrl}/user/`+id)
+  };
+
   createCandidate(data) {
     return this.http.post<any>(`${environment.backUrl}/candidate`, data, this.optionRequete)
   }
@@ -87,4 +91,24 @@ export class BackendService {
   getCommentsByID(id){
     return this.http.get<any>(`${environment.backUrl}/comments/${id}`, {headers : this.headers})
   };
+
+  createComment(data) {
+    return this.http.post<any>(`${environment.backUrl}/comment`, data, this.optionRequete)
+  }
+
+  deleteCommentsByID(id){
+    return this.http.delete<any>(`${environment.backUrl}/comment/${id}`, {headers : this.headers})
+  };
+
+  createLike(data) {
+    return this.http.post<any>(`${environment.backUrl}/like`, data, this.optionRequete)
+  }
+
+  deleteLike(post_id,user_id) {
+    return this.http.delete<any>(`${environment.backUrl}/like/${post_id}/${user_id}`, {headers : this.headers})
+  }
+  getLikesByID(id){
+    return this.http.get<any>(`${environment.backUrl}/likes/${id}`, {headers : this.headers})
+  };
+
 }
