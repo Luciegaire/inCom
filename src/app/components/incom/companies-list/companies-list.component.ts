@@ -23,6 +23,7 @@ export class CompaniesListComponent implements OnInit {
 
   user : {}
   candidate : {}
+  current_situation = ""
 
   constructor(
     public backService: BackendService
@@ -54,21 +55,36 @@ export class CompaniesListComponent implements OnInit {
         console.log("erreur récupération candidate")
       },
       complete: () =>{
+        this.getCurrentSituation(this.candidate['current_situation_id'])
       }
     })
   }
 
   getCompanies(){
-    this.backService.getCompanies().subscribe((response)=>{
-      this.listCompany = response;
-      this.selectedCompany = response;
-      this.loading = false
+    this.backService.getCompanies().subscribe({
+      next: (response) => {
+        this.listCompany = response;
+        this.selectedCompany = response;
+        this.loading = false
+      },
+      error: () =>{
+        console.log("erreur récupération entreprises")
+      },
+      complete: () =>{
+      }
     })
   }
 
   getBusinessSectors(){
-    this.backService.getBusinessSectors().subscribe((response)=>{
-      this.sectors = response
+    this.backService.getBusinessSectors().subscribe({
+      next: (response) => {
+        this.sectors = response
+      },
+      error: () =>{
+        console.log("erreur récupération secteurs")
+      },
+      complete: () =>{
+      }
     })
   }
 
@@ -80,9 +96,30 @@ export class CompaniesListComponent implements OnInit {
     else return ""
   }
 
+  getCurrentSituation(id:number){
+    this.backService.getSituationById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.current_situation = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération situation")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
   getNbOf(){
-    this.backService.getNumberOffers().subscribe((response)=>{
-      this.nbOffers = response
+    this.backService.getNumberOffers().subscribe({
+      next: (response) => {
+        this.nbOffers = response
+      },
+      error: () =>{
+        console.log("erreur récupération nombre d'offre")
+      },
+      complete: () =>{
+      }
     })
   }
 
@@ -100,6 +137,7 @@ export class CompaniesListComponent implements OnInit {
     this.getNbOf()
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.user['user_id'])
+
   }
 
 }
