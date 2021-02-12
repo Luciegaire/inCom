@@ -9,64 +9,94 @@
 
     <div class="form-row">
       <div class="col form-group">
+        <label>Choisir votre avatar</label>
+        <div class="d-flex justify-content-center align-items-center flex-wrap">
+          <img *ngFor="let path of avatarTbl" (click)="changeCurrentAvatar(path)"
+            [ngClass]="{'currentAvatar' : path == formdata.avatar_path}" class="avatar" style="max-width: 50px;"
+            src="../../../../assets/img/avatars/{{path}}" />
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col form-group">
+        <label>Prénom</label>
         <input [(ngModel)]="this.formdata.firstname" class="form-control form-control-solid h-auto py-5 px-6"
           type="text" placeholder="Prénom" name="firstname" autocomplete="off" required />
       </div>
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.lastname" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Nom" name="lastname"
-          autocomplete="off" required />
+        <label>Nom</label>
+        <input [(ngModel)]="this.formdata.lastname" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+          placeholder="Nom" name="lastname" autocomplete="off" required />
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="col form-group">
+        <label>Email</label>
+        <input [(ngModel)]="this.formdata.email" class="form-control form-control-solid h-auto py-5 px-6" type="email"
+          placeholder="Email" name="email" autocomplete="off" required />
+      </div>
+      <div class="col form-group">
+        <label>Numéro de téléphone</label>
+        <input [(ngModel)]="this.formdata.phonenumber" class="form-control form-control-solid h-auto py-5 px-6"
+          type="number" placeholder="Numéro de téléphone" name="phonenumber" autocomplete="off" required />
       </div>
     </div>
 
     <div class="form-row">
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.email" class="form-control form-control-solid h-auto py-5 px-6" type="email" placeholder="Email" name="email"
-          autocomplete="off" required />
-      </div>
-      <div class="col form-group">
-        <input [(ngModel)]="this.formdata.phonenumber" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Numéro de téléphone"
-          name="phonenumber" autocomplete="off" required />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col form-group">
-        <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6" name="gender" required>
+        <label>Genre</label>
+        <select [(ngModel)]="this.formdata.gender" class="form-control form-control-solid h-auto py-5 px-6"
+          name="gender" required>
           <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
         </select>
       </div>
 
+      <div class="col form-group">
+        <label>A la recherche de </label>
+        <select [(ngModel)]="this.formdata.current_situation" class="form-control form-control-solid h-auto py-5 px-6"
+          name="situation" required>
+          <option *ngFor="let elem of situations" value="{{elem.current_situation_id}}">{{elem.name}}</option>
+        </select>
+      </div>
 
       <div class="col form-group">
-        <input autocomplete="off" [(ngModel)]="this.birthdate" class="form-control form-control-solid h-auto py-5 px-6" placeholder="Date de naissance"
-          (click)="d.toggle()"name="dp" [(ngModel)]="model"  ngbDatepicker #d="ngbDatepicker" name="birthdate" required>
+        <label>Date de naissance</label>
+        <input type="date" autocomplete="off" [(ngModel)]="this.formdata.birthdate"
+          class="form-control form-control-solid h-auto" placeholder="Date de naissance" name="birthdate" required>
       </div>
     </div>
 
     <div class="row">
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.address" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Adresse" name="address"
-          autocomplete="off" required />
+        <label>Adresse</label>
+        <input [(ngModel)]="this.formdata.address" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+          placeholder="Adresse" name="address" autocomplete="off" required />
       </div>
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.city" class="form-control form-control-solid h-auto py-5 px-6" type="text" placeholder="Ville" name="city"
-          autocomplete="off" required />
+        <label>Ville</label>
+        <input [(ngModel)]="this.formdata.city" class="form-control form-control-solid h-auto py-5 px-6" type="text"
+          placeholder="Ville" name="city" autocomplete="off" required />
       </div>
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.postcode" class="form-control form-control-solid w-2 h-auto py-5 px-6" type="number" placeholder="Code Postal"
-          name="postcode" autocomplete="off" required />
+        <label>Code postal</label>
+        <input [(ngModel)]="this.formdata.postcode" class="form-control form-control-solid w-2 h-auto py-5 px-6"
+          type="number" placeholder="Code Postal" name="postcode" autocomplete="off" required />
       </div>
     </div>
 
 
     <div class="row">
       <div class="col form-group">
-        <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6" type="password" placeholder="Mot de passe"
-          name="password" autocomplete="off" required />
+        <label>Mot de passe</label>
+        <input [(ngModel)]="this.formdata.password" class="form-control form-control-solid h-auto py-5 px-6"
+          type="password" placeholder="Mot de passe" name="password" autocomplete="off" required />
       </div>
       <div class="col form-group">
-        <input  [(ngModel)]="this.formdata.cpassword"  class="cpassword form-control form-control-solid h-auto py-5 px-6" type="password"
-          placeholder="Confirmer le mot de passe" name="cpassword" autocomplete="off" required />
+        <label>Confirmer le mot de passe</label>
+        <input [(ngModel)]="this.formdata.cpassword" class="cpassword form-control form-control-solid h-auto py-5 px-6"
+          type="password" placeholder="Confirmer le mot de passe" name="cpassword" autocomplete="off" required />
       </div>
     </div>
 
@@ -82,28 +112,28 @@
       </div>
     </div>
 
-    <div class = "panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
-      <div class = "panel-body">
-         Votre compte a été créé avec succès!
+    <div class="panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
+      <div class="panel-body">
+        Votre compte a été créé avec succès!
       </div>
     </div>
 
-   <div class = "panel panel-default panelInvalid" [ngClass]="{'passwordInvalid': statusForm == 2}">
-    <div class = "panel-body">
-       Les mots de passe ne correspondent pas
+    <div class="panel panel-default panelInvalid" [ngClass]="{'passwordInvalid': statusForm == 2}">
+      <div class="panel-body">
+        Les mots de passe ne correspondent pas
+      </div>
     </div>
-   </div>
 
-   <div class = "panel panel-default panelInvalid" [ngClass]="{'userExist': statusForm == 3}">
-    <div class = "panel-body">
-       L'adresse mail est déjà utilisée
+    <div class="panel panel-default panelInvalid" [ngClass]="{'userExist': statusForm == 3}">
+      <div class="panel-body">
+        L'adresse mail est déjà utilisée
+      </div>
     </div>
-   </div>
 
 
     <div class="form-group d-flex flex-wrap flex-center">
       <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4"
-      (click)="validate()">Créer</button>
+        (click)="validate()">Créer</button>
       <button type="button" id="kt_login_signup_cancel"
         class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-4" (click)="changed(0)">Annuler</button>
     </div>

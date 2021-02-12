@@ -24,6 +24,7 @@ export class SignupCompanieComponent implements OnInit {
     email: "",
     phonenumber: "",
     gender: "",
+    logo : "",
     birthdate:"",
     password: "",
     cpassword: "",
@@ -31,31 +32,38 @@ export class SignupCompanieComponent implements OnInit {
     sector: ""
   }
 
-  birthdate
-
   genders:Array<Object>  = [
     {id:0, gender: "Masculin"},
     {id:1, gender: "Féminin"},
     {id:2, gender: "Autre"}
   ]
-  sectors:Array<Object>  = [
-    {id:0, name: "Industrie"},
-    {id:1, name: "Automobile"},
-    {id:2, name: "Autre"}
-  ]
+
+  sectors= []
 
   statusForm: number = -1;
 
-  model: NgbDateStruct;
-
   validForm = 1;
-
 
   constructor(public backService: BackendService, private router: Router){
 
   }
 
+  getSectors(){
+    this.backService.getSectors().subscribe({
+      next: (response) => {
+        console.log(response)
+        this.sectors = response
+      },
+      error: () =>{
+        console.log("Erreur dans la récupération des secteurs")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
   ngOnInit(): void {
+    this.getSectors()
   }
 
   changed(id:number){
@@ -64,7 +72,6 @@ export class SignupCompanieComponent implements OnInit {
   }
 
   createEmployee(company_id, user_id){
-
     let employee ={
       company_id: company_id,
       user_id: user_id,
@@ -94,7 +101,8 @@ export class SignupCompanieComponent implements OnInit {
       referent_email: this.formdata.email,
       referent_phone: this.formdata.phonenumber,
       status: 0,
-      business_sector_id: 1
+      business_sector_id: this.formdata.sector,
+      logo : this.formdata.logo
     }
 
     this.backService.createCompany(company).subscribe({
@@ -139,16 +147,6 @@ export class SignupCompanieComponent implements OnInit {
 
   }
   validate(){
-
-    this.formdata.birthdate = ""
-    //Convert the birthdate object into the right format
-    if(this.birthdate != undefined){
-      for (let prop of Object.keys(this.birthdate)) {
-          this.formdata.birthdate  += this.birthdate[prop]+'-'
-      }
-      this.formdata.birthdate  = this.formdata.birthdate .slice(0, -1)
-    }
-
     var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
     var validate = form.checkValidity()
 
@@ -183,15 +181,15 @@ export class SignupCompanieComponent implements OnInit {
     }
   }
 
-  encodeImageFileAsURL(element) {
-    console.log(element)
-    var file = element.files[0];
+  // encodeImageFileAsURL(element) {
+  //   console.log(element)
+  //   var file = element.files[0];
 
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      console.log('RESULT', reader.result)
-    }
-    reader.readAsDataURL(file);
-  }
+  //   var reader = new FileReader();
+  //   reader.onloadend = function() {
+  //     console.log('RESULT', reader.result)
+  //   }
+  //   reader.readAsDataURL(file);
+  // }
 
 }

@@ -70,5 +70,13 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/employee/`+id)
   }
 
+  getSituation(){
+    return this.http.get<any>(`${environment.backUrl}/current_situation/`)
+  }
+
+  getSectors(){
+    return this.http.get<any>(`${environment.backUrl}/business_sector/`)
+  }
+
 
 }

@@ -22,6 +22,7 @@ export class CompaniesListComponent implements OnInit {
   };
 
   user : {}
+  candidate : {}
 
   constructor(
     public backService: BackendService
@@ -41,6 +42,20 @@ export class CompaniesListComponent implements OnInit {
     else {
       this.selectedCompany = this.listCompany
     }
+  }
+
+  getCandidate(id : number){
+    this.backService.getCandidateById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.candidate = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+      }
+    })
   }
 
   getCompanies(){
@@ -84,6 +99,7 @@ export class CompaniesListComponent implements OnInit {
     this.getBusinessSectors()
     this.getNbOf()
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.getCandidate(this.user['user_id'])
   }
 
 }
