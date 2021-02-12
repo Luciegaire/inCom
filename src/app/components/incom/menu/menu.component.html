@@ -1,4 +1,4 @@
-<div class="container">
+<!--<div class="container">
     <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center mr-2">
             <img class="logo" src="../../../../assets/img/logo-summer-white.png">
@@ -22,4 +22,39 @@
             </a>
         </div>
     </div>
+</div>
+
+-->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-green">
+        <img class="logo" src="../../../../assets/img/logo-summer-white.png">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==1)?'activeLogo':''" class="flaticon-network"></i>Fil d'actualité
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==2)?'activeLogo':''" class="flaticon-suitcase"></i>Entreprises
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="btn-success btn font-weight-bold mr-3 btnMenu">
+                        <i [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/incom/profile" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
+                        <i [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile">Mon Compte</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
