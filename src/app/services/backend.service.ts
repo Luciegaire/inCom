@@ -62,12 +62,32 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/candidate/`+id)
   }
 
+  getCompanyById(id){
+    return this.http.get<any>(`${environment.backUrl}/company/`+id)
+  }
+
+  getSectorById(id){
+    return this.http.get<any>(`${environment.backUrl}/business_sector/`+id)
+  }
+
+  getSituationById(id){
+    return this.http.get<any>(`${environment.backUrl}/current_situation/`+id)
+  }
+
   createEmployee(data){
     return this.http.post<any>(`${environment.backUrl}/employee`, data, this.optionRequete)
   }
 
   getEmployeeById(id){
     return this.http.get<any>(`${environment.backUrl}/employee/`+id)
+  }
+
+  getSituation(){
+    return this.http.get<any>(`${environment.backUrl}/current_situation/`)
+  }
+
+  getSectors(){
+    return this.http.get<any>(`${environment.backUrl}/business_sector/`)
   }
 
 

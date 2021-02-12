@@ -3,12 +3,6 @@
     max-height: 150px;
 }
 
-.containerCompany{
-    width: fit-content;
-    height: fit-content;
-    background-color: blue;
-}
-
 .card-entreprise{
     background-color: #EEEEEE;
     padding-right: 0px;
@@ -20,9 +14,9 @@
 }
 
 .card-img {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 150px;
     width: 100%;
     background-position: center;
@@ -43,12 +37,26 @@
 }
 
 @media (max-width: 640px) {
-.containerCompanies{
-    flex-direction: column;
+.profile_class{
+  float:none!important;
+  width: 100%!important;
 }
 .listSectors{
     max-height: 150px;
     overflow: scroll;
 }
 }
+.profile_class {
+  float: left;
+  width: 250px;
+}
 
+.btn {width: 100%;}
+
+.card-header {
+  border: none;
+}
+
+.card-footer {
+  border: none;
+}

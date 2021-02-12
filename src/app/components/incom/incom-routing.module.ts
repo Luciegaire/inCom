@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileCandidateComponent } from './profile/profile-candidate/profile-candidate.component';
 import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 import {ProfilePageComponent} from './profile/profile-page/profile-page.component';
+import { CreateOfferComponent } from './create-offer/create-offer.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'companies', component: CompaniesListComponent, },
       { path: 'feed', component: FeedComponent, },
       { path: 'offers', component: OffersListComponent, },
+      { path: 'create-offer', component: CreateOfferComponent, },
       { path: 'profile', component: ProfileComponent, },
       { path: 'profile-page', component: ProfilePageComponent},
       { path: 'profile-company', component: ProfileCompanyComponent, },
