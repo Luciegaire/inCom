@@ -55,13 +55,18 @@ export class SigninComponent implements OnInit {
               if(response.token){
                 this.statusForm = 1
                 localStorage.setItem('token', response.token);
-                localStorage.setItem('user_id', response.user.user_id)
                 this.backService.getCandidateById(response.user.user_id).subscribe({
-                  next: () => {
+                  next: (res) => {
                     localStorage.setItem('status', "candidate");
+                    localStorage.setItem('user', JSON.stringify(res))
                   },
                   error: () => {
-                    localStorage.setItem('status', "employee");
+                    this.backService.getEmployeeById(response.user.user_id).subscribe({
+                      next: (res) => {
+                        localStorage.setItem('status', "employee");
+                        localStorage.setItem('user', JSON.stringify(res))
+                      }
+                    })
                   }
                 })
                 this.router.navigateByUrl('/incom/feed');

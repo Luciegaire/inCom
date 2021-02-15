@@ -182,4 +182,16 @@ export class SignupCompanieComponent implements OnInit {
       }
     }
   }
+
+  encodeImageFileAsURL(element) {
+    console.log(element)
+    var file = element.files[0];
+
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      console.log('RESULT', reader.result)
+    }
+    reader.readAsDataURL(file);
+  }
+
 }

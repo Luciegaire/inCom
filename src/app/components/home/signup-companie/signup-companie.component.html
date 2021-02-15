@@ -21,7 +21,7 @@
 
     <div class="form-group">
       <label class="form-label" for="customFile">Logo de l'entreprise</label>
-      <input type="file"  class="form-control form-control-solid h-auto py-5 px-6" id="customFile"  required/>
+      <input type="file"  class="form-control form-control-solid h-auto py-5 px-6" id="customFile" (change)="encodeImageFileAsURL(this)"  required/>
     </div>
 
 

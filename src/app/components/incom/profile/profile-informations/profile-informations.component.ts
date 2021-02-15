@@ -14,6 +14,19 @@ export class ProfileInformationsComponent implements OnInit {
   @Output()
   change: EventEmitter<number> = new EventEmitter<number>();
 
+  // Recuperartion de l'objet User
+  user = JSON.parse(localStorage.getItem('user'));
+
+  firstame = this.user.firstname;
+  lastname = this.user.lastname;
+  status = "";
+  phone = this.user.phone;
+  address = this.user.address;
+  postcode = this.user.postcode;
+  city = this.user.city;
+  gender = this.user.gender;
+  birthdate = this.user.birthdate;
+
   // tslint:disable-next-line:typedef
   changed(id:number){
     this.count = id;

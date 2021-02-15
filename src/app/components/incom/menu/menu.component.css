@@ -1,4 +1,34 @@
 .activeBtn{
-    background-color: white;
-    color:black!important;
+    color:#06108f!important;
+}
+
+.btnMenu{
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
+.container{
+    background-color: #1BC5BD;
+    width: 100%;
+    margin:0;
+    padding-left:10px;
+    padding-right: 10px;
+    max-width: none;
+}
+
+.menu-text{
+    color:white!important;
+}
+
+.profile{
+    padding-right: 0px!important;
+}
+
+.logo{
+    max-width: 150px;
+    margin-right: 40px;
+}
+
+.activeLogo{
+    color: #06108f!important;
 }

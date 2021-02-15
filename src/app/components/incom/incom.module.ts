@@ -24,6 +24,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
+import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 export function playerFactory() {
@@ -54,14 +55,15 @@ export function playerFactory() {
     ProfileInformationsComponent,
     ProfilePageComponent
   ],
-    imports: [
-        CommonModule,
-        IncomRoutingModule,
-        QuillModule.forRoot(),
-        ReactiveFormsModule,
-        HttpClientModule,
-        LottieModule.forRoot({player: playerFactory}),
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    IncomRoutingModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule,
+    LottieModule.forRoot({player: playerFactory}),
+    FormsModule,
+    NgbDatepickerModule
+  ]
 })
 export class IncomModule { }

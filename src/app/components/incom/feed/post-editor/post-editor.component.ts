@@ -33,16 +33,23 @@ export class PostEditorComponent implements OnInit {
   }
 
   sendPost(): void {
-
     let currentDate = this.dateNow()
-    let data = {
-      postedAt : currentDate,
-      author : "Florent Ricciardi",
-      content : this.control.value
-    }
-    this.backService.createPost(data).subscribe((response) =>{
-      console.log(response)
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    this.backService.getEmployeeById(user.user_id).subscribe((response) => {
+      let author = response.firstname+ " " +response.lastname
+      let data = {
+        employee_id : user.user_id,
+        posted_at : currentDate,
+        author : author,
+        content : this.control.value
+      }
+      this.backService.createPost(data).subscribe((response) =>{
+        console.log(response)
+      })
     })
+
+
     console.log(this.control.value)
   }
 

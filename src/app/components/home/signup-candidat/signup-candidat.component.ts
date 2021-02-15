@@ -157,9 +157,6 @@ export class SignupCandidatComponent implements OnInit {
       console.log("Veuillez remplir tous les champs")
     }
 
-
-
-
   }
 
   checkPassword(){
