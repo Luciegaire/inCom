@@ -5,8 +5,8 @@
         style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
     </div>
     <h4 class="font-weight-bold my-2">{{user['lastname']}} {{user['firstname']}}</h4>
-    <div *ngIf="current_situation != 'Alternance'" class="mb-2">A la recherche d'un {{current_situation}}</div>
-    <div *ngIf="current_situation == 'Alternance'" class="mb-2">A la recherche d'une {{current_situation}}</div>
+    <div *ngIf="contract != 'Alternance'" class="mb-2">A la recherche d'un {{contract}}</div>
+    <div *ngIf="contract == 'Alternance'" class="mb-2">A la recherche d'une {{contract}}</div>
     <div style="display: 'flex';" class="mt-2">
       <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
       <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
@@ -19,19 +19,19 @@
     </div>
   </div>
   <div class=" listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
-    <!-- <div *ngFor="let elem of sectors" class="navi-item mb-2">
+    <div *ngFor="let elem of sectors" class="navi-item mb-2">
       <label style="display: 'flex';" class="checkbox">
         <input type="checkbox" (change)="clickedCheck($event.target.checked, elem.business_sector_id)" />
         <span style="margin-right: '5px';"></span>
         {{elem.name}}
       </label>
-    </div> -->
+    </div>
   </div>
 </div>
 
 
 <div class="container mt-5">
-  <div *ngFor="let offer of offers">
+  <div *ngFor="let offer of selectedOffers">
     <div class="card card-custom gutter-b">
       <div class="card-body">
         <div class="d-flex">
@@ -40,13 +40,15 @@
               <div class="mr-3">
                 <h4 class="card-label text-dark"><i class="flaticon2-contract text-primary mr-2"></i>{{ offer.title }}
                   <small style="color:gray">postée le :
-                    {{ offer.start_date }}</small>
+                    {{ getDate(offer.start_date) | date:'dd/MM/yyy'}}</small>
                 </h4>
                 <div class="d-flex flex-wrap my-2">
                   <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
-                    <i class="flaticon2-user mr-1"></i>{{ offer["company_id"] }}</a>
+                    <i class="flaticon-map mr-1"></i>{{ getSector(offer["offer_sector_id"]) }}</a>
                   <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
-                    <i class="flaticon2-file mr-1 "></i>{{ offer["contract_id"] }}</a>
+                    <i class="flaticon-suitcase mr-1"></i>{{ getCompany(offer["company_id"]) }}</a>
+                  <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
+                    <i class="flaticon-file-2 mr-1 "></i>{{ getContract(offer["contract_id"]) }}</a>
                   <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
                     <i class="flaticon2-pin"></i>
                     {{ offer.city }}
