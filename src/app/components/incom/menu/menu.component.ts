@@ -9,6 +9,8 @@ export class MenuComponent implements OnInit {
 
   clicked = false;
 
+  linkprofile =""
+
   clickBurger() {
     this.clicked = !this.clicked
   }
@@ -27,7 +29,14 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    var stat = localStorage.getItem('status').toString()
     this.status = localStorage.getItem('status').toString() == "candidate"
+    if (stat == "candidate"){
+      this.linkprofile = "/incom/profile-page"
+    }
+    else{
+      this.linkprofile = "/incom/profile-company"
+    }
   }
 
 }
