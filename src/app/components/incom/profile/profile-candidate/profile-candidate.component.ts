@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile-candidate',
@@ -7,22 +9,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileCandidateComponent implements OnInit {
 
-  candidates = [
-    {
-      id : 1,
-      lastname : "farace",
-      firstname: "loic",
-      email: "loic.farace@gmail.com",
-      birthdate: "28/06/1995",
-      address: "645 rue du piemont",
-      postcode: 13090,
-      city: "Aix-En-Provence",
-      phone : "0654345643"
-    }]
+  page = 1;
+  statusForm: number = -1;
+  @Output()
+  changeStatus: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() { }
+
+  constructor(public backService: BackendService, private router: Router) {
+  }
+
+  mycount = 2;
+  // Recuperartion de l'objet User
+  user = JSON.parse(localStorage.getItem('user'));
+
+  firstame = this.user.firstname;
+  lastname = this.user.lastname;
+  status = "";
+  phone = this.user.phone;
+  address = this.user.address;
+  postcode = this.user.postcode;
+  city = this.user.city;
+  gender = this.user.gender;
+  birthdate = this.user.birthdate;
+
+  countChange(event) {
+    this.mycount = event;
+    console.log(this.mycount)
+  }
+
 
   ngOnInit(): void {
   }
 
+  validate() {
+    this.user.birthdate = ""
+    //Convert the birthdate object into the right format
+    if (this.birthdate != undefined) {
+      for (let prop of Object.keys(this.birthdate)) {
+        this.user.birthdate += this.birthdate[prop] + '-'
+      }
+      this.user.birthdate = this.user.birthdate.slice(0, -1)
+    }
+
+    var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
+    var validate = form.checkValidity()
+
+    if (validate === false) {
+      event.preventDefault();
+      event.stopPropagation();
+
+    }
+    form.classList.add('was-validated');
+  }
 }
+

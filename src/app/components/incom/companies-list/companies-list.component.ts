@@ -139,5 +139,4 @@ export class CompaniesListComponent implements OnInit {
     this.getCandidate(this.user['user_id'])
 
   }
-
 }

@@ -26,6 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { CommentComponent } from './feed/comment/comment.component';
+import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 export function playerFactory() {
@@ -65,7 +67,9 @@ export function playerFactory() {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({player: playerFactory}),
+    FormsModule,
+    NgbDatepickerModule
   ]
 })
 export class IncomModule { }

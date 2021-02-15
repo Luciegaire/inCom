@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {EventEmitter} from '@angular/core';
 import {ProfileInformationsComponent} from '../profile-informations/profile-informations.component';
+import {BackendService} from '../../../../services/backend.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,15 +13,20 @@ import {ProfileInformationsComponent} from '../profile-informations/profile-info
 export class ProfilePageComponent implements OnInit {
 
   page = 1;
+  @Output()
+  changeStatus: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(public backService: BackendService, private router: Router) {
+  }
+
   mycount = 2;
 
-  countChange(event){
+  countChange(event) {
     this.mycount = event;
     console.log(this.mycount)
   }
+
+
   ngOnInit(): void {
   }
-
 }
