@@ -12,7 +12,7 @@
   <!--end::Header-->
   <!--begin::Form-->
     <!--begin::Body-->
-    <div class="card-body" *ngFor="let candidate of candidates">
+    <div class="card-body">
       <div class="row">
         <label class="col-xl-3"></label>
         <div class="col-lg-9 col-xl-6">
@@ -42,44 +42,50 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label" >Prénom</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{candidate.firstname}}" placeholder="Prénom" />
+          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['firstname']}}" placeholder="" />
         </div>
       </div>
       <div class="form-group row" >
         <label class="col-xl-3 col-lg-3 col-form-label">Nom</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{candidate.lastname}}" placeholder="Nom" />
+          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['lastname']}}" placeholder="" />
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label" >Email</label>
+      <label class="col-xl-3 col-lg-3 col-form-label" >Email</label>
+      <div class="col-lg-9 col-xl-6">
+        <input type="text" class="form-control form-control-lg form-control-solid" value="{{user['email']}}" placeholder="" />
+      </div>
+    </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label" >Situation actuelle</label>
         <div class="col-lg-9 col-xl-6">
-            <input type="text" class="form-control form-control-lg form-control-solid" value="{{candidate.email}}" placeholder="Email" />
+          <input type="text" class="form-control form-control-lg form-control-solid" value="" placeholder="Situation actuelle" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Phone</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="tel" value="{{candidate.phone}}" placeholder="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          <input class="form-control form-control-lg form-control-solid" type="tel" value="{{user['phone']}}" placeholder="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                  required />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Adresse</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{candidate.address}}" placeholder="Adresse" />
+          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['address']}}" placeholder="Adresse" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Code Postal</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="number" value="{{candidate.postcode}}" placeholder="Code Postal" />
+          <input class="form-control form-control-lg form-control-solid" type="number" value="{{user['postcode']}}" placeholder="" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Ville</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{candidate.city}}" placeholder="Ville" />
+          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['city']}}" placeholder="" />
         </div>
       </div>
       <div class="form-group row">
@@ -87,14 +93,14 @@
         <div class="col-lg-9 col-xl-6">
               <div class="checkbox-inline" style="display: flex">
                 <label class="checkbox checkbox-success">
-                  <input type="radio" name="sexe"  required/>
+                  <input type="radio" value="Masculin" name="sexe" required/>
                   <span></span>
-                  <p>Masculin</p>
+                  Homme
                 </label>
                 <label class="checkbox checkbox-success" id="feminin">
-                  <input type="radio" name="sexe" required />
+                  <input type="radio" name="sexe" value="Feminnin" required />
                   <span></span>
-                    Feminin
+                  Femme
                 </label>
               </div>
             </div>
@@ -102,7 +108,7 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Date de Naissance</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="tel" value="{{candidate.birthdate}}" placeholder="Date de Naissance" />
+          <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" class="form-control form-control-lg form-control-solid" type="tel" value="{{user['birthdate']}}" placeholder="" />
         </div>
       </div>
     </div>

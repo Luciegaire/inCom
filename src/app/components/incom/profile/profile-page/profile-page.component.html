@@ -3,8 +3,9 @@
     <app-profile-informations [count]="mycount" (change)="countChange($event)" ></app-profile-informations>
   </div>
   <div class="col-md-9">
-    <app-profile-candidate *ngIf="mycount==2"></app-profile-candidate>
     <app-profile-password *ngIf="mycount==1"></app-profile-password>
+    <app-profile-candidate *ngIf="mycount==2"></app-profile-candidate>
+    <app-generate-cv *ngIf="mycount==3"></app-generate-cv>
   </div>
 </div>
 

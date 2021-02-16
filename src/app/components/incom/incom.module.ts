@@ -29,6 +29,8 @@ import { ProfileCompanyAccountCreationComponent } from './profile/profile-compan
 import { ProfileCompanyOffersCreationComponent } from './profile/profile-company/profile-company-offers-creation/profile-company-offers-creation.component';
 import { ProfileCompanyProfilePersoComponent } from './profile/profile-company/profile-company-profile-perso/profile-company-profile-perso.component';
 import { ProfileCompanyOffersEditComponent } from './profile/profile-company/profile-company-offers-edit/profile-company-offers-edit.component';
+import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 export function playerFactory() {
@@ -71,7 +73,9 @@ export function playerFactory() {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({player: playerFactory}),
+    FormsModule,
+    NgbDatepickerModule
   ]
 })
 export class IncomModule { }

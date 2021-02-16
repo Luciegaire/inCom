@@ -1,60 +1,15 @@
-<!--<div class="container">
-    <div class="d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center mr-2">
-            <img class="logo" src="../../../../assets/img/logo-summer-white.png">
-            <div class="bande">
-                <div class="">
-                    <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="btn-success btn font-weight-bold mr-3 btnMenu">
-                        <i [ngClass]="(tab==1)?'activeLogo':''" class="flaticon-network"></i>Fil d'actualité
-                    </a>
-                    <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="btn-success btn font-weight-bold mr-3 btnMenu">
-                        <i [ngClass]="(tab==2)?'activeLogo':''" class="flaticon-suitcase"></i>Entreprises
-                    </a>
-                    <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="btn-success btn font-weight-bold mr-3 btnMenu">
-                        <i [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="">
-            <a routerLink="{{status ? '/incom/profile-page' : '/incom/profile-company'}}" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
-                <i [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
--->
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-green">
-        <img class="logo" src="../../../../assets/img/logo-summer-white.png">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="btn-success btn font-weight-bold mr-3 btnMenu">
-                        <i [ngClass]="(tab==1)?'activeLogo':''" class="flaticon-network"></i>Fil d'actualité
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)" class="btn-success btn font-weight-bold mr-3 btnMenu">
-                        <i [ngClass]="(tab==2)?'activeLogo':''" class="flaticon-suitcase"></i>Entreprises
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)" class="btn-success btn font-weight-bold mr-3 btnMenu">
-                        <i [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a routerLink="/incom/profile" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)" class="btn-success btn font-weight-bold btnMenu">
-                        <i [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile">Mon Compte</i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<div [className]="clicked ? 'topnav responsive' : 'topnav'" id="myTopnav">
+  <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)" class="active"><img
+      class="logo" src="../../../../assets/img/logo-summer-white.png"></a>
+  <a routerLink="/incom/feed" [ngClass]="(tab==1)?'activeBtn':''" (click)="changeTab(1)"><i
+      [ngClass]="(tab==1)?'activeLogo':''" class="flaticon-network"></i>Fil d'actualité</a>
+  <a routerLink="/incom/companies" [ngClass]="(tab==2)?'activeBtn':''" (click)="changeTab(2)"><i
+      [ngClass]="(tab==2)?'activeLogo':''" class="flaticon-suitcase"></i>Entreprises</a>
+  <a routerLink="/incom/offers" [ngClass]="(tab==3)?'activeBtn':''" (click)="changeTab(3)"><i
+      [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres</a>
+  <a routerLink="{{linkprofile}}" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)"><i
+      [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile"></i>Mon profil</a>
+  <a href="javascript:void(0);" class="icon" (click)="clickBurger()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>

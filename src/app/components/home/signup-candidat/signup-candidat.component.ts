@@ -39,7 +39,7 @@ export class SignupCandidatComponent implements OnInit {
     city: "",
     postcode: "",
     password: "",
-    current_situation: "",
+    contract: "",
     cpassword: "",
     avatar_path : ""
   }
@@ -63,7 +63,7 @@ export class SignupCandidatComponent implements OnInit {
   }
 
   getSituations(){
-    this.backService.getSituation().subscribe({
+    this.backService.getContracts().subscribe({
       next: (response) => {
         console.log(response)
         this.situations = response
@@ -119,7 +119,7 @@ export class SignupCandidatComponent implements OnInit {
       address: this.formdata.address,
       postcode: this.formdata.postcode,
       city: this.formdata.city,
-      current_situation_id : this.formdata.current_situation,
+      contract_id : this.formdata.contract,
       avatar_path : this.formdata.avatar_path
     }
 
@@ -130,7 +130,7 @@ export class SignupCandidatComponent implements OnInit {
         this.changed(0)
       },
       error: () =>{
-        console.log("erreur création candidat")
+        console.log("erreur recuperation candidat")
       },
       complete: () =>{
 

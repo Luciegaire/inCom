@@ -1,7 +1,7 @@
 <!--begin::Body-->
 <div class="card-body pt-4">
   <!--begin::User-->
-  <div class="d-flex align-items-center">
+  <div class="d-flex align-items-center" id="information">
     <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
       <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
       <i class="symbol-badge bg-success"></i>
@@ -10,7 +10,7 @@
       <a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Loic Farace</a>
       <div class="text-muted">Recherche d'alternance</div>
       <div class="mt-2" style="display: flex">
-          <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" >Mon CV</a>
+          <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" (click)="changed(3)" >Mon CV</a>
           <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
       </div>
     </div>
@@ -20,11 +20,11 @@
   <div class="py-9">
     <div class="d-flex align-items-center justify-content-between mb-2">
       <span class="font-weight-bold mr-2">Email:</span>
-      <a href="#" class="text-muted text-hover-primary">matt@fifestudios.com</a>
+      <a href="#" class="text-muted text-hover-primary">{{user['email']}}</a>
     </div>
     <div class="d-flex align-items-center justify-content-between mb-2">
       <span class="font-weight-bold mr-2">Phone:</span>
-      <span class="text-muted">44(76)34254578</span>
+      <span class="text-muted">{{user['phone']}}</span>
     </div>
   </div>
   <!--end::Contact-->

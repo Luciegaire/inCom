@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 
@@ -47,15 +48,55 @@ export class OffersListComponent implements OnInit {
 
   user : {}
   candidate : {}
-  current_situation = ""
+  companies : []
+
+  loading = true
+
+  selectedOffers = []
+  selectedSectors = []
+  listOffers = []
+
+  sectors : []
+  contract = ""
+
+  contracts = []
 
   constructor(private backService : BackendService) { }
+
+  clickedCheck(checked : boolean, idSelect : number){
+    console.log("id",idSelect)
+    if(checked){
+      this.selectedSectors.push(idSelect);
+      }
+    else{
+      var index = this.selectedSectors.indexOf(idSelect);
+      this.selectedSectors.splice(index, 1);
+    }
+    if (this.selectedSectors.length > 0){
+      this.selectedOffers = this.listOffers.filter((item) => this.selectedSectors.indexOf(item.offer_sector_id) != -1);
+    }
+    else {
+      this.selectedOffers = this.listOffers
+    }
+  }
+
+  getContent(text){
+    if(text.length > 1000){
+      return text.slice(0, 1000)+"...";
+    }
+    else
+    return text
+  }
+
+  getDate(date){
+    return new Date(date)
+  }
 
   getCurrentSituation(id:number){
     this.backService.getSituationById(id).subscribe({
       next: (response) => {
         console.log(response)
-        this.current_situation = response.name
+        this.contract = response.name
       },
       error: () =>{
         console.log("erreur récupération situation")
@@ -63,6 +104,86 @@ export class OffersListComponent implements OnInit {
       complete: () =>{
       }
     })
+  }
+
+  getOffers(){
+    this.backService.getOffers().subscribe({
+      next: (response) => {
+        this.listOffers = response;
+        this.selectedOffers = response;
+        this.loading = false
+        console.log(this.selectedOffers)
+      },
+      error: () =>{
+        console.log("erreur récupération entreprises")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
+  getBusinessSectors(){
+    this.backService.getBusinessSectors().subscribe({
+      next: (response) => {
+        this.sectors = response
+      },
+      error: () =>{
+        console.log("erreur récupération secteurs")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
+  getCompanies(){
+    this.backService.getCompanies().subscribe({
+      next: (response) => {
+        this.companies = response
+      },
+      error: () =>{
+        console.log("erreur récupération secteurs")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
+  getContracts(){
+    this.backService.getContracts().subscribe({
+      next: (response) => {
+        this.contracts = response
+      },
+      error: () => {
+        console.log("Erreur création user")
+      },
+      complete: () => {
+
+      }
+    })
+  }
+
+  getCompany(id : number){
+    let array = this.companies.filter(x => x['company_id'] === id)
+    if(array.length != 0){
+      return array[0]['name']
+    }
+    else return ""
+  }
+
+  getContract(id : number){
+    let array = this.contracts.filter(x => x['contract_id'] === id)
+    if(array.length != 0){
+      return array[0]['name']
+    }
+    else return ""
+  }
+
+  getSector(id : number){
+    let array = this.sectors.filter(x => x['business_sector_id'] === id)
+    if(array.length != 0){
+      return array[0]['name']
+    }
+    else return ""
   }
 
   getCandidate(id : number){
@@ -81,6 +202,10 @@ export class OffersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getBusinessSectors()
+    this.getContracts()
+    this.getCompanies()
+    this.getOffers()
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.user['user_id'])
   }

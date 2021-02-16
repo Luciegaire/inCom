@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-password.component.css']
 })
 export class ProfilePasswordComponent implements OnInit {
-  passwordCandidates = [{
-    password: "chichi"
-  }]
+  user = JSON.parse(localStorage.getItem('user'));
+  password = this.user.password;
 
   constructor() { }
 
