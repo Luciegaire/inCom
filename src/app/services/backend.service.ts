@@ -64,6 +64,16 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/user/`+id)
   };
 
+
+  updateUser(id, data){
+    return this.http.put<any>(`${environment.backUrl}/user/`+id, data, this.optionRequete)
+  }
+
+
+  deleteUserByID(id){
+    return this.http.delete<any>(`${environment.backUrl}/user/`+id)
+  };
+
   createCandidate(data) {
     return this.http.post<any>(`${environment.backUrl}/candidate`, data, this.optionRequete)
   }
@@ -74,6 +84,10 @@ export class BackendService {
 
   getCompanyById(id){
     return this.http.get<any>(`${environment.backUrl}/company/`+id)
+  }
+
+  updateCompany(id, data){
+    return this.http.put<any>(`${environment.backUrl}/company/`+id, data, this.optionRequete)
   }
 
   getSectorById(id){
@@ -92,12 +106,30 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/employee/`+id)
   }
 
+  getEmployeeByEmployeeId(id){
+    return this.http.get<any>(`${environment.backUrl}/employee/id/`+id)
+  }
+
+  deleteEmployeeByUserId(id){
+    return this.http.delete<any>(`${environment.backUrl}/employee/`+id)
+  }
+
+  getEmployeesByIdCompany(id){
+    return this.http.get<any>(`${environment.backUrl}/company/`+id+`/employees`)
+  }
+
+
   getSituation(){
     return this.http.get<any>(`${environment.backUrl}/current_situation/`)
   }
 
   getSectors(){
     return this.http.get<any>(`${environment.backUrl}/business_sector/`)
+  }
+
+
+  getContracts(){
+    return this.http.get<any>(`${environment.backUrl}/contracts/`)
   }
 
   insertImageCompany(id, data){
@@ -130,5 +162,27 @@ export class BackendService {
   getLikesByID(id){
     return this.http.get<any>(`${environment.backUrl}/likes/${id}`, {headers : this.headers})
   };
+
+  createOffer(data){
+    return this.http.post<any>(`${environment.backUrl}/offer`, data, this.optionRequete)
+  };
+
+  getOfferByCompany(id){
+    return this.http.get<any>(`${environment.backUrl}/offers/company/${id}`, {headers : this.headers})
+  };
+
+  getOfferByID(id){
+    return this.http.get<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
+  };
+
+
+  getContractByID(id){
+    return this.http.get<any>(`${environment.backUrl}/contracts/${id}`, {headers : this.headers})
+  };
+
+  deleteOfferyID(id){
+    return this.http.delete<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
+  };
+
 
 }

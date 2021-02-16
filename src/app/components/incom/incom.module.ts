@@ -17,7 +17,6 @@ import { GenerateCvComponent } from './profile/generate-cv/generate-cv.component
 import { OffersListComponent } from './offers-list/offers-list.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 import { ProfileInformationsComponent } from './profile/profile-informations/profile-informations.component';
-import { ProfileCompanyOffers2Component } from './profile/profile-company/profile-company-offers2/profile-company-offers2.component';
 import { ProfilePasswordComponent } from './profile/profile-password/profile-password.component';
 import { FeedComponent } from './feed/feed.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -26,6 +25,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { CommentComponent } from './feed/comment/comment.component';
+import { ProfileCompanyAccountCreationComponent } from './profile/profile-company/profile-company-account-creation/profile-company-account-creation.component';
+import { ProfileCompanyOffersCreationComponent } from './profile/profile-company/profile-company-offers-creation/profile-company-offers-creation.component';
+import { ProfileCompanyProfilePersoComponent } from './profile/profile-company/profile-company-profile-perso/profile-company-profile-perso.component';
+import { ProfileCompanyOffersEditComponent } from './profile/profile-company/profile-company-offers-edit/profile-company-offers-edit.component';
 
 
 export function playerFactory() {
@@ -51,12 +54,15 @@ export function playerFactory() {
     ProfileCompanyProfileComponent,
     ProfileCompanyOffersComponent,
     ProfileCompanyAccountsComponent,
-    ProfileCompanyOffers2Component,
     ProfilePasswordComponent,
     ProfileInformationsComponent,
     ProfilePageComponent,
     CreateOfferComponent,
-    CommentComponent
+    CommentComponent,
+    ProfileCompanyAccountCreationComponent,
+    ProfileCompanyOffersCreationComponent,
+    ProfileCompanyProfilePersoComponent,
+    ProfileCompanyOffersEditComponent
   ],
   imports: [
     CommonModule,
