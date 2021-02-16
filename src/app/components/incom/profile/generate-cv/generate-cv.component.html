@@ -11,14 +11,15 @@
 
     <div class="card-body">
       <button *ngIf="!QRcode" (click)="displayQrcode()" class="btn btn-primary">
-        <i class="flaticon-edit"></i>Générer le QR code de votre cv
+        <i class="flaticon-edit"></i>Générer mon QR code
       </button>
       <!-- <input type="file" id="QRcode" name="QRcode" accept="application/pdf" [(ngModel)]="myAngularxQrCode"> -->
       <div *ngIf="QRcode">
-        <qrcode [qrdata]="myAngularxQrCode" [width]="250" [errorCorrectionLevel]="'M'"></qrcode>
-        <button (click)="closeQrcode()" class="btn btn-warning">Retour</button>
-        <p>QR code devrait être la !</p>
-        <p>[qrdata]="{{ myAngularxQrCode }}" [width]="250" [errorCorrectionLevel]="'M'"</p>
+        <ngx-qrcode [elementType]="elementType" [value]="value" class="qrcode" [scale]="scale" errorCorrectionLevel="M">
+        </ngx-qrcode>
+        <div class="col text-center">
+          <button class="btn btn-warning mt-5" (click)="closeQrcode()">Fermer</button>
+        </div>
       </div>
     </div>
   </div>

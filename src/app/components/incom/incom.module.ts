@@ -24,6 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+
 
 
 export function playerFactory() {
@@ -60,6 +62,7 @@ export function playerFactory() {
     QuillModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    NgxQRCodeModule,
     LottieModule.forRoot({ player: playerFactory })
   ]
 })

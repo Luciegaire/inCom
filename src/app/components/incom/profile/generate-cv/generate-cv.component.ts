@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxQrcodeElementTypes } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-generate-cv',
@@ -8,16 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class GenerateCvComponent implements OnInit {
 
   constructor() { }
-  
-  public myAngularxQrCode: string = 'https://www.google.com/';
+
+  // elementType = 'url';
+  value = 'https://www.google.com/';
+  elementType = NgxQrcodeElementTypes.URL;
+  scale = 8;
+
   public QRcode: boolean = false;
-  
+
   displayQrcode() {
-  this.QRcode = true;
+    this.QRcode = true;
   }
-  
+
   closeQrcode() {
-  this.QRcode = false;
+    this.QRcode = false;
   }
   ngOnInit(): void {
   }

@@ -37,7 +37,6 @@ import { SignupCandidatComponent } from './components/home/signup-candidat/signu
 import { ForgotPasswordComponent } from './components/home/forgot-password/forgot-password.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { QRCodeModule } from 'angularx-qrcode';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -75,7 +74,6 @@ export function playerFactory() {
   ],
   imports: [
     BrowserModule,
-    QRCodeModule,
     AppRoutingModule,
     QuillModule.forRoot(),
     ReactiveFormsModule,
