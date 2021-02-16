@@ -56,12 +56,12 @@ export class ProfileCompanyOffersComponent implements OnInit {
     this.backend.getOfferByCompany(this.currentUser.company_id).subscribe({
       next : (response) =>{
         this.offers = response
+        console.log(this.offers)
       },
       error: () => {
         console.log("Error retrieving offers")
       },
       complete:() =>{
-        console.log(this.offers)
 
         this.offers.forEach(offer => {
           this.backend.getContractByID(offer["contract_id"]).subscribe({
@@ -79,6 +79,9 @@ export class ProfileCompanyOffersComponent implements OnInit {
             }
           })
         })
+
+
+
 
 
 
