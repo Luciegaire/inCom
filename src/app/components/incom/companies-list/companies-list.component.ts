@@ -55,7 +55,7 @@ export class CompaniesListComponent implements OnInit {
         console.log("erreur récupération candidate")
       },
       complete: () =>{
-        this.getCurrentSituation(this.candidate['contract_id'])
+        this.getCurrentSituation(this.candidate['current_situation_id'])
       }
     })
   }
