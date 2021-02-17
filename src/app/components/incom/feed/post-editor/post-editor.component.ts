@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { QuillConfiguration } from "./quill-configuration";
 import { BackendService } from 'src/app/services/backend.service';
@@ -9,8 +9,11 @@ import { BackendService } from 'src/app/services/backend.service';
   styleUrls: ['./post-editor.component.css']
 })
 export class PostEditorComponent implements OnInit {
+
   quillConfiguration = QuillConfiguration;
   @Input() control: FormControl
+  @ViewChild('closebutton') closebutton;
+  @Output() isPost: EventEmitter<Boolean> =   new EventEmitter();
 
   constructor(
     public backService: BackendService,
@@ -46,6 +49,8 @@ export class PostEditorComponent implements OnInit {
       }
       this.backService.createPost(data).subscribe((response) =>{
         console.log(response)
+        this.closebutton.nativeElement.click();
+        this.isPost.emit(true);
       })
     })
 

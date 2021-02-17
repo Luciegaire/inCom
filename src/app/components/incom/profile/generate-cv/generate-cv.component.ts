@@ -8,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class GenerateCvComponent implements OnInit {
 
   constructor() { }
-
+  
+  public myAngularxQrCode: string = 'https://www.google.com/';
+  public QRcode: boolean = false;
+  
+  displayQrcode() {
+  this.QRcode = true;
+  }
+  
+  closeQrcode() {
+  this.QRcode = false;
+  }
   ngOnInit(): void {
   }
 

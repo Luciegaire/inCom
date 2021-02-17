@@ -1,64 +1,73 @@
+<div class="card-body pt-15 profile_class">
+  <div class="mb-10 text-center">
+    <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+      <div class="symbol-label" *ngIf="candidate != undefined"
+        style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
+    </div>
+    <h4 class="font-weight-bold my-2">{{user['lastname']}} {{user['firstname']}}</h4>
+    <div *ngIf="current_situation != 'Alternance'" class="mb-2">A la recherche d'un {{current_situation}}</div>
+    <div *ngIf="current_situation == 'Alternance'" class="mb-2">A la recherche d'une {{current_situation}}</div>
+    <div style="display: 'flex';" class="mt-2">
+      <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
+      <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
+    </div>
+  </div>
+  <div style="margin-top: 5px;" class="d-flex align-items-center">
+    <div>
+      <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Secteurs
+        d'activité</a>
+    </div>
+  </div>
+  <div class=" listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
+    <!-- <div *ngFor="let elem of sectors" class="navi-item mb-2">
+      <label style="display: 'flex';" class="checkbox">
+        <input type="checkbox" (change)="clickedCheck($event.target.checked, elem.business_sector_id)" />
+        <span style="margin-right: '5px';"></span>
+        {{elem.name}}
+      </label>
+    </div> -->
+  </div>
+</div>
+
+
 <div class="container mt-5">
   <div *ngFor="let offer of offers">
     <div class="card card-custom gutter-b">
       <div class="card-body">
-        <!--begin::Top-->
         <div class="d-flex">
-          <!--begin: Info-->
           <div class="flex-grow-1">
-            <!--begin::Title-->
             <div class="d-flex align-items-center justify-content-between flex-wrap mt-2">
-              <!--begin::User-->
               <div class="mr-3">
-                <!--begin::Name-->
-
                 <h4 class="card-label text-dark"><i class="flaticon2-contract text-primary mr-2"></i>{{ offer.title }}
                   <small style="color:gray">postée le :
-                    {{ offer.start_date }}</small></h4>
-
-
-                <!--end::Name-->
-                <!--begin::Contacts-->
+                    {{ offer.start_date }}</small>
+                </h4>
                 <div class="d-flex flex-wrap my-2">
-
                   <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
                     <i class="flaticon2-user mr-1"></i>{{ offer["company_id"] }}</a>
-
                   <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
                     <i class="flaticon2-file mr-1 "></i>{{ offer["contract_id"] }}</a>
-
                   <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
                     <i class="flaticon2-pin"></i>
                     {{ offer.city }}
                     ({{ offer.department }})
                   </a>
-
                 </div>
-                <!--end::Contacts-->
               </div>
-              <!--begin::User-->
             </div>
-            <!--end::Title-->
-            <!--begin::Content-->
             <div class="d-flex align-items-center flex-wrap justify-content-between">
-              <!--begin::Description-->
               <div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5">
                 {{ offer.content }}
                 <div *ngIf="offer.department > 1">Content to render when condition is true.</div>
               </div>
-              <!--end::Description-->
             </div>
             <div class="my-lg-0 my-1 d-flex justify-content-end">
               <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">Voir</a>
               <a href="#" class="btn btn-sm btn-primary font-weight-bolder text-uppercase">Postuler</a>
             </div>
-            <!--end::Content-->
           </div>
-          <!--end::Info-->
         </div>
-        <!--end::Top-->
       </div>
     </div>
   </div>
-
 </div>

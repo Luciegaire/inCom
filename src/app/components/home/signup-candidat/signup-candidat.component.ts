@@ -15,8 +15,6 @@ export class SignupCandidatComponent implements OnInit {
   @Input()
   status: number = 1;
 
-  model: NgbDateStruct;
-
   validPassword: number = 0;
 
   statusForm: number = -1;
@@ -28,7 +26,7 @@ export class SignupCandidatComponent implements OnInit {
     {id:2, gender: "Autre"}
   ]
 
-  birthdate
+  // birthdate
 
   formdata = {
     firstname: "",
@@ -41,18 +39,46 @@ export class SignupCandidatComponent implements OnInit {
     city: "",
     postcode: "",
     password: "",
-    cpassword: ""
+    current_situation: "",
+    cpassword: "",
+    avatar_path : ""
+  }
+
+  avatarTbl = [
+    'man1.png','man2.png','man3.png','man4.png',
+    'woman1.png','woman2.png','woman3.png','woman4.png',
+    ];
+
+  changeCurrentAvatar(path: string) {
+    this.formdata.avatar_path = path
   }
 
   @Output()
   changeStatus: EventEmitter<number> = new EventEmitter<number>();
 
+  situations = []
 
   constructor(public backService: BackendService, private router: Router) {
 
   }
 
+  getSituations(){
+    this.backService.getSituation().subscribe({
+      next: (response) => {
+        console.log(response)
+        this.situations = response
+      },
+      error: () => {
+        console.log("Erreur création user")
+      },
+      complete: () => {
+
+      }
+    })
+  }
+
   ngOnInit(): void {
+    this.getSituations()
   }
 
   changed(id:number){
@@ -92,7 +118,9 @@ export class SignupCandidatComponent implements OnInit {
       phone: this.formdata.phonenumber,
       address: this.formdata.address,
       postcode: this.formdata.postcode,
-      city: this.formdata.postcode
+      city: this.formdata.city,
+      current_situation_id : this.formdata.current_situation,
+      avatar_path : this.formdata.avatar_path
     }
 
     this.backService.createCandidate(candidate).subscribe({
@@ -111,15 +139,6 @@ export class SignupCandidatComponent implements OnInit {
   }
 
   validate(){
-    this.formdata.birthdate = ""
-    //Convert the birthdate object into the right format
-    if(this.birthdate != undefined){
-      for (let prop of Object.keys(this.birthdate)) {
-          this.formdata.birthdate  += this.birthdate[prop]+'-'
-      }
-      this.formdata.birthdate  = this.formdata.birthdate .slice(0, -1)
-    }
-
     var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
     var validate = form.checkValidity()
 

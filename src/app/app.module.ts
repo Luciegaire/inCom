@@ -38,7 +38,6 @@ import { ForgotPasswordComponent } from './components/home/forgot-password/forgo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptor } from './services/auth.interceptor';
 
-
 export function playerFactory() {
   return import('lottie-web');
 }

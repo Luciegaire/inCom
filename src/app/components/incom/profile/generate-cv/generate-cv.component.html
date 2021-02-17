@@ -1,1 +1,25 @@
-<p>generate-cv works!</p>
+<div class="flex-row-fluid ml-lg-8">
+  <div class="card card-custom">
+    <div class="card-header py-3">
+      <div class="card-title align-items-start flex-column">
+        <h3 class="card-label font-weight-bolder text-dark">Mon CV</h3>
+      </div>
+      <div class="card-toolbar">
+        <button type="reset" class="btn btn-success mr-2">Enregistrer</button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <button *ngIf="!QRcode" (click)="displayQrcode()" class="btn btn-primary">
+        <i class="flaticon-edit"></i>Générer le QR code de votre cv
+      </button>
+      <!-- <input type="file" id="QRcode" name="QRcode" accept="application/pdf" [(ngModel)]="myAngularxQrCode"> -->
+      <div *ngIf="QRcode">
+        <qrcode [qrdata]="myAngularxQrCode" [width]="250" [errorCorrectionLevel]="'M'"></qrcode>
+        <button (click)="closeQrcode()" class="btn btn-warning">Retour</button>
+        <p>QR code devrait être la !</p>
+        <p>[qrdata]="{{ myAngularxQrCode }}" [width]="250" [errorCorrectionLevel]="'M'"</p>
+      </div>
+    </div>
+  </div>
+</div>
