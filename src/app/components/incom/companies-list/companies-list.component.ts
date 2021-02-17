@@ -23,7 +23,7 @@ export class CompaniesListComponent implements OnInit {
 
   user : {}
   candidate : {}
-  current_situation = ""
+  contract = ""
 
   constructor(
     public backService: BackendService
@@ -100,7 +100,7 @@ export class CompaniesListComponent implements OnInit {
     this.backService.getSituationById(id).subscribe({
       next: (response) => {
         console.log(response)
-        this.current_situation = response.name
+        this.contract = response.name
       },
       error: () =>{
         console.log("erreur récupération situation")

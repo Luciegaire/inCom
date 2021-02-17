@@ -43,6 +43,10 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/company`, {headers : this.headers})
   };
 
+  getOffers(){
+    return this.http.get<any>(`${environment.backUrl}/offer`, {headers : this.headers})
+  };
+
   getCompanyByID(id){
     return this.http.get<any>(`${environment.backUrl}/company/`+id)
   };
@@ -84,7 +88,7 @@ export class BackendService {
   }
 
   getSituationById(id){
-    return this.http.get<any>(`${environment.backUrl}/current_situation/`+id)
+    return this.http.get<any>(`${environment.backUrl}/contracts/`+id)
   }
 
   createEmployee(data){
@@ -95,8 +99,8 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/employee/`+id)
   }
 
-  getSituation(){
-    return this.http.get<any>(`${environment.backUrl}/current_situation/`)
+  getContracts(){
+    return this.http.get<any>(`${environment.backUrl}/contracts/`)
   }
 
   getSectors(){

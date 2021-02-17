@@ -28,7 +28,6 @@ import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { CommentComponent } from './feed/comment/comment.component';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 
-
 export function playerFactory() {
   return import('lottie-web');
 }
