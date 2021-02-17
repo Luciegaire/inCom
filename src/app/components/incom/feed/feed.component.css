@@ -1,4 +1,28 @@
-.list-post{
-  width: 50%;
-  background-color: aquamarine;
+.container-cote-gauche{
+  height: 100%;
 }
+
+@media (max-width: 640px) {
+  .profile_class{
+    float:none!important;
+    width: 100%!important;
+  }
+  .listSectors{
+      max-height: 150px;
+      overflow: scroll;
+  }
+  }
+  .profile_class {
+    float: left;
+    width: 250px;
+  }
+
+  .container-cote-gauche .btn {width: 100%;}
+
+  .card-header {
+    border: none;
+  }
+
+  .card-footer {
+    border: none;
+  }
