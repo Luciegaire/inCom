@@ -14,6 +14,10 @@ export class ProfileCandidateComponent implements OnInit {
   @Output()
   changeStatus: EventEmitter<number> = new EventEmitter<number>();
   currentUser: any = ""
+  formdata = {
+    old_password : "",
+    new_password : ""
+  }
 
 
   constructor(public backService: BackendService, private router: Router) {
@@ -24,6 +28,11 @@ export class ProfileCandidateComponent implements OnInit {
     this.mycount = event;
     console.log(this.mycount)
   }
+  genders:Array<Object>  = [
+    {id:0, gender: "Masculin"},
+    {id:1, gender: "Féminin"},
+    {id:2, gender: "Autre"}
+  ]
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
@@ -32,10 +41,19 @@ export class ProfileCandidateComponent implements OnInit {
 
     let user = {
       user_id : this.currentUser.user_id,
-      firstname : this.currentUser.firstname,
       lastname : this.currentUser.lastname,
+      firstname : this.currentUser.firstname,
+      email : this.currentUser.email,
+      password : this.currentUser.password,
+      gender : this.currentUser.gender,
+      birthdate : this.currentUser.birthdate,
+      address: this.currentUser.address,
+      phone : this.currentUser.phone,
+      city : this.currentUser.city,
+      postcode: this.currentUser.postcode,
+      contract: this.currentUser.contract,
+      avatar: this.currentUser.avatar_path,
     }
-
     this.backService.updateUser(this.currentUser.user_id, user).subscribe({
       next : (response) => {
         console.log(response)
