@@ -14,6 +14,8 @@ export class ProfileCandidateComponent implements OnInit {
   @Output()
   changeStatus: EventEmitter<number> = new EventEmitter<number>();
   currentUser: any = ""
+  candidate : {}
+  contract = ""
   formdata = {
     old_password : "",
     new_password : ""
@@ -33,9 +35,20 @@ export class ProfileCandidateComponent implements OnInit {
     {id:1, gender: "Féminin"},
     {id:2, gender: "Autre"}
   ]
+  situations:Array<Object>  = [
+    {id:0, situation: "Stage"},
+    {id:1, situation: "Alternance"},
+    {id:2, situation: "Job étudiant"},
+    {id:3, situation: "CDI"},
+    {id:4, situation: "CDD"},
+    {id:5, situation: "Emploi saisonnier"},
+    {id:6, situation: "Contrat d'apprentissage"},
+    {id:7, situation: "Contrat de professionnalisation "},
+  ]
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.getCandidate(this.currentUser['user_id'])
   }
   updateUser(){
 
@@ -51,11 +64,11 @@ export class ProfileCandidateComponent implements OnInit {
       phone : this.currentUser.phone,
       city : this.currentUser.city,
       postcode: this.currentUser.postcode,
-      contract: this.currentUser.contract,
-      avatar: this.currentUser.avatar_path,
+      situation: this.currentUser.current_situation,
     }
     this.backService.updateUser(this.currentUser.user_id, user).subscribe({
       next : (response) => {
+        this.updateCandidate(response.id)
         console.log(response)
         localStorage.setItem('user', JSON.stringify(user));
       },
@@ -66,5 +79,59 @@ export class ProfileCandidateComponent implements OnInit {
       }
     })
   }
+  getCandidate(id : number){
+    this.backService.getCandidateById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.candidate = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getCurrentSituation(this.candidate['current_situation_id'])
+      }
+    })
+  }
+
+  getCurrentSituation(id:number){
+    this.backService.getSituationById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.contract = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération situation")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
+
+  updateCandidate(id){
+    let candidate = {
+      user_id: id,
+      phone: this.currentUser.phonenumber,
+      address: this.currentUser.address,
+      postcode: this.currentUser.postcode,
+      city: this.currentUser.city,
+      contract_id : this.currentUser.contract,
+      avatar_path : this.currentUser.avatar_path
+    }
+
+    this.backService.updateCandidate(candidate).subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: () =>{
+        console.log("erreur recuperation candidat")
+      },
+      complete: () =>{
+
+      }
+    })
+  }
+
 }
 

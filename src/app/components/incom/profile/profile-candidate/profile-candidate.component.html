@@ -22,9 +22,10 @@
       <div class="row">
         <div class="col-md-5"></div>
         <div class="col-md-7">
-        <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-          <div class="symbol-label" id="avatar" style="background-image:url('assets/img/avatars/{{this.currentUser['avatar_path']}}')"></div>
-        </div>
+          <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+            <div class="symbol-label" *ngIf="candidate != undefined"
+                 style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
+          </div>
         </div>
       </div>
       <div class="form-group row" >
@@ -44,7 +45,16 @@
       <div class="col-lg-9 col-xl-6">
         <input type="text" class="form-control form-control-lg form-control-solid" [(ngModel)]="this.currentUser['email']"  placeholder="" />
       </div>
-    </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">A la recherche de </label>
+        <div class="col-lg-9 col-xl-6">
+          <select [(ngModel)]="this.currentUser['current_situation']" class="form-control form-control-lg form-control-solid"
+                  name="current_situation" required>
+            <option *ngFor="let situation of situations" [ngValue]="situation.situation">{{situation.situation}}</option>
+          </select>
+        </div>
+      </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Téléphone</label>
         <div class="col-lg-9 col-xl-6">
