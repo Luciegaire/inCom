@@ -1,5 +1,26 @@
+<div class="container-cote-gauche card-body pt-15 profile_class">
+  <div class="mb-10 text-center">
+    <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+      <div class="symbol-label" *ngIf="candidate != undefined"
+        style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
+    </div>
+    <h4 class="font-weight-bold my-2">{{currentUser['lastname']}} {{currentUser['firstname']}}</h4>
+    <div *ngIf="contract != 'Alternance'" class="mb-2">A la recherche d'un {{contract}}</div>
+    <div *ngIf="contract == 'Alternance'" class="mb-2">A la recherche d'une {{contract}}</div>
+    <div style="display: 'flex';" class="mt-2">
+      <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
+      <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
+    </div>
+  </div>
+  <div style="margin-top: 5px;" class="d-flex align-items-center">
+    <div>
+      <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Centres d'intérêt</a>
+    </div>
+  </div>
+</div>
 
-<div class="container mt-5">
+
+<div class=" m-10">
   <app-post-editor (isPost)="reloadPosts($event)" id="post-editor" *ngIf="currentStatusUser == 'employee'"></app-post-editor>
   <div class="lists"  *ngIf="posts != null" >
     <app-post id="post"  [post]='post' *ngFor="let post of posts"></app-post>

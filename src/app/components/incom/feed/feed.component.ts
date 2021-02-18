@@ -12,6 +12,8 @@ import { BackendService } from 'src/app/services/backend.service';
 export class FeedComponent implements OnInit {
 
   posts:any[] = []
+  candidate : {}
+  contract = ""
 
   currentUser: any =""
   currentStatusUser: any = ""
@@ -31,9 +33,39 @@ export class FeedComponent implements OnInit {
     })
   }
 
+  getCandidate(id : number){
+    this.backend.getCandidateById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.candidate = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getCurrentSituation(this.candidate['current_situation_id'])
+      }
+    })
+  }
+
+  getCurrentSituation(id:number){
+    this.backend.getSituationById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.contract = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération situation")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
   ngOnInit(): void {
-    this.currentUser = localStorage.getItem("user")
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.currentStatusUser = localStorage.getItem("status")
+    this.getCandidate(this.currentUser['user_id'])
     this.getPosts()
   }
 
