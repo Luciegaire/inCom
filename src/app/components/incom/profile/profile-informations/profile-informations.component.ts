@@ -18,6 +18,7 @@ export class ProfileInformationsComponent implements OnInit {
   // Recuperartion de l'objet User
   user = JSON.parse(localStorage.getItem('user'));
   candidate = JSON.parse(localStorage.getItem('candidate'));
+  contract =""
 
   firstame = this.user.firstname;
   lastname = this.user.lastname;
@@ -71,11 +72,6 @@ export class ProfileInformationsComponent implements OnInit {
   changed(id:number){
     this.count = id;
     this.change.emit(id);
-  }
-
-  constructor(private backService: BackendService) { }
-  ngOnInit(): void {
-    this.getCandidate(this.user.user_id)
   }
 
 }
