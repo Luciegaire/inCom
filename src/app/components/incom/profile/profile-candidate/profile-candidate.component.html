@@ -8,37 +8,23 @@
         <button type="reset" class="btn btn-success mr-2" (click)="updateUser()">Enregistrer</button>
       </div>
     </div>
-      <div class="card-body">
-        <div class="row">
-          <label class="col-xl-3"></label>
-          <div class="col-lg-9 col-xl-6">
-            <h5 class="font-weight-bold mb-6">Information du candidat</h5>
-          </div>
+  </div>
+  <!--end::Header-->
+  <!--begin::Form-->
+    <!--begin::Body-->
+    <div class="card-body">
+      <div class="row">
+        <label class="col-xl-3"></label>
+        <div class="col-lg-9 col-xl-6">
+          <h5 class="font-weight-bold mb-6"></h5>
         </div>
-        <div class="form-group row">
-          <label class="col-xl-3 col-lg-3 col-form-label">Photo</label>
-          <div class="col-lg-9 col-xl-6">
-            <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(assets/media/users/blank.png)">
-              <div class="image-input-wrapper" style="background-image: url(assets/media/users/300_21.jpg)"></div>
-              <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
-                <i class="fa fa-pen icon-sm text-muted"></i>
-                <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
-                <input type="hidden" name="profile_avatar_remove" />
-              </label>
-              <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
-                    <i class="ki ki-bold-close icon-xs text-muted"></i>
-                    </span>
-              <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
-                    <i class="ki ki-bold-close icon-xs text-muted"></i>
-                    </span>
-            </div>
-            <span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-xl-3 col-lg-3 col-form-label" >Prénom</label>
-          <div class="col-lg-9 col-xl-6">
-            <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['firstname']" placeholder="" />
+      </div>
+      <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+          <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+            <div class="symbol-label" *ngIf="candidate != undefined"
+                 style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
           </div>
         </div>
         <div class="form-group row" >
@@ -106,6 +92,66 @@
           <div class="col-lg-9 col-xl-6">
             <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" class="form-control form-control-lg form-control-solid" type="tel"  placeholder="" />
           </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label" >Prénom</label>
+        <div class="col-lg-9 col-xl-6">
+          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['firstname']" placeholder="" />
+        </div>
+      </div>
+      <div class="form-group row">
+      <label class="col-xl-3 col-lg-3 col-form-label" >Email</label>
+      <div class="col-lg-9 col-xl-6">
+        <input type="text" class="form-control form-control-lg form-control-solid" [(ngModel)]="this.currentUser['email']"  placeholder="" />
+      </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">A la recherche de </label>
+        <div class="col-lg-9 col-xl-6">
+          <select [(ngModel)]="this.currentUser['current_situation']" class="form-control form-control-lg form-control-solid"
+                  name="current_situation" required>
+            <option *ngFor="let situation of situations" [ngValue]="situation.situation">{{situation.situation}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Téléphone</label>
+        <div class="col-lg-9 col-xl-6">
+          <input class="form-control form-control-lg form-control-solid" type="tel" [(ngModel)]="this.currentUser['phone']" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                 required />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Adresse</label>
+        <div class="col-lg-9 col-xl-6">
+          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['address']"  placeholder="Adresse" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Code Postal</label>
+        <div class="col-lg-9 col-xl-6">
+          <input class="form-control form-control-lg form-control-solid" type="number" [(ngModel)]="this.currentUser['postcode']" placeholder="" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Ville</label>
+        <div class="col-lg-9 col-xl-6">
+          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['city']" placeholder="" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Genre</label>
+        <div class="col-lg-9 col-xl-6">
+          <select [(ngModel)]="this.currentUser['gender']" class="form-control form-control-lg form-control-solid"
+                  name="gender" required>
+            <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label" >Date de Naissance</label>
+        <div class="col-lg-9 col-xl-6">
+          <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker"  [(ngModel)]="this.currentUser['birthdate']" placeholder="{{this.currentUser['birthdate']}}" class="form-control form-control-lg form-control-solid" type="date" name ="birthdate" required />
         </div>
       </div>
   </div>
