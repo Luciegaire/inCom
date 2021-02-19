@@ -65,12 +65,13 @@ export class ProfileCandidateComponent implements OnInit {
       city : this.currentUser.city,
       postcode: this.currentUser.postcode,
       situation: this.currentUser.current_situation,
+      candidate_id: this.currentUser.candidate_id,
     }
     this.backService.updateUser(this.currentUser.user_id, user).subscribe({
       next : (response) => {
-        this.updateCandidate(response.id)
         console.log(response)
-        localStorage.setItem('user', JSON.stringify(user));
+        this.updateCandidate(this.currentUser.candidate_id)
+        localStorage.setItem('user', JSON.stringify(response));
       },
       error: () => {
         console.log('Error updating user')
@@ -108,27 +109,27 @@ export class ProfileCandidateComponent implements OnInit {
     })
   }
 
-
   updateCandidate(id){
+    console.log(id)
     let candidate = {
-      user_id: id,
-      phone: this.currentUser.phonenumber,
+      candidate_id: id,
+      phone: this.currentUser.phone,
       address: this.currentUser.address,
       postcode: this.currentUser.postcode,
       city: this.currentUser.city,
       contract_id : this.currentUser.contract,
-      avatar_path : this.currentUser.avatar_path
+      avatar_path : this.currentUser.avatar_path,
+      current_situation_id : this.currentUser.current_situation_id,
     }
-
-    this.backService.updateCandidate(candidate).subscribe({
+    this.backService.updateCandidate(id, candidate).subscribe({
       next: (response) => {
         console.log(response)
+        localStorage.setItem('user', JSON.stringify(candidate));
       },
       error: () =>{
         console.log("erreur recuperation candidat")
       },
       complete: () =>{
-
       }
     })
   }

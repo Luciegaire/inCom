@@ -107,9 +107,7 @@ export class SignupCandidatComponent implements OnInit {
 
       }
     }
-
     )
-
   }
 
   createCandidate(id){
