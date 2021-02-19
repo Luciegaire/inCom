@@ -11,8 +11,6 @@
   max-height: 150px;
 }
 
-
-
 .card-img {
   display: flex;
   justify-content: center;
@@ -24,20 +22,40 @@
   background-repeat: no-repeat;
 }
 
+.navi .navi-item .navi-link{
+  padding-top: 10px!important;
+  padding-bottom: 0px!important;
+  padding-right: 0px!important;
+  padding-left: 0px!important;
+}
 
 .cardMar{
   margin-right: 0px!important;
 }
 
+@media (max-width: 640px) {
+  .profile_class{
+    float:none!important;
+    width: 100%!important;
+  }
+  .listSectors{
+      max-height: 150px;
+      overflow: scroll;
+  }
+  }
+  .profile_class {
+    float: left;
+    width: 250px;
+  }
 
+  .btn {width: 100%;}
 
-.btn {width: 100%;}
+  .card-header {
+    border: none;
+  }
 
-.card-header {
-  border: none;
-}
+  .card-footer {
+    border: none;
+  }
 
-.card-footer {
-  border: none;
-}
 

@@ -8,13 +8,13 @@
     <div *ngIf="contract != 'Alternance'" class="mb-2">A la recherche d'un {{contract}}</div>
     <div *ngIf="contract == 'Alternance'" class="mb-2">A la recherche d'une {{contract}}</div>
     <div style="display: 'flex';" class="mt-2">
-      <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
+      <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" (click)="changed(3)">Mon CV</a>
       <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
     </div>
   </div>
     <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
       <div class="navi-item mb-2">
-        <a class="navi-link py-4">
+        <a class="navi-link">
               <span class="navi-icon mr-2">
                  <span class="svg-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -30,7 +30,7 @@
         </a>
       </div>
       <div class="navi-item mb-2">
-        <a class="navi-link py-4">
+        <a class="navi-link">
               <span class="navi-icon mr-2">
                  <span class="svg-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
