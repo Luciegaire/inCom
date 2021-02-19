@@ -1,0 +1,21 @@
+
+.panel{
+  display: none;
+}
+.success{
+  display: block;
+  background-color: #9bdad9 ;
+}
+
+.panelInvalid{
+  background-color: #f67483;
+}
+
+.oldpasswordInvalid{
+  display: block;
+}
+
+.newpasswordInvalid{
+  display: block;
+}
+

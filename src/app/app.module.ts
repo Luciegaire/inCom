@@ -26,7 +26,6 @@ import {HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ProfileCompanyProfileComponent } from './components/incom/profile/profile-company/profile-company-profile/profile-company-profile.component';
 import { ProfileCompanyOffersComponent } from './components/incom/profile/profile-company/profile-company-offers/profile-company-offers.component';
 import { ProfileCompanyAccountsComponent } from './components/incom/profile/profile-company/profile-company-accounts/profile-company-accounts.component';
-import { ProfileCompanyOffers2Component } from './components/incom/profile/profile-company/profile-company-offers2/profile-company-offers2.component';
 
 import { ProfilePasswordComponent } from './components/incom/profile/profile-password/profile-password.component';
 import { ProfileInformationsComponent } from './components/incom/profile/profile-informations/profile-informations.component';

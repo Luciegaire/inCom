@@ -9,6 +9,7 @@ import { ProfileCandidateComponent } from './profile/profile-candidate/profile-c
 import { ProfileCompanyComponent } from './profile/profile-company/profile-company.component';
 import {ProfilePageComponent} from './profile/profile-page/profile-page.component';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
+import { DatePipe } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [DatePipe]
 })
 export class IncomRoutingModule { }

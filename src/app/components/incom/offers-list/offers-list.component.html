@@ -64,8 +64,11 @@
               </div>
             </div>
             <div class="my-lg-0 my-1 d-flex justify-content-end">
-              <a href="#" style="width: fit-content;" class="btn btn-success font-weight-bold mr-2">
+              <a [routerLink]="" (click)="manageLike(offer)" style="width: fit-content;" class="btn btn-success font-weight-bold mr-2">
                 <i class="flaticon-like"></i> J'aime
+              </a>
+              <a [routerLink]="" (click)="manageLike(offer)" style="width: fit-content;" class="btn btn-success font-weight-bold mr-2">
+                <i class="flaticon-like"></i> Je desaime
               </a>
               <a href="#" style="width: fit-content;" data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-light-primary font-weight-bold mr-2">
                 <i class="flaticon-search"></i> Voir

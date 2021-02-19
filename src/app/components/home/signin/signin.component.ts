@@ -36,6 +36,9 @@ export class SigninComponent implements OnInit {
   }
 
   login(){
+    localStorage.removeItem('status')
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
     var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
     var validate = form.checkValidity()
 
@@ -57,14 +60,20 @@ export class SigninComponent implements OnInit {
                 localStorage.setItem('token', response.token);
                 this.backService.getCandidateById(response.user.user_id).subscribe({
                   next: (res) => {
+                    console.log(res)
+                    console.log("candidat")
                     localStorage.setItem('status', "candidate");
                     localStorage.setItem('user', JSON.stringify(res))
                   },
                   error: () => {
                     this.backService.getEmployeeById(response.user.user_id).subscribe({
                       next: (res) => {
+                        console.log("emplouee")
                         localStorage.setItem('status', "employee");
                         localStorage.setItem('user', JSON.stringify(res))
+                      },
+                      error: () => {
+                        this.statusForm = 2
                       }
                     })
                   }
@@ -73,6 +82,7 @@ export class SigninComponent implements OnInit {
               }
             },
             error: () => {
+              console.log("error")
               this.statusForm = 2
             }
           })

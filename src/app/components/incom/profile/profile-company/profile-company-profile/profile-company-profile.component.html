@@ -1,81 +1,67 @@
-<div class="card card-custom">
-    <div class="card-header">
-        <h3 class="card-title col-md-12">
-            Mon entreprise
-        </h3>
+<div class="card card-custom" >
+  <!--begin::Header-->
+  <div class="card-header py-3">
+    <div class="card-title">
+      <h3 class="card-label font-weight-bolder text-dark">Informations {{company.name}}</h3>
     </div>
-    <!--begin::Form-->
+  </div>
+  <!--end::Header-->
+  <!--begin::Form-->
+  <form class="form needs-validation">
+    <!--begin::Body-->
     <div class="card-body">
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="NOM DE L'ENTREPRISE" />
+
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Nom</label>
+        <div class="col-lg-9 col-xl-6">
+          <input #name  [(ngModel)]="this.formdata.name" value="{{company.name}}" name="name" class="form-control form-control-lg form-control-solid" type="text" required>
         </div>
-        <div class="form-group col-md-6">
-            <input type="email" class="form-control" placeholder="EMAIL" />
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Url image</label>
+        <div class="col-lg-9 col-xl-6">
+          <input #logo [(ngModel)]="this.formdata.logo" value="{{company.logo}}" name="logo" class="form-control form-control-lg form-control-solid" type="text" required>
         </div>
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="NOM" />
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Nom référant</label>
+        <div class="col-lg-9 col-xl-6">
+          <input #referent_lastname [(ngModel)]="this.formdata.referent_lastname" value="{{company.referent_lastname}}" name="referant_lastname" class="form-control form-control-lg form-control-solid" type="text" required>
         </div>
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="PRENOM" />
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Prénom référant</label>
+        <div class="col-lg-9 col-xl-6">
+          <input #referent_firstname  [(ngModel)]="this.formdata.referent_firstname" value="{{company.referent_firstname}}" name="referant_firstname" class="form-control form-control-lg form-control-solid" type="text" required>
         </div>
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="TELEPHONE" />
+      </div>
+
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Email référant</label>
+        <div class="col-lg-9 col-xl-6">
+          <input #referent_email [(ngModel)]="this.formdata.referent_email" value="{{company.referent_email}}" name="referent_email" class="form-control form-control-lg form-control-solid" type="text" required>
         </div>
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="ADRESSE" />
+      </div>
+
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Téléphone référant</label>
+        <div class="col-lg-9 col-xl-6">
+          <input #referent_phone [(ngModel)]="this.formdata.referent_phone" value="{{company.referent_phone}}" name="referent_phone" class="form-control form-control-lg form-control-solid" type="text" required>
         </div>
-        <div class="form-group col-md-12">
-            <select class="form-control">
-                <option value="" disabled selected hidden>Sélectionner votre secteur d'activité</option>
-                <option>Agriculture</option>
-                <option>Ameublement</option>
-                <option>Automobile</option>
-                <option>Assurance</option>
-                <option>Art</option>
-                <option>Armée de terre</option>
-                <option>Alimentaire</option>
-                <option>Bâtiment</option>
-                <option>Banque</option>
-                <option>Commerce interentreprises</option>
-                <option>Commerces de détail non alimentaires</option>
-                <option>Commerce à distance et e-commerce</option>
-                <option>Chimie</option>
-                <option>Edition</option>
-                <option>Economie sociale, habitat social et protection sociale</option>
-                <option>Evénement</option>
-                <option>Etudes et conseil</option>
-                <option>Fabrication, maintenance et réparation</option>
-                <option>Fédération des industries nautiques</option>
-                <option>Grands magasins et magasins populaires</option>
-                <option>Hôtellerie - Restauration</option>
-                <option>Industries technologiques</option>
-                <option>Industries des papiers et cartons</option>
-                <option>Ingénierie</option>
-                <option>Entreprises du médicament</option>
-                <option>Magasins d’habillement</option>
-                <option>Mutualité</option>
-                <option>Matériaux pour la construction et l’industrie</option>
-                <option>Numérique</option>
-                <option>Offices Publics de l’Habitat</option>
-                <option>Plasturgie</option>
-                <option>Presse</option>
-                <option>Propreté</option>
-                <option>Production et services</option>
-                <option>Retraite complémentaire et prévoyance</option>
-                <option>Régies de quartier</option>
-                <option>Services</option>
-                <option>Santé</option>
-                <option>Télécommunications</option>
-                <option>Travaux publics</option>
-                <option>Textile</option>
-                <option>Transport et logistique</option>
-                <option>Union sociale pour l’habitat</option>
-            </select>
-        </div>
-        <div class="col-md-4"></div>
-        <div class="card-footer col-md-4">
-            <button class="btn btn-primary btn-modify">Modifier les paramètres de l'entreprise</button>
-        </div>
-        <div class="col-md-4"></div>
-        <!--end::Form-->
+      </div>
+
     </div>
+    <!--end::Body-->
+  </form>
+
+  <div class="card-footer text-right">
+    <button type="reset" class="btn btn-success" (click)="validate()">Sauvegarder</button>
+   </div>
+  <!--end::Form-->
+</div>

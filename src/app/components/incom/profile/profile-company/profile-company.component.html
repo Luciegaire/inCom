@@ -1,36 +1,56 @@
-<div class="card-body pt-15 profile_class">
-    <!--begin::User-->
-    <div class="mb-10 text-center">
-        <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-            <div class="symbol-label"
-                style="background-image:url('/metronic/theme/html/demo1/dist/assets/media/users/300_21.jpg')">
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <!--begin::Profile 2-->
+    <div class="d-flex flex-row">
+      <!--begin::Aside-->
+      <div class="flex-row-auto offcanvas-mobile w-300px w-xl-350px" id="kt_profile_aside">
+        <!--begin::Card-->
+        <div class="card card-custom">
+          <!--begin::Body-->
+          <div class="card-body pt-15">
+            <!--begin::User-->
+            <div class="text-center mb-10">
+              <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+                <div class="symbol-label" style="background-image:url('/metronic/theme/html/demo7/dist/assets/media/users/300_21.jpg')"></div>
+                <i class="symbol-badge symbol-badge-bottom bg-success"></i>
+              </div>
+              <h4 class="font-weight-bold my-2">James Jones</h4>
+              <span class="label label-light-warning label-inline font-weight-bold label-lg">Administrateur</span>
             </div>
-        </div>
-        <h4 class="font-weight-bold my-2">NOM Prénom</h4>
-        <div class="mb-2">Titre</div>
-    </div>
-    <!--end::User-->
-    <!--begin::Nav-->
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" href="" [routerLink]="['/incom/feed']">Fil d'actualité</a>
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayProfile()">Mon entreprise</a>
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayOffers()">Nos offres</a>
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayOffers2()">Créer une offre</a>
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" (click)="DisplayAccounts()">Comptes utilisateurs</a>
-    <a class="btn btn-secondary py-3 px-6 mb-2 text-center" href="" [routerLink]="['/incom/companies']">Liste des entreprises</a>
-    <!--end::Nav-->
-</div>
-<section class="profile-company-header mb-8">
-    <a *ngIf="companyProfile" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()" style="font-weight: bold;text-decoration: underline;">Mon entreprise</a>
-    <a *ngIf="companyProfile == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayProfile()">Mon entreprise</a>
-    <a *ngIf="companyOffers" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()" style="font-weight: bold;text-decoration: underline;">Nos offres</a>
-    <a *ngIf="companyOffers == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers()">Nos offres</a>
-    <a *ngIf="companyOffers2" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers2()" style="font-weight: bold;text-decoration: underline;">Créer une offre</a>
-    <a *ngIf="companyOffers2 == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayOffers2()">Créer une offre</a>
-    <a *ngIf="companyAccounts" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()" style="font-weight: bold;text-decoration: underline;">Comptes utilisateurs</a>
-    <a *ngIf="companyAccounts == false" href="" [routerLink]="['/incom/profile-company']" class="profile-company-header-elem" (click)="DisplayAccounts()">Comptes utilisateurs</a>
-</section>
+            <!--end::User-->
 
-<app-profile-company-profile *ngIf="companyProfile"></app-profile-company-profile>
-<app-profile-company-offers *ngIf="companyOffers"></app-profile-company-offers>
-<app-profile-company-offers2 *ngIf="companyOffers2"></app-profile-company-offers2>
-<app-profile-company-accounts *ngIf="companyAccounts"></app-profile-company-accounts>
+            <!--begin::Nav-->
+            <a [routerLink]="" (click)="status=0" class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Informations Entreprise</a>
+            <a [routerLink]="" (click)="status=3" class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Gestion des comptes</a>
+            <a [routerLink]="" (click)="status=1" class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Gestion des offres</a>
+            <a [routerLink]="" (click)="status=5" class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Informations personnels</a>
+            <!--end::Nav-->
+          </div>
+          <!--end::Body-->
+        </div>
+        <!--end::Card-->
+      </div>
+      <!--end::Aside-->
+
+
+      <!--begin::Content-->
+      <div class="flex-row-fluid ml-lg-8">
+
+        <app-profile-company-profile *ngIf="status==0"   (changeStatus)="statusChange($event)" ></app-profile-company-profile>
+        <app-profile-company-offers *ngIf="status==1"  (changeUserIDSelected)="userIDSelectedChange($event)"  (changeStatus)="statusChange($event)"></app-profile-company-offers>
+        <app-profile-company-offers-creation *ngIf="status==2" (changeStatus)="statusChange($event)"></app-profile-company-offers-creation>
+        <app-profile-company-accounts *ngIf="status==3"  (changeStatus)="statusChange($event)"></app-profile-company-accounts>
+        <app-profile-company-account-creation *ngIf="status==4"  (changeStatus)="statusChange($event)" ></app-profile-company-account-creation>
+        <app-profile-company-profile-perso *ngIf="status==5"  (changeStatus)="statusChange($event)" ></app-profile-company-profile-perso>
+        <app-profile-company-offers-edit [userIDSelected]="userIDSelected" *ngIf="status==6"   (changeStatus)="statusChange($event)" ></app-profile-company-offers-edit>
+        <!--end::Advance Table Widget 5-->
+      </div>
+      <!--end::Content-->
+    </div>
+    <!--end::Profile 2-->
+  </div>
+  <!--end::Container-->
+</div>
+
+

@@ -1,0 +1,110 @@
+<div class="card card-custom" >
+  <!--begin::Header-->
+  <div class="card-header py-3">
+    <div class="card-title">
+      <h3 class="card-label font-weight-bolder text-dark">Création d'un nouveau compte</h3>
+    </div>
+  </div>
+  <!--end::Header-->
+  <!--begin::Form-->
+  <form class="form needs-validation">
+    <!--begin::Body-->
+    <div class="card-body">
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
+        <div class="col-lg-9 col-xl-6">
+          <img *ngFor="let path of avatarTbl" (click)="changeCurrentAvatar(path)"
+          [ngClass]="{'currentAvatar' : path == userdata.avatar_path}" class="avatar" style="max-width: 40px;"
+          src="../../../../assets/img/avatars/{{path}}" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Role</label>
+        <div class="col-lg-9 col-xl-6">
+          <select [(ngModel)]="this.employeedata.role" class="form-control form-control-lg form-control-solid"  name="role" required>
+            <option  *ngFor="let role of roles" [ngValue]="role.role">{{role.role}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Nom</label>
+        <div class="col-lg-9 col-xl-6">
+          <input  [(ngModel)]="this.userdata.lastname" name="lastname" class="form-control form-control-lg form-control-solid" type="text" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Prénom</label>
+        <div class="col-lg-9 col-xl-6">
+          <input [(ngModel)]="this.userdata.firstname" name="firstname" class="form-control form-control-lg form-control-solid" type="text" required>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
+        <div class="col-lg-9 col-xl-6">
+          <input  [(ngModel)]="this.userdata.email" name="email" class="form-control form-control-lg form-control-solid" type="text"crequired>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Genre</label>
+        <div class="col-lg-9 col-xl-6">
+          <select [(ngModel)]="this.userdata.gender" name="lastname"class="form-control form-control-lg form-control-solid"  name="gender" required>
+            <option   *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Date de naissance</label>
+        <div class="col-lg-9 col-xl-6">
+          <input [(ngModel)]="this.userdata.birthdate" type="date" autocomplete="off"
+          class="form-control form-control-lg form-control-solid" placeholder="Date de naissance" name="birthdate" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Mot de passe</label>
+        <div class="col-lg-9 col-xl-6">
+          <input [(ngModel)]="this.userdata.password" type="password" autocomplete="off"
+          class="form-control form-control-lg form-control-solid"  name="password" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label">Mot de passe de confirmation</label>
+        <div class="col-lg-9 col-xl-6">
+          <input [(ngModel)]="this.userdata.cpassword" type="password" autocomplete="off"
+          class="form-control form-control-lg form-control-solid" name="cpassword" required>
+        </div>
+      </div>
+
+      <div class="panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
+        <div class="panel-body">
+          Votre compte a été créé avec succès!
+        </div>
+      </div>
+
+      <div class="panel panel-default panelInvalid" [ngClass]="{'passwordInvalid': statusForm == 2}">
+        <div class="panel-body">
+          Les mots de passe ne correspondent pas
+        </div>
+      </div>
+
+      <div class="panel panel-default panelInvalid" [ngClass]="{'userExist': statusForm == 3}">
+        <div class="panel-body">
+          L'adresse mail est déjà utilisée
+        </div>
+      </div>
+
+    </div>
+    <!--end::Body-->
+  </form>
+
+  <div class="card-footer text-right">
+    <button type="reset" class="btn btn-secondary mr-2" (click)="changed(3)">Annuler</button>
+    <button type="reset" class="btn btn-success" (click)="validate()">Valider</button>
+   </div>
+  <!--end::Form-->
+</div>

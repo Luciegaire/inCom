@@ -9,44 +9,8 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class OffersListComponent implements OnInit {
 
-  offers = [
-    {
-      offer_id : 1,
-      psted_at : "12-01-2021",
-      content : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web.",
-      title : "Vendeur en prêt à porter",
-      fast_apply : 0,
-      url :"https://www.google.com/",
-      salary : "1500",
-      city : "Marseille",
-      department : 13,
-      start_date : "15-06-2021",
-      end_date : "02-09-2021",
-      contract_id : "CDD", // à changer plus tard car id
-      offer_sectir_id : "Vente", // à changer plus tard car id
-      employee_id : "Pierre Le Ny", // à changer plus tard car id
-      company_id : "The Kooples" //// à changer plus tard car id ET A RAJOUTER EN BASE
-    },
-    {
-      offer_id : 2,
-      psted_at : "12-01-2021",
-      content : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web.",
-      title : "Développeur Angular",
-      fast_apply : 0,
-      url :"https://www.google.com/",
-      salary : "2500",
-      city : "Aix-en-Provence",
-      department : 13,
-      start_date : "15-06-2021",
-      end_date : "null",
-      contract_id : "CDI", // à changer plus tard car id
-      offer_sectir_id : "Ingénierie", // à changer plus tard car id
-      employee_id : "Florian Ricciardi", // à changer plus tard car id
-      company_id : "Capgemini" //// à changer plus tard car id ET A RAJOUTER EN BASE
-    }
-  ]
 
-  user : {}
+  user : any =""
   candidate : {}
   companies : []
 
@@ -59,6 +23,7 @@ export class OffersListComponent implements OnInit {
   sectors : []
   contract = ""
 
+  likesOffers : []
   contracts = []
 
   constructor(private backService : BackendService) { }
@@ -201,6 +166,104 @@ export class OffersListComponent implements OnInit {
     })
   }
 
+
+  getLikes(){
+    this.backService.getLikesOfferByUserID(this.user.user_id).subscribe({
+      next: (response) => {
+        this.likesOffers = response
+        console.log(response)
+      },
+      error: () => {
+        console.log("Erreur retriving likes")
+      },
+      complete: () => {
+
+      }
+    })
+  }
+
+  like(offer){
+    let like = {
+      user_id: this.user.user_id,
+      offer_id: offer.offer_id
+    }
+    this.backService.createLikeOffer(like).subscribe({
+      next : (response) =>{
+        this.ngOnInit()
+      },
+      error: () => {
+        console.log("Error like!")
+      },
+    })
+  }
+
+  unlike(offer){
+    let like = {
+      user_id: this.user.user_id,
+      offer_id: offer.offer_id
+    }
+
+    this.backService.deleteLikeOffer(like.offer_id, like.user_id).subscribe({
+      next : (response) =>{
+        this.ngOnInit()
+      },
+      error: () => {
+        console.log("Error unlike!")
+      },
+    })
+  }
+
+  getStatus(offer){
+    let likes = []
+    this.backService.getLikesOfferByID(offer.offer_id).subscribe({
+      next : (response) =>{
+          likes = response
+          console.log
+          if(likes.length == 0){
+            console.log("not liked status")
+            return false
+          }
+          else{
+            return true
+          }
+      },
+      error: () => {
+        console.log("Error retrieving likes")
+      },
+      complete: () => {
+      }
+   })
+  }
+
+  manageLike(offer) {
+    let likes = []
+    this.backService.getLikesOfferByID(offer.offer_id).subscribe({
+      next : (response) =>{
+          likes = response
+          console.log
+          if(likes.length == 0){
+            console.log("not liked")
+            this.like(offer)
+          }
+          else{
+            console.log("is liked")
+            this.unlike(offer)
+
+          }
+      },
+      error: () => {
+        console.log("Error retrieving likes")
+      },
+      complete: () => {
+      }
+    })
+
+
+  }
+
+
+
+
   ngOnInit(): void {
     this.getBusinessSectors()
     this.getContracts()
@@ -208,6 +271,7 @@ export class OffersListComponent implements OnInit {
     this.getOffers()
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.user['user_id'])
+    this.getLikes()
   }
 
 }

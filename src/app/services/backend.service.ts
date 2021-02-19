@@ -70,6 +70,11 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/user/`+id)
   };
 
+
+  deleteUserByID(id){
+    return this.http.delete<any>(`${environment.backUrl}/user/`+id)
+  };
+
   createCandidate(data) {
     return this.http.post<any>(`${environment.backUrl}/candidate`, data, this.optionRequete)
   }
@@ -82,6 +87,10 @@ export class BackendService {
 
   getCompanyById(id){
     return this.http.get<any>(`${environment.backUrl}/company/`+id)
+  }
+
+  updateCompany(id, data){
+    return this.http.put<any>(`${environment.backUrl}/company/`+id, data, this.optionRequete)
   }
 
   getSectorById(id){
@@ -100,12 +109,31 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/employee/`+id)
   }
 
-  getContracts(){
-    return this.http.get<any>(`${environment.backUrl}/contracts/`)
+  getEmployeeByEmployeeId(id){
+    return this.http.get<any>(`${environment.backUrl}/employee/id/`+id)
   }
+
+  deleteEmployeeByUserId(id){
+    return this.http.delete<any>(`${environment.backUrl}/employee/`+id)
+  }
+
+  getEmployeesByIdCompany(id){
+    return this.http.get<any>(`${environment.backUrl}/company/`+id+`/employees`)
+  }
+
+
+  getSituation(){
+    return this.http.get<any>(`${environment.backUrl}/current_situation/`)
+  }
+
 
   getSectors(){
     return this.http.get<any>(`${environment.backUrl}/business_sector/`)
+  }
+
+
+  getContracts(){
+    return this.http.get<any>(`${environment.backUrl}/contracts/`)
   }
 
   insertImageCompany(id, data){
@@ -137,6 +165,46 @@ export class BackendService {
   }
   getLikesByID(id){
     return this.http.get<any>(`${environment.backUrl}/likes/${id}`, {headers : this.headers})
+  };
+
+  createOffer(data){
+    return this.http.post<any>(`${environment.backUrl}/offer`, data, this.optionRequete)
+  };
+
+  getOfferByCompany(id){
+    return this.http.get<any>(`${environment.backUrl}/offers/company/${id}`, {headers : this.headers})
+  };
+
+  getOfferByID(id){
+    return this.http.get<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
+  };
+
+  updateOffer(id, data){
+    return this.http.put<any>(`${environment.backUrl}/offer/`+id, data, this.optionRequete)
+  }
+
+
+  createLikeOffer(data) {
+    return this.http.post<any>(`${environment.backUrl}/likeOffer`, data, this.optionRequete)
+  }
+
+  deleteLikeOffer(offer_id,user_id) {
+    return this.http.delete<any>(`${environment.backUrl}/likeOffer/${offer_id}/${user_id}`, {headers : this.headers})
+  }
+
+  getLikesOfferByID(id){
+    return this.http.get<any>(`${environment.backUrl}/likesOffer/${id}`, {headers : this.headers})
+  }
+  getLikesOfferByUserID(id){
+    return this.http.get<any>(`${environment.backUrl}/likesOffer/user/${id}`, {headers : this.headers})
+  }
+
+  getContractByID(id){
+    return this.http.get<any>(`${environment.backUrl}/contracts/${id}`, {headers : this.headers})
+  };
+
+  deleteOfferyID(id){
+    return this.http.delete<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
   };
 
   getCompanyByEmployeeId(id){
