@@ -1,101 +1,105 @@
 <!--begin::Card-->
-<div class="card card-custom card-stretch">
-  <!--begin::Header-->
-  <div class="card-header py-3">
-    <div class="card-title align-items-start flex-column">
-      <h3 class="card-label font-weight-bolder text-dark">Mon profil</h3>
-    </div>
-    <div class="card-toolbar">
-      <button type="reset" class="btn btn-success mr-2" (click)="updateUser()">Enregistrer</button>
-    </div>
-  </div>
-  <!--end::Header-->
-  <!--begin::Form-->
-    <!--begin::Body-->
-    <div class="card-body">
-      <div class="row">
-        <label class="col-xl-3"></label>
-        <div class="col-lg-9 col-xl-6">
-          <h5 class="font-weight-bold mb-6"></h5>
-        </div>
+<div style="margin: 3%;">
+  <div class="card card-custom card-stretch">
+    <!--begin::Header-->
+    <div class="card-header py-3">
+      <div class="card-title align-items-start flex-column">
+        <h3 class="card-label font-weight-bolder text-dark">Mon profil</h3>
       </div>
-      <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-7">
-          <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-            <div class="symbol-label" *ngIf="candidate != undefined"
-                 style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
+      <div class="card-toolbar">
+        <button type="reset" class="btn btn-success mr-2" (click)="updateUser()">Enregistrer</button>
+      </div>
+    </div>
+    <!--end::Header-->
+    <!--begin::Form-->
+      <!--begin::Body-->
+      <div class="card-body">
+        <div class="row">
+          <label class="col-xl-3"></label>
+          <div class="col-lg-9 col-xl-6">
+            <h5 class="font-weight-bold mb-6"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5"></div>
+          <div class="col-md-7">
+            <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+              <div class="symbol-label" *ngIf="candidate != undefined"
+                   style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" >
+          <label class="col-xl-3 col-lg-3 col-form-label">Nom</label>
+          <div class="col-lg-9 col-xl-6">
+            <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['lastname']" placeholder="" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label" >Prénom</label>
+          <div class="col-lg-9 col-xl-6">
+            <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['firstname']" placeholder="" />
+          </div>
+        </div>
+        <div class="form-group row">
+        <label class="col-xl-3 col-lg-3 col-form-label" >Email</label>
+        <div class="col-lg-9 col-xl-6">
+          <input type="text" class="form-control form-control-lg form-control-solid" [(ngModel)]="this.currentUser['email']"  placeholder="" />
+        </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label">A la recherche de </label>
+          <div class="col-lg-9 col-xl-6">
+            <select [(ngModel)]="this.currentUser['current_situation']" class="form-control form-control-lg form-control-solid"
+                    name="current_situation" required>
+              <option *ngFor="let situation of situations" [ngValue]="situation.situation">{{situation.situation}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label">Téléphone</label>
+          <div class="col-lg-9 col-xl-6">
+            <input class="form-control form-control-lg form-control-solid" type="tel" [(ngModel)]="this.currentUser['phone']" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                   required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label">Adresse</label>
+          <div class="col-lg-9 col-xl-6">
+            <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['address']"  placeholder="Adresse" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label">Code Postal</label>
+          <div class="col-lg-9 col-xl-6">
+            <input class="form-control form-control-lg form-control-solid" type="number" [(ngModel)]="this.currentUser['postcode']" placeholder="" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label">Ville</label>
+          <div class="col-lg-9 col-xl-6">
+            <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['city']" placeholder="" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label">Genre</label>
+          <div class="col-lg-9 col-xl-6">
+            <select [(ngModel)]="this.currentUser['gender']" class="form-control form-control-lg form-control-solid"
+                    name="gender" required>
+              <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-xl-3 col-lg-3 col-form-label" >Date de Naissance</label>
+          <div class="col-lg-9 col-xl-6">
+            <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker"  [(ngModel)]="this.currentUser['birthdate']" placeholder="{{this.currentUser['birthdate']}}" class="form-control form-control-lg form-control-solid" type="date" name ="birthdate" required />
           </div>
         </div>
       </div>
-      <div class="form-group row" >
-        <label class="col-xl-3 col-lg-3 col-form-label">Nom</label>
-        <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['lastname']" placeholder="" />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label" >Prénom</label>
-        <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['firstname']" placeholder="" />
-        </div>
-      </div>
-      <div class="form-group row">
-      <label class="col-xl-3 col-lg-3 col-form-label" >Email</label>
-      <div class="col-lg-9 col-xl-6">
-        <input type="text" class="form-control form-control-lg form-control-solid" [(ngModel)]="this.currentUser['email']"  placeholder="" />
-      </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">A la recherche de </label>
-        <div class="col-lg-9 col-xl-6">
-          <select [(ngModel)]="this.currentUser['current_situation']" class="form-control form-control-lg form-control-solid"
-                  name="current_situation" required>
-            <option *ngFor="let situation of situations" [ngValue]="situation.situation">{{situation.situation}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">Téléphone</label>
-        <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="tel" [(ngModel)]="this.currentUser['phone']" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                 required />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">Adresse</label>
-        <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['address']"  placeholder="Adresse" />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">Code Postal</label>
-        <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="number" [(ngModel)]="this.currentUser['postcode']" placeholder="" />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">Ville</label>
-        <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['city']" placeholder="" />
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">Genre</label>
-        <div class="col-lg-9 col-xl-6">
-          <select [(ngModel)]="this.currentUser['gender']" class="form-control form-control-lg form-control-solid"
-                  name="gender" required>
-            <option *ngFor="let gender of genders" [ngValue]="gender.gender">{{gender.gender}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label" >Date de Naissance</label>
-        <div class="col-lg-9 col-xl-6">
-          <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker"  [(ngModel)]="this.currentUser['birthdate']" placeholder="{{this.currentUser['birthdate']}}" class="form-control form-control-lg form-control-solid" type="date" name ="birthdate" required />
-        </div>
-      </div>
-    </div>
-    <!--end::Body-->
-  <!--end::Form-->
+      <!--end::Body-->
+    <!--end::Form-->
+  </div>
+
+
 </div>
