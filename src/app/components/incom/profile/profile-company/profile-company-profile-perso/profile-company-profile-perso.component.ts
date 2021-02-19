@@ -19,7 +19,9 @@ export class ProfileCompanyProfilePersoComponent implements OnInit {
     new_password : ""
   }
 
-  constructor(public backend: BackendService) { }
+  constructor(public backend: BackendService) {
+
+  }
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
@@ -58,9 +60,9 @@ export class ProfileCompanyProfilePersoComponent implements OnInit {
       }
     })
   }
-
-
-
+  getDate(date){
+    return new Date(date)
+  }
 
   validate(){
     var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;

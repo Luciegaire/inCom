@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile-company-offers-edit',
@@ -12,6 +13,8 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
 
   @Output()
   changeStatus: EventEmitter<number> = new EventEmitter<number>();
+  @Output()
+  change: EventEmitter<number> = new EventEmitter<number>();
   currentUser: any = ""
   offer: any = ""
   statusForm: number = -1;
@@ -33,12 +36,12 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
 
 
   formdata = {
+    offer_id:"",
     city: "",
     content: "",
     contract_id: "",
     department: "",
     end_date: "",
-    logo: "",
     fast_apply: "1",
     company_id: "",
     offer_sector_id:"",
@@ -46,11 +49,12 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
     salary: "",
     start_date: "",
     title: "",
-    url: ""
+    url: "",
+    employee_id: ""
   }
   backService: any;
 
-  constructor(public backend: BackendService) { }
+  constructor(public backend: BackendService, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
@@ -67,36 +71,31 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
     return new Date(date)
   }
 
-  getSector(id){
-    console.log("get sector")
-      this.backend.getSectorById(id).subscribe({
-        next : (response) =>{
-          this.sector = response
-          //console.log(this.sector)
-        },
-        error: () => {
-          console.log("Error retrieving sector")
-        },
-        complete:() =>{
-        }
-      })
-
-
-  }
 
   getOffer(){
     this.backend.getOfferByID(this.userIDSelected).subscribe({
       next : (response) =>{
         this.offer = response
-        //console.log(response)
-        console.log("heyy")
+        this.formdata.employee_id = this.offer.employee_id
+        this.formdata.offer_id = this.offer.offer_id
+        this.formdata.start_date =  this.datepipe.transform(this.offer.start_date , 'yyyy-MM-dd')
+        this.formdata.end_date = this.datepipe.transform(this.offer.end_date , 'yyyy-MM-dd')
+        this.formdata.contract_id = this.offer.contract_id
+        this.formdata.offer_sector_id = this.offer.offer_sector_id
+        this.formdata.posted_at = this.offer.posted_at
+        this.formdata.company_id = this.offer.company_id
+        this.formdata.department = this.offer.department
+        this.formdata.title = this.offer.title
+        this.formdata.city = this.offer.city
+        this.formdata.content = this.offer.content
+        this.formdata.salary = this.offer.salary
+        this.formdata.url = this.offer.url
+        console.log(this.formdata)
       },
       error: () => {
         console.log("Error retrieving offer")
       },
       complete:() =>{
-        this.getSector(this.offer.sector_id)
-
       }
     })
   }
@@ -106,6 +105,8 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
       next: (response) => {
         //console.log(response)
         this.sectors = response
+        console.log("sectors")
+        console.log(this.sectors)
       },
       error: () =>{
         console.log("Erreur dans la récupération des secteurs")
@@ -115,11 +116,35 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
     })
   }
 
+  getSector(id : number){
+    if(id != undefined){
+      let array = this.sectors.filter(x => x['business_sector_id'] === id)
+      if(array.length != 0){
+        return array[0]['name']
+      }
+      else return ""
+    }
+    else return ""
+  }
+
+  getContract(id : number){
+    if(id != undefined){
+      let array = this.contracts.filter(x => x['contract_id'] === id)
+      if(array.length != 0){
+        return array[0]['name']
+      }
+      else return ""
+    }
+    else return ""
+  }
+
   getContracts(){
     this.backend.getContracts().subscribe({
       next: (response) => {
         //console.log(response)
         this.contracts = response
+        console.log("contracts")
+        console.log(this.contracts)
       },
       error: () =>{
         console.log("Erreur dans la récupération des contrats")
@@ -129,34 +154,49 @@ export class ProfileCompanyOffersEditComponent implements OnInit {
     })
   }
 
-  updateCompany(){
-    this.backend.updateCompany(this.currentUser.company_id, this.formdata).subscribe({
+  contractChanges(event : any) {
+    let selected : any = event.target.value;
+    this.formdata.contract_id = selected
+  }
+
+
+  sectorChanges(event : any) {
+    let selected : any = event.target.value;
+    this.formdata.offer_sector_id = selected
+  }
+
+
+  updateOffer(){
+
+    this.backend.updateOffer(this.offer.offer_id, this.formdata).subscribe({
       next : (response) =>{
         console.log(response)
+        this.statusForm = 1
       },
       error: () => {
-        console.log("Error updating company")
+        console.log("Error updating offer")
       },
       complete:() =>{
+
       }
     })
   }
 
   validate(){
-    this.formdata.title = this.title.nativeElement.value
-    this.formdata.contract_id = this.contract_id.nativeElement.value
-    this.formdata.offer_sector_id = this.offer_sector_id.nativeElement.value
-    /*this.formdata.content = this.content.nativeElement.value
-    this.formdata.salary = this.salary.nativeElement.value
-    this.formdata.city = this.city.nativeElement.value
-    this.formdata.department = this.department.nativeElement.value
-    this.formdata.start_date = this.start_date.nativeElement.value
-    this.formdata.end_date = this.end_date.nativeElement.value
-    this.formdata.url = this.url.nativeElement.value*/
+  var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
+      var validate = form.checkValidity()
+      console.log(this.formdata)
+      if (validate === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
 
+      if(validate){
+        this.updateOffer()
+      }else{
+        this.statusForm = 2
+      }
+    }
 
-
-    console.log(this.formdata)
   }
-
-}

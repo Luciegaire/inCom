@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-company.component.css']
 })
 export class ProfileCompanyComponent implements OnInit {
-  status: number = 0
+  status: number = 1
   userIDSelected: number = -1
   constructor() { }
 
