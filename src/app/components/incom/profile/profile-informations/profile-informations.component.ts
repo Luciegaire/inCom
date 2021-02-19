@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Input, Output, EventEmitter} from '@angular/core';
-import {BackendService} from '../../../../services/backend.service';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-profile-informations',
@@ -34,13 +34,12 @@ export class ProfileInformationsComponent implements OnInit {
   current_situation = this.user.current_situation;
   avatar = this.user.avatar_path;
 
-  // tslint:disable-next-line:typedef
-  changed(id:number){
-    this.count = id;
-    this.change.emit(id);
+  constructor(private backService: BackendService) { }
+  ngOnInit(): void {
+    this.getCandidate(this.user.user_id)
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getCandidate(this.user['user_id'])
   }
-  constructor(private backService : BackendService) { }
-
 
   getCandidate(id : number){
     this.backService.getCandidateById(id).subscribe({
@@ -71,8 +70,10 @@ export class ProfileInformationsComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.getCandidate(this.user['user_id'])
+  // tslint:disable-next-line:typedef
+  changed(id:number){
+    this.count = id;
+    this.change.emit(id);
   }
+
 }
