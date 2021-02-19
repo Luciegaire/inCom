@@ -9,6 +9,7 @@ import { BackendService } from 'src/app/services/backend.service';
 export class CompaniesListComponent implements OnInit {
 
   sectors = []
+  status = ""
 
   loading = true;
   listCompany= []
@@ -22,7 +23,7 @@ export class CompaniesListComponent implements OnInit {
   };
 
   user : {}
-  candidate : {}
+  candidateOrCompany : {}
   contract = ""
 
   constructor(
@@ -131,12 +132,47 @@ export class CompaniesListComponent implements OnInit {
     else return "0"
   }
 
+  getCompanyByIdUser(id : number){
+    this.backService.getCompanyByUserId(id).subscribe({
+      next: (response) => {
+        console.log("company",response)
+        this.candidateOrCompany = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getBusinessSector(this.candidateOrCompany['business_sector_id'])
+      }
+    })
+  }
+
+  getBusinessSector(id : number){
+    this.backService.getSectorById(id).subscribe({
+      next: (response) => {
+        console.log("business",response)
+        this.contract = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération Business")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
   ngOnInit(): void {
     this.getCompanies()
     this.getBusinessSectors()
     this.getNbOf()
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.getCandidate(this.user['user_id'])
+    this.status = localStorage.getItem('status')
+    if(this.status == "candidate"){
+      this.getCandidate(this.user['user_id'])
+    }
+    else {
+      this.getCompanyByIdUser(this.user['user_id'])
+    }
 
   }
 }

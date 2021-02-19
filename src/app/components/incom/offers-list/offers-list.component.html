@@ -1,13 +1,16 @@
 <div class="card-body pt-15 profile_class">
   <div class="mb-10 text-center">
     <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-      <div class="symbol-label" *ngIf="candidate != undefined"
-        style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
+      <div class="symbol-label" *ngIf="candidateOrCompany != undefined && status =='candidate'"
+        style="background-image:url('assets/img/avatars/{{candidateOrCompany.avatar_path}}')"></div>
+        <div class="symbol-label" *ngIf="candidateOrCompany != undefined && status !='candidate'"
+        style="background-image:url('{{candidateOrCompany.logo}}')"></div>
     </div>
     <h4 class="font-weight-bold my-2">{{user['lastname']}} {{user['firstname']}}</h4>
-    <div *ngIf="contract != 'Alternance'" class="mb-2">A la recherche d'un {{contract}}</div>
-    <div *ngIf="contract == 'Alternance'" class="mb-2">A la recherche d'une {{contract}}</div>
-    <div style="display: 'flex';" class="mt-2">
+    <div *ngIf="contract != 'Alternance' && status == 'candidate'" class="mb-2">A la recherche d'un {{contract}}</div>
+    <div *ngIf="contract == 'Alternance' && status == 'candidate'" class="mb-2">A la recherche d'une {{contract}}</div>
+    <div *ngIf="status != 'candidate'" class="mb-2">{{contract}}</div>
+    <div *ngIf="status == 'candidate'" style="display: 'flex';" class="mt-2">
       <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
       <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
     </div>

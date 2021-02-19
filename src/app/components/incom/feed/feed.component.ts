@@ -15,10 +15,24 @@ export class FeedComponent implements OnInit {
   candidateOrCompany : {}
   contract = ""
 
+  tabLittleOffers : []
+
   currentUser: any =""
   currentStatusUser: any = ""
   constructor(public backend: BackendService) {
 
+  }
+
+  getOffers(id){
+    this.backend.getOffersByCompanyId(id).subscribe({
+      next : (response) =>{
+        console.log("offers", response)
+        this.tabLittleOffers = response
+      },
+      error: () => {
+        console.log("Error retrieving posts")
+      },
+    })
   }
 
   getPosts(){
@@ -74,6 +88,7 @@ export class FeedComponent implements OnInit {
         console.log("erreur récupération Business")
       },
       complete: () =>{
+        this.getOffers(this.candidateOrCompany['company_id'])
       }
     })
   }

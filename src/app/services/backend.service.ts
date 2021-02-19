@@ -51,6 +51,10 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/company/`+id)
   };
 
+  getOffersByCompanyId(id){
+    return this.http.get<any>(`${environment.backUrl}/offers/company/`+id)
+  }
+
   getCompaniesByName(name){
     return this.http.get<any>(`${environment.backUrl}/company/name/`+name)
   };

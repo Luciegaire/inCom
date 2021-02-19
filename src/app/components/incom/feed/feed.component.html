@@ -1,4 +1,4 @@
-<div class="container-cote-gauche card-body pt-15 profile_class">
+<div class="container-cote-gauche card-body profile_class">
   <div class="mb-10 text-center">
     <div class="symbol symbol-60 symbol-circle symbol-xl-90">
       <div class="symbol-label" *ngIf="candidateOrCompany != undefined && currentStatusUser =='candidate'"
@@ -16,8 +16,15 @@
     </div>
   </div>
   <div style="margin-top: 5px;" class="d-flex align-items-center">
-    <div>
-      <a class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Centres d'intérêt</a>
+    <div style="margin-bottom: 5px;">
+      <a *ngIf="currentStatusUser != 'candidate'" class="font-weight-bolder font-size-h4 text-dark-75 text-hover-primary">
+        <i class="flaticon-file-2 mr-2 text-primary"></i>Nos offres</a>
+      <a *ngIf="currentStatusUser == 'candidate'" class="">Centres d'intérêt</a>
+    </div>
+  </div>
+  <div class="listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
+    <div *ngFor="let elem of tabLittleOffers" class="navi-item mb-2">
+        <p style="font-size: 16px;">{{elem.title}}</p>
     </div>
   </div>
 </div>
