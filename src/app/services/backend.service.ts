@@ -72,11 +72,6 @@ export class BackendService {
   };
 
 
-  updateUser(id, data){
-    return this.http.put<any>(`${environment.backUrl}/user/`+id, data, this.optionRequete)
-  }
-
-
   deleteUserByID(id){
     return this.http.delete<any>(`${environment.backUrl}/user/`+id)
   };
@@ -187,6 +182,21 @@ export class BackendService {
     return this.http.put<any>(`${environment.backUrl}/offer/`+id, data, this.optionRequete)
   }
 
+
+  createLikeOffer(data) {
+    return this.http.post<any>(`${environment.backUrl}/likeOffer`, data, this.optionRequete)
+  }
+
+  deleteLikeOffer(offer_id,user_id) {
+    return this.http.delete<any>(`${environment.backUrl}/likeOffer/${offer_id}/${user_id}`, {headers : this.headers})
+  }
+
+  getLikesOfferByID(id){
+    return this.http.get<any>(`${environment.backUrl}/likesOffer/${id}`, {headers : this.headers})
+  }
+  getLikesOfferByUserID(id){
+    return this.http.get<any>(`${environment.backUrl}/likesOffer/user/${id}`, {headers : this.headers})
+  }
 
   getContractByID(id){
     return this.http.get<any>(`${environment.backUrl}/contracts/${id}`, {headers : this.headers})
