@@ -33,6 +33,10 @@ export class CommentComponent implements OnInit {
 
   }
 
+  getDate(date){
+    return new Date(date)
+  }
+
   removeComment(){
     this.idComment.emit(this.comment.comment_id);
   }

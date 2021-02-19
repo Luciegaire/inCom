@@ -51,13 +51,16 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/company/`+id)
   };
 
-
   getCompaniesByName(name){
     return this.http.get<any>(`${environment.backUrl}/company/name/`+name)
   };
 
   createUser(data) {
     return this.http.post<any>(`${environment.backUrl}/user`, data, this.optionRequete)
+  };
+
+  updateUser(userId, data) {
+    return this.http.put<any>(`${environment.backUrl}/user/`+userId, data,  this.optionRequete)
   };
 
   getUserByEmail(email){
@@ -189,5 +192,8 @@ export class BackendService {
     return this.http.delete<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
   };
 
+  getCompanyByEmployeeId(id){
+    return this.http.get<any>(`${environment.backUrl}/company/companyByEmployee/${id}`, {headers : this.headers})
+  }
 
 }

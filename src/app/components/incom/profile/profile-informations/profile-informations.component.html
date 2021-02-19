@@ -1,33 +1,20 @@
 <!--begin::Body-->
 <div class="card-body pt-4">
   <!--begin::User-->
-  <div class="d-flex align-items-center" id="information">
-    <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
-      <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
-      <i class="symbol-badge bg-success"></i>
+  <div class="mb-10 text-center">
+    <div class="symbol symbol-60 symbol-circle symbol-xl-90">
+      <div class="symbol-label" *ngIf="candidate != undefined"
+           style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
     </div>
-    <div>
-      <a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">Loic Farace</a>
-      <div class="text-muted">Recherche d'alternance</div>
-      <div class="mt-2" style="display: flex">
-          <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" (click)="changed(3)" >Mon CV</a>
-          <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
-      </div>
+    <h4 class="font-weight-bold my-2">{{user['lastname']}} {{user['firstname']}}</h4>
+    <div *ngIf="current_situation != 'Alternance'" class="mb-2">A la recherche d'un {{current_situation}}</div>
+    <div *ngIf="current_situation == 'Alternance'" class="mb-2">A la recherche d'une {{current_situation}}</div>
+    <div style="display: 'flex';" class="mt-2">
+      <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1">Mon CV</a>
+      <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
     </div>
   </div>
   <!--end::User-->
-  <!--begin::Contact-->
-  <div class="py-9">
-    <div class="d-flex align-items-center justify-content-between mb-2">
-      <span class="font-weight-bold mr-2">Email:</span>
-      <a href="#" class="text-muted text-hover-primary">{{user['email']}}</a>
-    </div>
-    <div class="d-flex align-items-center justify-content-between mb-2">
-      <span class="font-weight-bold mr-2">Phone:</span>
-      <span class="text-muted">{{user['phone']}}</span>
-    </div>
-  </div>
-  <!--end::Contact-->
   <!--begin::Nav-->
   <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
 

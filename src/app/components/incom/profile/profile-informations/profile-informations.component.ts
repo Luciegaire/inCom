@@ -16,6 +16,7 @@ export class ProfileInformationsComponent implements OnInit {
 
   // Recuperartion de l'objet User
   user = JSON.parse(localStorage.getItem('user'));
+  candidate = JSON.parse(localStorage.getItem('candidate'));
 
   firstame = this.user.firstname;
   lastname = this.user.lastname;
@@ -26,6 +27,7 @@ export class ProfileInformationsComponent implements OnInit {
   city = this.user.city;
   gender = this.user.gender;
   birthdate = this.user.birthdate;
+  current_situation = this.user.current_situation;
 
   // tslint:disable-next-line:typedef
   changed(id:number){

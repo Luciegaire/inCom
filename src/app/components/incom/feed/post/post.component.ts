@@ -20,10 +20,15 @@ export class PostComponent implements OnInit {
   likes: any[] = []
   isLike: boolean = false
   currentUser: any
+  company : {}
 
 
   constructor(public backService: BackendService) {
 
+  }
+
+  getDate(date){
+    return new Date(date)
   }
 
   getComments() {
@@ -57,9 +62,25 @@ export class PostComponent implements OnInit {
     })
   }
 
+  getCompanyById(id: number){
+    this.backService.getCompanyByEmployeeId(this.post.employee_id).subscribe({
+      next : (response) =>{
+        console.log("ici sont la company", response)
+        this.company = response
+      },
+      error: () => {
+        console.log("Error retrieving comments")
+      },
+      complete: () => {
+        this.isLike = this.isLiked()
+      }
+    })
+  }
+
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'))
     this.getComments()
+    this.getCompanyById(this.post.employee_id)
   }
 
   changeStatusComment(){

@@ -5,3 +5,39 @@
   }
 
 }
+
+.img{
+  max-width: 200px;
+  max-height: 150px;
+}
+
+
+
+.card-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.cardMar{
+  margin-right: 0px!important;
+}
+
+
+
+.btn {width: 100%;}
+
+.card-header {
+  border: none;
+}
+
+.card-footer {
+  border: none;
+}
+
