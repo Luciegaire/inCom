@@ -143,4 +143,8 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/company/companyByEmployee/${id}`, {headers : this.headers})
   }
 
+  getCompanyByUserId(id){
+    return this.http.get<any>(`${environment.backUrl}/company/companyByUser/${id}`, {headers : this.headers})
+  }
+
 }

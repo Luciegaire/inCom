@@ -12,7 +12,7 @@ import { BackendService } from 'src/app/services/backend.service';
 export class FeedComponent implements OnInit {
 
   posts:any[] = []
-  candidate : {}
+  candidateOrCompany : {}
   contract = ""
 
   currentUser: any =""
@@ -26,6 +26,7 @@ export class FeedComponent implements OnInit {
       next : (response) =>{
         this.posts = response
         this.posts = this.posts.reverse()
+        console.log("ici posts", response)
       },
       error: () => {
         console.log("Error retrieving posts")
@@ -37,13 +38,42 @@ export class FeedComponent implements OnInit {
     this.backend.getCandidateById(id).subscribe({
       next: (response) => {
         console.log(response)
-        this.candidate = response
+        this.candidateOrCompany = response
       },
       error: () =>{
         console.log("erreur récupération candidate")
       },
       complete: () =>{
-        this.getCurrentSituation(this.candidate['current_situation_id'])
+        this.getCurrentSituation(this.candidateOrCompany['current_situation_id'])
+      }
+    })
+  }
+
+  getCompany(id : number){
+    this.backend.getCompanyByUserId(id).subscribe({
+      next: (response) => {
+        console.log("company",response)
+        this.candidateOrCompany = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getBusinessSector(this.candidateOrCompany['business_sector_id'])
+      }
+    })
+  }
+
+  getBusinessSector(id : number){
+    this.backend.getSectorById(id).subscribe({
+      next: (response) => {
+        console.log("business",response)
+        this.contract = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération Business")
+      },
+      complete: () =>{
       }
     })
   }
@@ -51,11 +81,11 @@ export class FeedComponent implements OnInit {
   getCurrentSituation(id:number){
     this.backend.getSituationById(id).subscribe({
       next: (response) => {
-        console.log(response)
+        console.log("curretn sit",response)
         this.contract = response.name
       },
       error: () =>{
-        console.log("erreur récupération situation")
+        console.log("erreur récupération Situation")
       },
       complete: () =>{
       }
@@ -65,7 +95,13 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.currentStatusUser = localStorage.getItem("status")
-    this.getCandidate(this.currentUser['user_id'])
+    console.log("current statut user",this.currentStatusUser)
+    if(this.currentStatusUser == "candidate"){
+      this.getCandidate(this.currentUser['user_id'])
+    }
+    else {
+      this.getCompany(this.currentUser['user_id'])
+    }
     this.getPosts()
   }
 
