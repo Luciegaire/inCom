@@ -28,8 +28,15 @@ export class ProfileInformationsComponent implements OnInit {
   city = this.user.city;
   gender = this.user.gender;
   birthdate = this.user.birthdate;
+  current_situation = this.user.current_situation;
+  avatar = this.user.avatar_path;
 
-  contract = ""
+  constructor(private backService: BackendService) { }
+  ngOnInit(): void {
+    this.getCandidate(this.user.user_id)
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getCandidate(this.user['user_id'])
+  }
 
   getCandidate(id : number){
     this.backService.getCandidateById(id).subscribe({
