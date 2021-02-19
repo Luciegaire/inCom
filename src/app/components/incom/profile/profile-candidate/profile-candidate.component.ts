@@ -13,53 +13,40 @@ export class ProfileCandidateComponent implements OnInit {
   statusForm: number = -1;
   @Output()
   changeStatus: EventEmitter<number> = new EventEmitter<number>();
+  currentUser: any = ""
 
 
   constructor(public backService: BackendService, private router: Router) {
   }
 
   mycount = 2;
-  // Recuperartion de l'objet User
-  user = JSON.parse(localStorage.getItem('user'));
-
-  firstame = this.user.firstname;
-  lastname = this.user.lastname;
-  status = "";
-  phone = this.user.phone;
-  address = this.user.address;
-  postcode = this.user.postcode;
-  city = this.user.city;
-  gender = this.user.gender;
-  birthdate = this.user.birthdate;
-
   countChange(event) {
     this.mycount = event;
     console.log(this.mycount)
   }
 
-
   ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
   }
+  updateUser(){
 
-  validate() {
-    this.user.birthdate = ""
-    //Convert the birthdate object into the right format
-    if (this.birthdate != undefined) {
-      for (let prop of Object.keys(this.birthdate)) {
-        this.user.birthdate += this.birthdate[prop] + '-'
+    let user = {
+      user_id : this.currentUser.user_id,
+      firstname : this.currentUser.firstname,
+      lastname : this.currentUser.lastname,
+    }
+
+    this.backService.updateUser(this.currentUser.user_id, user).subscribe({
+      next : (response) => {
+        console.log(response)
+        localStorage.setItem('user', JSON.stringify(user));
+      },
+      error: () => {
+        console.log('Error updating user')
+      },
+      complete:() => {
       }
-      this.user.birthdate = this.user.birthdate.slice(0, -1)
-    }
-
-    var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
-    var validate = form.checkValidity()
-
-    if (validate === false) {
-      event.preventDefault();
-      event.stopPropagation();
-
-    }
-    form.classList.add('was-validated');
+    })
   }
 }
 

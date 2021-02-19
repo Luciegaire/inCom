@@ -6,7 +6,7 @@
       <h3 class="card-label font-weight-bolder text-dark">Mon profil</h3>
     </div>
     <div class="card-toolbar">
-      <button type="reset" class="btn btn-success mr-2">Enregistrer</button>
+      <button type="reset" class="btn btn-success mr-2" (click)="updateUser()">Enregistrer</button>
     </div>
   </div>
   <!--end::Header-->
@@ -42,19 +42,19 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label" >Prénom</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['firstname']}}" placeholder="" />
+          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['firstname']" placeholder="" />
         </div>
       </div>
       <div class="form-group row" >
         <label class="col-xl-3 col-lg-3 col-form-label">Nom</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['lastname']}}" placeholder="" />
+          <input class="form-control form-control-lg form-control-solid" type="text" [(ngModel)]="this.currentUser['lastname']" placeholder="" />
         </div>
       </div>
       <div class="form-group row">
       <label class="col-xl-3 col-lg-3 col-form-label" >Email</label>
       <div class="col-lg-9 col-xl-6">
-        <input type="text" class="form-control form-control-lg form-control-solid" value="{{user['email']}}" placeholder="" />
+        <input type="text" class="form-control form-control-lg form-control-solid"  placeholder="" />
       </div>
     </div>
       <div class="form-group row">
@@ -66,26 +66,26 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Phone</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="tel" value="{{user['phone']}}" placeholder="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          <input class="form-control form-control-lg form-control-solid" type="tel"  placeholder="" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                  required />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Adresse</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['address']}}" placeholder="Adresse" />
+          <input class="form-control form-control-lg form-control-solid" type="text"  placeholder="Adresse" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Code Postal</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="number" value="{{user['postcode']}}" placeholder="" />
+          <input class="form-control form-control-lg form-control-solid" type="number"  placeholder="" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Ville</label>
         <div class="col-lg-9 col-xl-6">
-          <input class="form-control form-control-lg form-control-solid" type="text" value="{{user['city']}}" placeholder="" />
+          <input class="form-control form-control-lg form-control-solid" type="text"  placeholder="" />
         </div>
       </div>
       <div class="form-group row">
@@ -108,7 +108,7 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Date de Naissance</label>
         <div class="col-lg-9 col-xl-6">
-          <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" class="form-control form-control-lg form-control-solid" type="tel" value="{{user['birthdate']}}" placeholder="" />
+          <input (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" class="form-control form-control-lg form-control-solid" type="tel"  placeholder="" />
         </div>
       </div>
     </div>

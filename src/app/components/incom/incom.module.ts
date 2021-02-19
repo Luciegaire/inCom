@@ -22,13 +22,11 @@ import { ProfilePasswordComponent } from './profile/profile-password/profile-pas
 import { FeedComponent } from './feed/feed.component';
 import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { CommentComponent } from './feed/comment/comment.component';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
-
-
 
 export function playerFactory() {
   return import('lottie-web');
