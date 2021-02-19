@@ -3,6 +3,9 @@
 }
 
 @media (max-width: 640px) {
+  .container-cote-gauche{
+    max-height: 250px;
+  }
   .profile_class{
     float:none!important;
     width: 100%!important;
@@ -17,7 +20,7 @@
     width: 250px;
   }
 
-  .container-cote-gauche .btn {width: 100%;}
+  .btn {width: 100%;}
 
   .card-header {
     border: none;
