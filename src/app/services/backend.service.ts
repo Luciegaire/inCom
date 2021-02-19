@@ -183,6 +183,10 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
   };
 
+  updateOffer(id, data){
+    return this.http.put<any>(`${environment.backUrl}/offer/`+id, data, this.optionRequete)
+  }
+
 
   getContractByID(id){
     return this.http.get<any>(`${environment.backUrl}/contracts/${id}`, {headers : this.headers})

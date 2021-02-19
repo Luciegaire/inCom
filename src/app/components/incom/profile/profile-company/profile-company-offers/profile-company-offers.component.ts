@@ -38,6 +38,10 @@ export class ProfileCompanyOffersComponent implements OnInit {
     this.changeUserIDSelected.emit(userId);
   }
 
+  getDate(date){
+    return new Date(date)
+  }
+
 
   deleteOffer(id){
 

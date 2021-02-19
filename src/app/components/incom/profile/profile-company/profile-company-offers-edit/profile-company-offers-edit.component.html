@@ -21,9 +21,9 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Type de contrat</label>
         <div class="col-lg-9 col-xl-6">
-          <select [(ngModel)]="this.formdata.contract_id" name="contract"class="form-control form-control-lg form-control-solid"  required>
-            <option #contract_id value="">{{offer.contract_id}}</option>
-            <option #contract_id  *ngFor="let contract of contracts" [ngValue]="contract.contract_id">{{contract.name}}</option>
+          <select  name="contract"class="form-control form-control-lg form-control-solid"  (change)="contractChanges($event)" required>
+            <option #contract_id  value="{{offer.contract_id}}">{{getContract(offer.contract_id)}}</option>
+            <option #contract_id  *ngFor="let contract of contracts" value="{{contract.contract_id}}">{{contract.name}}</option>
           </select>
         </div>
       </div>
@@ -31,8 +31,9 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Secteur</label>
         <div  class="col-lg-9 col-xl-6">
-          <select  [(ngModel)]="this.formdata.offer_sector_id" name="sector"class="form-control form-control-lg form-control-solid"  required>
-            <option  #offer_sector_id *ngFor="let sector of sectors" [ngValue]="sector.business_sector_id">{{sector.name}}</option>
+          <select  name="sector"class="form-control form-control-lg form-control-solid" (change)="sectorChanges($event)"  required>
+            <option #offer_sector_id value="{{offer.offer_sector_id}}">{{getSector(offer.offer_sector_id)}}</option>
+            <option  #offer_sector_id *ngFor="let sector of sectors" value="{{sector.business_sector_id}}">{{sector.name}}</option>
           </select>
         </div>
       </div>
@@ -62,7 +63,7 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Département</label>
         <div class="col-lg-9 col-xl-6">
-          <select [(ngModel)]="this.formdata.department" name="department" class="form-control form-control-lg form-control-solid"  name="gender" required>
+          <select #department [(ngModel)]="this.formdata.department" name="department" class="form-control form-control-lg form-control-solid"  name="gender" required>
             <option value ="" ngValue="offer.department">{{offer.department}}</option>
             <option value="Ain">1 - Ain</option>
             <option value="Aisne">2 - Aisne</option>
@@ -172,7 +173,7 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Date de début</label>
         <div class="col-lg-9 col-xl-6">
-          <input #start_date value=""  [(ngModel)]="this.formdata.start_date" type="date" autocomplete="off"
+          <input #start_date value="2017-06-01"  [(ngModel)]="this.formdata.start_date"  type="date" autocomplete="off"
           class="form-control form-control-lg form-control-solid" name="start_date" required>
         </div>
       </div>
@@ -180,7 +181,7 @@
       <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Date de fin</label>
         <div class="col-lg-9 col-xl-6">
-          <input #end_date value="" [(ngModel)]="this.formdata.end_date" type="date" autocomplete="off"
+          <input #end_date  [(ngModel)]="this.formdata.end_date" type="date" autocomplete="off"
           class="form-control form-control-lg form-control-solid" name="end_date" required>
         </div>
       </div>
@@ -194,13 +195,13 @@
 
       <div class="panel panel-default panelValid" [ngClass]="{'success': statusForm == 1}">
         <div class="panel-body">
-          Votre offre a été créé avec succès!
+          Votre offre a été modifié avec succès!
         </div>
       </div>
 
-      <div class="panel panel-default panelInvalid" [ngClass]="{'offerInvalid': statusForm == 2}">
+      <div class="panel panel-default panelInvalid" [ngClass]="{'formInvalid': statusForm == 2}">
         <div class="panel-body">
-          Erreur dans la création de votre offre!
+          Erreur dans la modification de votre offre!
         </div>
       </div>
 
