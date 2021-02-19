@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Input, Output, EventEmitter} from '@angular/core';
-import {BackendService} from '../../../../services/backend.service';
-
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-profile-informations',
@@ -18,10 +17,7 @@ export class ProfileInformationsComponent implements OnInit {
 
   // Recuperartion de l'objet User
   user = JSON.parse(localStorage.getItem('user'));
-  candidate : {}
-  contract = ""
-
-  contracts = []
+  candidate = JSON.parse(localStorage.getItem('candidate'));
 
   firstame = this.user.firstname;
   lastname = this.user.lastname;
@@ -33,19 +29,7 @@ export class ProfileInformationsComponent implements OnInit {
   gender = this.user.gender;
   birthdate = this.user.birthdate;
 
-  current_situation = this.user.current_situation;
-  avatar = this.user.avatar_path;
-
-
-  // tslint:disable-next-line:typedef
-  changed(id:number){
-    this.count = id;
-    this.change.emit(id);
-  }
-
-
-  constructor(private backService : BackendService) { }
-
+  contract = ""
 
   getCandidate(id : number){
     this.backService.getCandidateById(id).subscribe({
@@ -76,9 +60,15 @@ export class ProfileInformationsComponent implements OnInit {
     })
   }
 
+  // tslint:disable-next-line:typedef
+  changed(id:number){
+    this.count = id;
+    this.change.emit(id);
+  }
+
+  constructor(private backService: BackendService) { }
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.getCandidate(this.user['user_id'])
+    this.getCandidate(this.user.user_id)
   }
 
 }
