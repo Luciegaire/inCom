@@ -50,13 +50,13 @@ export class CompaniesListComponent implements OnInit {
     this.backService.getCandidateById(id).subscribe({
       next: (response) => {
         console.log(response)
-        this.candidate = response
+        this.candidateOrCompany = response
       },
       error: () =>{
         console.log("erreur récupération candidate")
       },
       complete: () =>{
-        this.getCurrentSituation(this.candidate['current_situation_id'])
+        this.getCurrentSituation(this.candidateOrCompany['current_situation_id'])
       }
     })
   }

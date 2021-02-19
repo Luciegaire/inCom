@@ -10,12 +10,14 @@ import { ProfileCompanyComponent } from './profile/profile-company/profile-compa
 import {ProfilePageComponent} from './profile/profile-page/profile-page.component';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
 import { DatePipe } from '@angular/common';
+import { CompanyPageComponent } from './company-page/company-page.component';
 
 const routes: Routes = [
   {
     path: '', component: IncomComponent, children: [
       { path: 'companies', component: CompaniesListComponent, },
       { path: 'feed', component: FeedComponent, },
+      { path: 'company/:id', component : CompanyPageComponent},
       { path: 'offers', component: OffersListComponent, },
       { path: 'create-offer', component: CreateOfferComponent, },
       { path: 'profile', component: ProfileComponent, },
