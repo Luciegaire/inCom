@@ -62,7 +62,6 @@ export class BackendService {
   updateUser(userId, data) {
     return this.http.put<any>(`${environment.backUrl}/user/`+userId, data,  this.optionRequete)
   };
-
   getUserByEmail(email){
     return this.http.get<any>(`${environment.backUrl}/user/email/`+email)
   };
@@ -79,7 +78,9 @@ export class BackendService {
   createCandidate(data) {
     return this.http.post<any>(`${environment.backUrl}/candidate`, data, this.optionRequete)
   }
-
+  updateCandidate(data) {
+    return this.http.put<any>(`${environment.backUrl}/candidate/`, data,  this.optionRequete)
+  };
   getCandidateById(id){
     return this.http.get<any>(`${environment.backUrl}/candidate/`+id)
   }

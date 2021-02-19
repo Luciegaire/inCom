@@ -12,7 +12,6 @@
 }
 
 
-
 .card-img {
   display: flex;
   justify-content: center;
@@ -29,15 +28,35 @@
   margin-right: 0px!important;
 }
 
+@media (max-width: 640px) {
+  .profile_class{
+    float:none!important;
+    width: 100%!important;
+  }
+  .listSectors{
+      max-height: 150px;
+      overflow: scroll;
+  }
+  }
+  .profile_class {
+    float: left;
+    width: 250px;
+  }
 
+  .btn {width: 100%;}
 
-.btn {width: 100%;}
+  .card-header {
+    border: none;
+  }
 
-.card-header {
-  border: none;
-}
+  .card-footer {
+    border: none;
+  }
 
-.card-footer {
-  border: none;
-}
+  .navi .navi-item .navi-link{
+    padding-top: 10px!important;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
 
