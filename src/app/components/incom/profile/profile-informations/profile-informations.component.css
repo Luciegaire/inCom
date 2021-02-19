@@ -11,6 +11,7 @@
   max-height: 150px;
 }
 
+
 .card-img {
   display: flex;
   justify-content: center;
@@ -22,12 +23,6 @@
   background-repeat: no-repeat;
 }
 
-.navi .navi-item .navi-link{
-  padding-top: 10px!important;
-  padding-bottom: 0px!important;
-  padding-right: 0px!important;
-  padding-left: 0px!important;
-}
 
 .cardMar{
   margin-right: 0px!important;
@@ -58,4 +53,10 @@
     border: none;
   }
 
+  .navi .navi-item .navi-link{
+    padding-top: 10px!important;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
 
