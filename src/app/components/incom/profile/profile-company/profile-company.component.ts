@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-profile-company',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileCompanyComponent implements OnInit {
   status: number = 1
   userIDSelected: number = -1
-  constructor() { }
+  company : {}
+  user : {}
+  sector = ""
+  constructor(private backService : BackendService ) { }
 
   statusChange(event){
     console.log("changement")
@@ -20,8 +24,38 @@ export class ProfileCompanyComponent implements OnInit {
     this.userIDSelected = event
   }
 
+  getCompanyByIdUser(id : number){
+    this.backService.getCompanyByUserId(id).subscribe({
+      next: (response) => {
+        console.log("company",response)
+        this.company = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getBusinessSector(this.company['business_sector_id'])
+      }
+    })
+  }
+
+  getBusinessSector(id : number){
+    this.backService.getSectorById(id).subscribe({
+      next: (response) => {
+        console.log("business",response)
+        this.sector = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération Business")
+      },
+      complete: () =>{
+      }
+    })
+  }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getCompanyByIdUser(this.user['user_id'])
   }
 
 }
