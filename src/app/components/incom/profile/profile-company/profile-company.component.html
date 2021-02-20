@@ -1,26 +1,26 @@
-<div class="container-cote-gauche card-body profile_class">
+<div *ngIf="company != undefined" class="container-cote-gauche card-body profile_class">
   <div class="mb-10 text-center">
     <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-      <div class="symbol-label" *ngIf="company != undefined" style="background-image:url('{{company.logo}}')"></div>
+      <div class="symbol-label" style="background-image:url('{{company.logo}}')"></div>
     </div>
     <h4 class="font-weight-bold my-2">{{company['referent-lastname']}} {{company['referent_firstname']}}</h4>
     <div class="mb-2">{{sector}}</div>
   </div>
-  <a [routerLink]="" (click)="status=0"
+  <a [routerLink]="" (click)="status=0" [ngClass]="status == 0 ? 'hover_btn_cote' : ''"
     class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Informations
     Entreprise</a>
-  <a [routerLink]="" (click)="status=3"
+  <a [routerLink]="" (click)="status=3" [ngClass]="status == 3 ? 'hover_btn_cote' : ''"
     class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Gestion des
     comptes</a>
-  <a [routerLink]="" (click)="status=1"
+  <a [routerLink]="" (click)="status=1" [ngClass]="status == 1 ? 'hover_btn_cote' : ''"
     class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Gestion des
     offres</a>
-  <a [routerLink]="" (click)="status=5"
+  <a [routerLink]="" (click)="status=5" [ngClass]="status == 5 ? 'hover_btn_cote' : ''"
     class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Informations
     personnels</a>
 </div>
 
-<div class="flex-row-fluid m-5">
+<div class="flex-row-fluid" style="margin:3%">
   <app-profile-company-profile *ngIf="status==0" (changeStatus)="statusChange($event)"></app-profile-company-profile>
   <app-profile-company-offers *ngIf="status==1" (changeUserIDSelected)="userIDSelectedChange($event)"
     (changeStatus)="statusChange($event)"></app-profile-company-offers>

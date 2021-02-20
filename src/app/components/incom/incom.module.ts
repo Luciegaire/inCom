@@ -31,6 +31,7 @@ import { ProfileCompanyProfilePersoComponent } from './profile/profile-company/p
 import { ProfileCompanyOffersEditComponent } from './profile/profile-company/profile-company-offers-edit/profile-company-offers-edit.component';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { CompanyPageComponent } from './company-page/company-page.component';
+import { OfferComponent } from './offers-list/offer/offer.component';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -64,7 +65,8 @@ export function playerFactory() {
     ProfileCompanyOffersCreationComponent,
     ProfileCompanyProfilePersoComponent,
     ProfileCompanyOffersEditComponent,
-    CompanyPageComponent
+    CompanyPageComponent,
+    OfferComponent
   ],
   imports: [
     CommonModule,

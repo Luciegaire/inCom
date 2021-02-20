@@ -7,7 +7,7 @@ import { BackendService } from 'src/app/services/backend.service';
   styleUrls: ['./profile-company.component.css']
 })
 export class ProfileCompanyComponent implements OnInit {
-  status: number = 1
+  status: number = 0
   userIDSelected: number = -1
   company : {}
   user : {}

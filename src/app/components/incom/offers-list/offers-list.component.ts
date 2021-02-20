@@ -12,7 +12,6 @@ export class OffersListComponent implements OnInit {
 
   user : any =""
   candidateOrCompany : {}
-  companies : []
 
   loading = true
   status =""
@@ -21,11 +20,10 @@ export class OffersListComponent implements OnInit {
   selectedSectors = []
   listOffers = []
 
-  sectors : []
   contract = ""
 
   likesOffers : []
-  contracts = []
+  sectors : []
 
   constructor(private backService : BackendService) { }
 
@@ -46,16 +44,17 @@ export class OffersListComponent implements OnInit {
     }
   }
 
-  getContent(text){
-    if(text.length > 1000){
-      return text.slice(0, 1000)+"...";
-    }
-    else
-    return text
-  }
-
-  getDate(date){
-    return new Date(date)
+  getBusinessSectors(){
+    this.backService.getBusinessSectors().subscribe({
+      next: (response) => {
+        this.sectors = response
+      },
+      error: () =>{
+        console.log("erreur récupération secteurs")
+      },
+      complete: () =>{
+      }
+    })
   }
 
   getCurrentSituation(id:number){
@@ -88,70 +87,6 @@ export class OffersListComponent implements OnInit {
     })
   }
 
-  getBusinessSectors(){
-    this.backService.getBusinessSectors().subscribe({
-      next: (response) => {
-        this.sectors = response
-      },
-      error: () =>{
-        console.log("erreur récupération secteurs")
-      },
-      complete: () =>{
-      }
-    })
-  }
-
-  getCompanies(){
-    this.backService.getCompanies().subscribe({
-      next: (response) => {
-        this.companies = response
-      },
-      error: () =>{
-        console.log("erreur récupération secteurs")
-      },
-      complete: () =>{
-      }
-    })
-  }
-
-  getContracts(){
-    this.backService.getContracts().subscribe({
-      next: (response) => {
-        this.contracts = response
-      },
-      error: () => {
-        console.log("Erreur création user")
-      },
-      complete: () => {
-
-      }
-    })
-  }
-
-  getCompany(id : number){
-    let array = this.companies.filter(x => x['company_id'] === id)
-    if(array.length != 0){
-      return array[0]['name']
-    }
-    else return ""
-  }
-
-  getContract(id : number){
-    let array = this.contracts.filter(x => x['contract_id'] === id)
-    if(array.length != 0){
-      return array[0]['name']
-    }
-    else return ""
-  }
-
-  getSector(id : number){
-    let array = this.sectors.filter(x => x['business_sector_id'] === id)
-    if(array.length != 0){
-      return array[0]['name']
-    }
-    else return ""
-  }
-
   getCandidate(id : number){
     this.backService.getCandidateById(id).subscribe({
       next: (response) => {
@@ -166,7 +101,6 @@ export class OffersListComponent implements OnInit {
       }
     })
   }
-
 
   getLikes(){
     this.backService.getLikesOfferByUserID(this.user.user_id).subscribe({
@@ -294,8 +228,6 @@ export class OffersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBusinessSectors()
-    this.getContracts()
-    this.getCompanies()
     this.getOffers()
     this.user = JSON.parse(localStorage.getItem('user'));
     this.status = localStorage.getItem('status')

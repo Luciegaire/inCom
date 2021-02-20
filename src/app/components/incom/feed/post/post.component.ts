@@ -77,6 +77,8 @@ export class PostComponent implements OnInit {
     })
   }
 
+  
+
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'))
     this.getComments()
