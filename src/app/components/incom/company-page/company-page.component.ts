@@ -68,6 +68,14 @@ export class CompanyPageComponent implements OnInit {
     })
   }
 
+  getContent(text){
+    if(text.length > 1000){
+      return text.slice(0, 1000)+"...";
+    }
+    else
+    return text
+  }
+
   getCompanies(){
     this.backendService.getCompanies().subscribe({
       next: (response) => {
