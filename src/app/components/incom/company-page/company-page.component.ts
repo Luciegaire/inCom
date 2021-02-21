@@ -14,8 +14,13 @@ export class CompanyPageComponent implements OnInit {
     private backendService : BackendService
   ) { }
 
+
+  candidateOrCompany : {}
   loading = true
   sector =""
+  user :{}
+  status = ""
+  contract = ""
 
   id = ""
   company : {}
@@ -23,6 +28,7 @@ export class CompanyPageComponent implements OnInit {
   contracts : []
   companies : []
   sectors : []
+  tabLittleOffers : []
 
 
   getDate(date){
@@ -112,16 +118,21 @@ export class CompanyPageComponent implements OnInit {
         console.log("erreur récup ")
       },
       complete: () => {
-
+        this.getOffers(this.candidateOrCompany['company_id'],"gauche")
       }
     })
   }
 
-  getOffers(id){
+  getOffers(id,cote){
     this.backendService.getOffersByCompanyId(id).subscribe({
       next : (response) =>{
+        if(cote == "gauche"){
+          this.tabLittleOffers = response
+        }
+        else {
+          this.offers = response
+        }
         console.log("offers", response)
-        this.offers = response
       },
       error: () => {
         console.log("Error retrieving posts")
@@ -146,6 +157,61 @@ export class CompanyPageComponent implements OnInit {
     })
   }
 
+  getCurrentSituation(id:number){
+    this.backendService.getSituationById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.contract = response.name
+      },
+      error: () =>{
+        console.log("erreur récupération situation")
+      },
+      complete: () =>{
+      }
+    })
+  }
+
+  getCandidate(id : number){
+    this.backendService.getCandidateById(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.candidateOrCompany = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getCurrentSituation(this.candidateOrCompany['current_situation_id'])
+      }
+    })
+  }
+
+  getCompanyByIdUser(id : number){
+    this.backendService.getCompanyByUserId(id).subscribe({
+      next: (response) => {
+        console.log("company",response)
+        this.candidateOrCompany = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.getBusinessSector(this.candidateOrCompany['business_sector_id'])
+      }
+    })
+  }
+
+  getInfosUser(){
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.status = localStorage.getItem('status')
+    if(this.status == "candidate"){
+      this.getCandidate(this.user['user_id'])
+    }
+    else {
+      this.getCompanyByIdUser(this.user['user_id'])
+    }
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(routeParams => {
       if (routeParams) {
@@ -155,7 +221,8 @@ export class CompanyPageComponent implements OnInit {
         this.getBusinessSectors()
         this.getContracts()
         this.getCompanies()
-        this.getOffers(this.id)
+        this.getOffers(this.id,"droit")
+        this.getInfosUser()
       }
     });
   }

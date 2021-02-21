@@ -36,9 +36,13 @@
       <div class="d-flex flex-column flex-row-fluid position-relative p-7 overflow-hidden">
 
         <!--begin::Content header-->
-        <div class="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
+        <div *ngIf="status == 0" class="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
           <span class="font-weight-bold text-dark-50">Vous n'avez pas encore de compte?</span>
           <a  href="javascript:void(0);" class="font-weight-bold ml-2" id="kt_login_signup" (click)="status=3">S'inscrire!</a>
+        </div>
+        <div *ngIf="status != 0" class="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
+          <span class="font-weight-bold text-dark-50">Vous avez déjà un compte?</span>
+          <a  href="javascript:void(0);" class="font-weight-bold ml-2" id="kt_login_signup" (click)="status=0">Se connecter!</a>
         </div>
         <!--end::Content header-->
 

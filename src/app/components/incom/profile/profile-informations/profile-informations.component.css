@@ -22,7 +22,11 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
-
+.hover_btn_cote{
+  color: #3699FF;
+  background-color: #E1F0FF;
+  border-color: transparent;
+}
 
 .cardMar{
   margin-right: 0px!important;

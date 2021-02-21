@@ -55,7 +55,7 @@
 
       <div class="col form-group">
         <label>A la recherche de </label>
-        <select [(ngModel)]="this.formdata.contract" class="form-control form-control-solid h-auto py-5 px-6"
+        <select [(ngModel)]="this.formdata.current_situation_id" class="form-control form-control-solid h-auto py-5 px-6"
           name="situation" required>
           <option *ngFor="let elem of situations" value="{{elem.contract_id}}">{{elem.name}}</option>
         </select>

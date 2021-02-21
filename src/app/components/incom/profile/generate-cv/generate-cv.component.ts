@@ -1,4 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { NgxQrcodeElementTypes } from '@techiediaries/ngx-qrcode';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from "rxjs/operators";
+import { FileService } from 'src/app/services/file.service';
+import { Observable, of as observableOf } from 'rxjs';
+import { HttpClient, HttpResponse, HttpHeaders, HttpRequest } from '@angular/common/http'
+import { AngularFireFunctions } from "@angular/fire/functions";
+import { updateLanguageServiceSourceFile } from 'typescript';
+import { BackendService } from 'src/app/services/backend.service';
+
+
+
 
 @Component({
   selector: 'app-generate-cv',
@@ -7,19 +19,117 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenerateCvComponent implements OnInit {
 
-  constructor() { }
-  
-  public myAngularxQrCode: string = 'https://www.google.com/';
+  currentUser: any =""
+  user_has_cv: boolean;
+
+
+  selectedImage: any = null;
+
+  url: string;
+  id: string; // mettre le user_id
+  file: string;
+
+  msg: string = 'error';
+  qrCodeURL: string = '';
+  candidate : {};
+
+  constructor(@Inject(AngularFireStorage) private storage: AngularFireStorage, @Inject(FileService) private fileService: FileService, private BackendService : BackendService) { }
+
+  ngOnInit() {
+    this.fileService.getImageDetailList();
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.getCandidate(this.currentUser['user_id']);
+  }
+  showPreview(event: any) {
+    this.selectedImage = event.target.files[0];
+  }
+
+  save() {
+    this.id = this.candidate['candidate_id'] //user_id
+    var name = this.selectedImage.name;
+    const fileRef = this.storage.ref(name);
+    this.storage.upload(name, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.url = url;
+          this.fileService.insertImageDetails(this.id, this.url);
+          alert('Votre CV a bien été enregistré !');
+          this.user_has_cv = true;
+          this.BackendService.updateCandidateCV(this.id,{cv_id : "true"}).subscribe({
+            next: (response) => {
+              //console.log(response)
+              this.candidate['cv_id'] = "true";
+            },
+            error: () =>{
+              console.log("erreur update candidate cv_id")
+            },
+            complete: () =>{
+            }          
+          });
+        })
+      })
+    ).subscribe();
+  }
+
+
+  userCV() {
+    if (this.candidate['cv_id']==='true'){
+      this.user_has_cv = true;
+    } else {
+      this.user_has_cv = false;
+    }
+    return this.user_has_cv;
+  }
+
+
+  elementType = NgxQrcodeElementTypes.URL;
+  scale = 3;
+
   public QRcode: boolean = false;
-  
+
   displayQrcode() {
-  this.QRcode = true;
+    this.getPDF(this.candidate['candidate_id']);
+    this.QRcode = true;
   }
-  
+
   closeQrcode() {
-  this.QRcode = false;
+    this.QRcode = false;
   }
-  ngOnInit(): void {
+
+  getPDF(value) {
+    this.fileService.imageDetailList.snapshotChanges().subscribe(
+      list => {
+        this.fileService.fileList = list.map(item => { return item.payload.val(); });
+        this.fileService.fileList.forEach(element => {
+          if (element.id === value)
+            this.msg = element.url;
+        });
+        if (this.msg === 'error') {
+          alert('No record found');
+        }
+        else {
+          console.log(this.msg);
+          this.qrCodeURL = this.msg
+          this.msg = 'error';
+        }
+      }
+    );
+  }
+
+
+  getCandidate(id : number){
+    this.BackendService.getCandidateById(id).subscribe({
+      next: (response) => {
+        //console.log(response)
+        this.candidate = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+        this.userCV();
+      }
+    })
   }
 
 }
