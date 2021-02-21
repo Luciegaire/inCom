@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BackendService} from '../../../../services/backend.service';
 
@@ -12,9 +13,13 @@ export class ProfilePasswordComponent implements OnInit {
   currentUser: any = ""
 
   formdata = {
-    old_password: this.currentUser.password,
-    new_password: ""
+    old_password: "",
+    new_password: "",
+    cnew_password :""
   }
+
+  error = ""
+  complete = ""
 
   constructor(public backend: BackendService) {
   }
@@ -47,29 +52,36 @@ export class ProfilePasswordComponent implements OnInit {
         console.log("Error updating user")
       },
       complete:() =>{
+        this.complete = "Le mot de passe a été mis à jour"
       }
     })
   }
 
   validate(){
-    var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
-    var validate = form.checkValidity()
-
-    console.log(this.formdata)
-    if (validate === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    form.classList.add('was-validated');
-
-    if(validate){
-
+    console.log("validate")
+    console.log(this.formdata.old_password)
+    console.log(this.currentUser)
+    this.error = ""
       if(this.formdata.old_password == this.currentUser.password){
-
-        if(this.formdata.new_password != this.currentUser.password){
-          this.updateUser()
+        if(this.formdata.new_password != "" && this.formdata.cnew_password != ""){
+          if(this.formdata.new_password != this.currentUser.password){
+            if(this.formdata.new_password == this.formdata.cnew_password){
+              this.updateUser()
+            }
+            else {
+              this.error = "Le nouveau mot de passe et la confirmation ne sont pas identiques"
+            }
+          }
+          else {
+            this.error = "Le nouveau mot de passe et l'ancien sont identiques"
+          }
         }
+        else {
+          this.error = "Veuillez renseigner le nouveau mot de passe et la confirmation"
+        }
+        }
+      else {
+        this.error = "Le mot de passe actuel n'est pas exacte"
       }
     }
-  }
 }

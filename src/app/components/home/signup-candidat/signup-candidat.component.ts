@@ -39,7 +39,7 @@ export class SignupCandidatComponent implements OnInit {
     city: "",
     postcode: "",
     password: "",
-    contract: "",
+    current_situation_id: "",
     cpassword: "",
     avatar_path : ""
   }
@@ -119,7 +119,7 @@ export class SignupCandidatComponent implements OnInit {
       address: this.formdata.address,
       postcode: this.formdata.postcode,
       city: this.formdata.city,
-      contract_id : this.formdata.contract,
+      current_situation_id : this.formdata.current_situation_id,
       avatar_path : this.formdata.avatar_path
     }
 

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 import {Router} from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile-candidate',
@@ -17,12 +18,21 @@ export class ProfileCandidateComponent implements OnInit {
   candidate : {}
   contract = ""
   formdata = {
-    old_password : "",
-    new_password : ""
+    lastname : "",
+    firstname : "",
+    email : "",
+    current_situation_id : null,
+    phone : null,
+    address : "",
+    postcode : "",
+    city : "",
+    gender : "",
+    birthdate : ""
   }
+  complete = ""
 
 
-  constructor(public backService: BackendService, private router: Router) {
+  constructor(public backService: BackendService, private router: Router, private datePipe : DatePipe) {
   }
 
   mycount = 2;
@@ -49,22 +59,38 @@ export class ProfileCandidateComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.currentUser['user_id'])
+    this.formdata.birthdate = this.datePipe.transform(this.currentUser.birthdate, 'yyyy-MM-dd')
+    this.formdata.lastname = this.currentUser.lastname
+    this.formdata.firstname = this.currentUser.firstname
+    this.formdata.email = this.currentUser.email
+    this.formdata.phone = this.currentUser.phone
+    this.formdata.address = this.currentUser.address
+    this.formdata.postcode = this.currentUser.postcode
+    this.formdata.city = this.currentUser.city
+    this.formdata.current_situation_id = this.currentUser.current_situation_id
+    this.formdata.gender = this.currentUser.gender
+    console.log("user", this.formdata)
   }
+
+  getDate(date){
+    return new Date(date)
+  }
+
   updateUser(){
 
     let user = {
       user_id : this.currentUser.user_id,
-      lastname : this.currentUser.lastname,
-      firstname : this.currentUser.firstname,
-      email : this.currentUser.email,
+      lastname : this.formdata.lastname,
+      firstname : this.formdata.firstname,
+      email : this.formdata.email,
       password : this.currentUser.password,
-      gender : this.currentUser.gender,
-      birthdate : this.currentUser.birthdate,
-      address: this.currentUser.address,
-      phone : this.currentUser.phone,
-      city : this.currentUser.city,
-      postcode: this.currentUser.postcode,
-      situation: this.currentUser.current_situation,
+      gender : this.formdata.gender,
+      birthdate : this.formdata.birthdate,
+      address: this.formdata.address,
+      phone : this.formdata.phone,
+      city : this.formdata.city,
+      postcode: this.formdata.postcode,
+      current_situation_id: this.formdata.current_situation_id,
     }
     this.backService.updateUser(this.currentUser.user_id, user).subscribe({
       next : (response) => {
@@ -76,6 +102,7 @@ export class ProfileCandidateComponent implements OnInit {
         console.log('Error updating user')
       },
       complete:() => {
+        this.complete = "Le profil a été mis à jour"
       }
     })
   }
@@ -112,15 +139,15 @@ export class ProfileCandidateComponent implements OnInit {
   updateCandidate(id){
     let candidate = {
       user_id: id,
-      phone: this.currentUser.phonenumber,
-      address: this.currentUser.address,
-      postcode: this.currentUser.postcode,
-      city: this.currentUser.city,
-      contract_id : this.currentUser.contract,
+      phone: this.formdata.phone,
+      address: this.formdata.address,
+      postcode: this.formdata.postcode,
+      city: this.formdata.city,
+      current_situation_id : this.formdata.current_situation_id,
       avatar_path : this.currentUser.avatar_path
     }
 
-    this.backService.updateCandidate(candidate).subscribe({
+    this.backService.updateCandidateByuserId(this.candidate['candidate_id'] ,candidate).subscribe({
       next: (response) => {
         console.log(response)
       },
