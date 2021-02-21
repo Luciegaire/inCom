@@ -16,8 +16,8 @@ export class OfferComponent implements OnInit {
   likes: any[] = []
   isLike: boolean = false
   user: any
-  statusForm = -1
-
+  statusForm : number
+  statusApply = -1
 
   formdata = {
     user_id : "",
@@ -171,16 +171,43 @@ export class OfferComponent implements OnInit {
   }
 
   apply(){
-    this.formdata.date = this.dateNow()
-    console.log(this.formdata)
-    this.backService.createApplication(this.formdata).subscribe({
+
+    console.log(this.statusApply)
+    /*if(this.statusApply == -1){
+      this.formdata.date = this.dateNow()
+      console.log(this.formdata)
+      this.backService.createApplication(this.formdata).subscribe({
+        next: (response) => {
+          console.log(response)
+          this.statusForm = 1
+          this.statusApply = 1
+        },
+        error: () =>{
+          this.statusForm = 2
+          console.log("erreur creation application")
+        },
+        complete: () =>{
+
+        }
+      })
+    }
+    else{
+      console.log("vous avez déjà postulé")
+    }*/
+  }
+
+  getApplication(){
+    this.backService.getApplication(this.user.user_id, this.offer.offer_id).subscribe({
       next: (response) => {
-        console.log(response)
-        this.statusForm = 1
+        console.log("taille: " + response.length)
+        if(response.length != 0){
+          this.statusApply = 1
+        }else{
+          this.statusApply = -1
+        }
       },
       error: () =>{
-        this.statusForm = 2
-        console.log("erreur creation application")
+        console.log("erreur get application")
       },
       complete: () =>{
 
@@ -189,6 +216,7 @@ export class OfferComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.user = JSON.parse(localStorage.getItem('user'))
     this.formdata.user_id = this.user.user_id
     this.formdata.offer_id = this.offer.offer_id
@@ -197,6 +225,7 @@ export class OfferComponent implements OnInit {
     this.getCompanies()
     this.getContracts()
     this.getLike()
+    this.getApplication()
 
   }
 

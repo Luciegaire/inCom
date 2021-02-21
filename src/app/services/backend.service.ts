@@ -227,4 +227,11 @@ export class BackendService {
   createApplication(data) {
     return this.http.post<any>(`${environment.backUrl}/apply_offer`, data, this.optionRequete)
   }
+
+  getApplication(user_id, offer_id){
+    return this.http.get<any>(`${environment.backUrl}/apply_offer/${user_id}/${offer_id}`, {headers : this.headers})
+  }
+
+
+
 }
