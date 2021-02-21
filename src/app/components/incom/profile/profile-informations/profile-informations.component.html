@@ -1,7 +1,7 @@
-<div class="card-body pt-15 profile_class" style="height: 100%;">
+<div class="card-body pt-15 profile_class col-md-4" style="height: 100%;">
   <div class="mb-10 text-center">
     <div class="symbol symbol-60 symbol-circle symbol-xl-90">
-      <div class="symbol-label" *ngIf="candidate != undefined"
+      <div class="symbol-label"
         style="background-image:url('assets/img/avatars/{{candidate.avatar_path}}')"></div>
     </div>
     <h4 class="font-weight-bold my-2">{{user['lastname']}} {{user['firstname']}}</h4>
@@ -12,7 +12,13 @@
       <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
     </div>
   </div>
-    <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+  <a [routerLink]="" (click)="changed(2)" [ngClass]="count == 2 ? 'hover_btn_cote' : ''"
+    class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Informations
+    du compte</a>
+  <a [routerLink]="" (click)="changed(1)" [ngClass]="count == 1 ? 'hover_btn_cote' : ''"
+    class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Changer son mot
+    de passe</a>
+  <!-- <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
       <div class="navi-item mb-2">
         <a class="navi-link">
               <span class="navi-icon mr-2">
@@ -26,7 +32,7 @@
                     </svg>
                  </span>
               </span>
-          <span class="navi-text font-size-lg" style="cursor: pointer;" (click)="changed(2)">Informations du compte</span>
+          <span class="navi-text font-size-lg" style="cursor: pointer;" >Informations du compte</span>
         </a>
       </div>
       <div class="navi-item mb-2">
@@ -46,9 +52,5 @@
           <span class="navi-text font-size-lg" style="cursor: pointer;" (click)="changed(1)">Changer son mot de passe</span>
         </a>
       </div>
-  </div>
+  </div> -->
 </div>
-
-
-
-
