@@ -85,6 +85,11 @@ export class BackendService {
   updateCandidate(data) {
     return this.http.put<any>(`${environment.backUrl}/candidate/`, data,  this.optionRequete)
   };
+
+  updateCandidateCV(id,data) {
+    return this.http.put<any>(`${environment.backUrl}/candidate-cv/`+id, data,  this.optionRequete)
+  };
+
   getCandidateById(id){
     return this.http.get<any>(`${environment.backUrl}/candidate/`+id)
   }
