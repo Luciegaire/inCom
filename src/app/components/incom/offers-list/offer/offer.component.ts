@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 import { BackendService } from 'src/app/services/backend.service';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-offer',
@@ -10,6 +13,8 @@ export class OfferComponent implements OnInit {
 
   @Input() offer : any
 
+  msg: string = 'error';
+
   companies : []
   sectors : []
   contracts : []
@@ -18,6 +23,13 @@ export class OfferComponent implements OnInit {
   user: any
   statusForm : number
   statusApply = -1
+  file: string;
+  selectedImage: any = null;
+  candidate : {};
+  id: string; // mettre le user_id
+  url: string;
+  qrCodeURL: string = '';
+
 
   formdata = {
     user_id : "",
@@ -28,7 +40,7 @@ export class OfferComponent implements OnInit {
     cv : ""
   }
 
-  constructor(private backService : BackendService) { }
+  constructor(@Inject(AngularFireStorage) private storage: AngularFireStorage, @Inject(FileService) private fileService: FileService,private backService : BackendService) { }
 
   getDate(date){
     return new Date(date)
@@ -173,6 +185,8 @@ export class OfferComponent implements OnInit {
   apply(){
 
     console.log(this.statusApply)
+
+    this.save()
     /*if(this.statusApply == -1){
       this.formdata.date = this.dateNow()
       console.log(this.formdata)
@@ -215,8 +229,28 @@ export class OfferComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  getPDF(value) {
+    this.fileService.imageDetailList.snapshotChanges().subscribe(
+      list => {
+        this.fileService.fileList = list.map(item => { return item.payload.val(); });
+        this.fileService.fileList.forEach(element => {
+          if (element.id === value)
+            this.msg = element.url;
+        });
+        if (this.msg === 'error') {
+          alert('No record found');
+        }
+        else {
+          console.log(this.msg);
+          this.qrCodeURL = this.msg
+          this.msg = 'error';
+        }
+      }
+    );
+  }
 
+  ngOnInit(): void {
+    this.fileService.getImageDetailList();
     this.user = JSON.parse(localStorage.getItem('user'))
     this.formdata.user_id = this.user.user_id
     this.formdata.offer_id = this.offer.offer_id
@@ -226,7 +260,53 @@ export class OfferComponent implements OnInit {
     this.getContracts()
     this.getLike()
     this.getApplication()
+    this.getCandidate(this.user['user_id']);
 
+
+  }
+
+  showPreview(event: any) {
+    this.selectedImage = event.target.files[0];
+  }
+
+  save() {
+    this.id = this.candidate['candidate_id'] //user_id
+    var name = this.selectedImage.name;
+    const fileRef = this.storage.ref(name);
+    this.storage.upload(name, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.url = url;
+          this.fileService.insertImageDetails(this.id, this.url);
+          alert('Votre CV a bien été enregistré !');
+          this.backService.updateCandidateCV(this.id,{cv_id : "true"}).subscribe({
+            next: (response) => {
+              //console.log(response)
+              this.candidate['cv_id'] = "true";
+            },
+            error: () =>{
+              console.log("erreur update candidate cv_id")
+            },
+            complete: () =>{
+            }
+          });
+        })
+      })
+    ).subscribe();
+  }
+
+  getCandidate(id : number){
+    this.backService.getCandidateById(id).subscribe({
+      next: (response) => {
+        //console.log(response)
+        this.candidate = response
+      },
+      error: () =>{
+        console.log("erreur récupération candidate")
+      },
+      complete: () =>{
+      }
+    })
   }
 
 

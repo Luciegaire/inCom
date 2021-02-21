@@ -121,11 +121,13 @@
                 <div class="card-body">
 
                  <div class="form-group">
-                  <label>CV</label>
-                  <div></div>
+                  <label>CV : " {{file}}"" </label>
                   <div class="custom-file">
-                   <input type="file" class="custom-file-input" id="customFile"/>
-                   <label class="custom-file-label" for="customFile">Choisissez un fichier</label>
+
+                    <input type="file" (change)="showPreview($event)" [(ngModel)]="file" class="custom-file-input" accept="application/pdf" id="customFile" />
+                    <label *ngIf="file==null || file==''" class="custom-file-label" for="customFile">Choisir un fichier</label>
+                    <label *ngIf="file!=null" class="custom-file-label" for="customFile">{{ file }}</label>
+                    <small *ngIf="file!=null" class="text-danger mt-1">Attention pensez bien à enregistrer votre CV !</small>
                   </div>
                  </div>
                  <div class="form-group mb-1">
