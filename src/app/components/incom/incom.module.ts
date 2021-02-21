@@ -22,16 +22,17 @@ import { ProfilePasswordComponent } from './profile/profile-password/profile-pas
 import { FeedComponent } from './feed/feed.component';
 import {HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-
-
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { environment } from "../../../environments/environment";
 
 export function playerFactory() {
   return import('lottie-web');
 }
-
 
 @NgModule({
   declarations: [
@@ -63,7 +64,11 @@ export function playerFactory() {
     ReactiveFormsModule,
     HttpClientModule,
     NgxQRCodeModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    FormsModule,
   ]
 })
 export class IncomModule { }
