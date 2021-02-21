@@ -37,6 +37,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../../../environments/environment";
+import { ProfileOffersComponent } from './profile/profile-offers/profile-offers.component';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -70,7 +71,8 @@ export function playerFactory() {
     ProfileCompanyProfilePersoComponent,
     ProfileCompanyOffersEditComponent,
     CompanyPageComponent,
-    OfferComponent
+    OfferComponent,
+    ProfileOffersComponent
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,7 @@
     <div *ngIf="contract == 'Alternance'" class="mb-2">A la recherche d'une {{contract}}</div>
     <div style="display: 'flex';" class="mt-2">
       <a class="btn btn-sm btn-primary font-weight-bold mr-2 py-2 px-3 px-xxl-5 my-1" (click)="changed(3)">Mon CV</a>
-      <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
+      <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1" (click)="changed(4)">Mes offres</a>
     </div>
   </div>
   <a [routerLink]="" (click)="changed(2)" [ngClass]="count == 2 ? 'hover_btn_cote' : ''"
