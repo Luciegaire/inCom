@@ -200,7 +200,11 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/likesOffer/${id}`, {headers : this.headers})
   }
   getLikesOfferByUserID(id){
-    return this.http.get<any>(`${environment.backUrl}/likesOffer/user/${id}`, {headers : this.headers})
+    return this.http.get<any>(`${environment.backUrl}/likesOfferByUserID/${id}`, {headers : this.headers})
+  }
+
+  getLikesOfferByOfferIdAndUserId(offer_id, user_id){
+    return this.http.get<any>(`${environment.backUrl}/likesOffer/${user_id}/${offer_id}`, {headers : this.headers})
   }
 
   getContractByID(id){

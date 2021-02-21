@@ -9,6 +9,8 @@
       [ngClass]="(tab==3)?'activeLogo':''" class="flaticon-notes"></i>Offres</a>
   <a routerLink="{{linkprofile}}" [ngClass]="(tab==4)?'activeBtn':''" (click)="changeTab(4)"><i
       [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-avatar profile"></i>Mon profil</a>
+  <a routerLink="{{linkhome}}"  (click)="logout()"><i
+      [ngClass]="(tab==4)?'activeLogo':''" class="flaticon-logout profile"></i>Se déconnecter</a>
   <a href="javascript:void(0);" class="icon" (click)="clickBurger()">
     <i class="fa fa-bars"></i>
   </a>

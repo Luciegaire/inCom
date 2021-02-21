@@ -64,7 +64,7 @@ export function playerFactory() {
     ProfileCompanyOffersCreationComponent,
     ProfileCompanyProfilePersoComponent,
     ProfileCompanyOffersEditComponent,
-    CompanyPageComponent
+    CompanyPageComponent,
   ],
   imports: [
     CommonModule,
