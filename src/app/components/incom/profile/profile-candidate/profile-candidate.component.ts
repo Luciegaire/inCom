@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 import {Router} from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile-candidate',
@@ -17,12 +18,20 @@ export class ProfileCandidateComponent implements OnInit {
   candidate : {}
   contract = ""
   formdata = {
-    old_password : "",
-    new_password : ""
+    lastname : "",
+    firstname : "",
+    email : "",
+    current_situation_id : null,
+    phone : null,
+    address : "",
+    postcode : "",
+    city : "",
+    gender : "",
+    birthdate : ""
   }
 
 
-  constructor(public backService: BackendService, private router: Router) {
+  constructor(public backService: BackendService, private router: Router, private datePipe : DatePipe) {
   }
 
   mycount = 2;
@@ -49,7 +58,23 @@ export class ProfileCandidateComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.currentUser['user_id'])
+    this.formdata.birthdate = this.datePipe.transform(this.currentUser.birthdate, 'yyyy-MM-dd')
+    this.formdata.lastname = this.currentUser.lastname
+    this.formdata.firstname = this.currentUser.firstname
+    this.formdata.email = this.currentUser.email
+    this.formdata.phone = this.currentUser.phone
+    this.formdata.address = this.currentUser.address
+    this.formdata.postcode = this.currentUser.postcode
+    this.formdata.city = this.currentUser.city
+    this.formdata.current_situation_id = this.currentUser.current_situation_id
+    this.formdata.gender = this.currentUser.gender
+    console.log("user", this.formdata)
   }
+
+  getDate(date){
+    return new Date(date)
+  }
+
   updateUser(){
 
     let user = {
