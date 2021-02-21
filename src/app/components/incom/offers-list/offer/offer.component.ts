@@ -16,7 +16,17 @@ export class OfferComponent implements OnInit {
   likes: any[] = []
   isLike: boolean = false
   user: any
+  statusForm = -1
 
+
+  formdata = {
+    user_id : "",
+    offer_id : "",
+    company_id : "",
+    content : "",
+    date : "",
+    cv : ""
+  }
 
   constructor(private backService : BackendService) { }
 
@@ -150,15 +160,43 @@ export class OfferComponent implements OnInit {
     })
   }
 
+  dateNow(onlyDate = false): string {
+    var date = new Date();
+    var now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+      date.getUTCHours() + 2, date.getUTCMinutes(), date.getUTCSeconds());
 
+    var finalDate = new Date(now_utc).toISOString().replace(/T/, " ").replace(/\..+/, "");
+    finalDate = onlyDate ? finalDate.substring(0, 10) : finalDate
+    return finalDate
+  }
+
+  apply(){
+    this.formdata.date = this.dateNow()
+    console.log(this.formdata)
+    this.backService.createApplication(this.formdata).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.statusForm = 1
+      },
+      error: () =>{
+        this.statusForm = 2
+        console.log("erreur creation application")
+      },
+      complete: () =>{
+
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'))
+    this.formdata.user_id = this.user.user_id
+    this.formdata.offer_id = this.offer.offer_id
+    this.formdata.company_id = this.offer.company_id
     this.getBusinessSectors()
     this.getCompanies()
     this.getContracts()
     this.getLike()
-    console.log("init")
 
   }
 
