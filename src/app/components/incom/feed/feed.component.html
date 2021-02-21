@@ -15,6 +15,7 @@
       <a class="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Mes offres</a>
     </div> -->
   </div>
+
   <div style="margin-top: 5px;" class="d-flex align-items-center">
     <div style="margin-bottom: 5px;">
       <a *ngIf="currentStatusUser != 'candidate'" class="font-weight-bolder font-size-h4 text-dark-75 text-hover-primary">
@@ -23,6 +24,7 @@
           <i class="flaticon-visible mr-2 icon-xl text-primary"></i>Centres d'intérêt</a>
     </div>
   </div>
+
   <div class="listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
     <div *ngFor="let elem of tabLittleOffers" class="navi-item mb-2">
         <p style="font-size: 16px;">{{elem.title}}</p>

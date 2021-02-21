@@ -11,6 +11,8 @@ export class MenuComponent implements OnInit {
 
   linkprofile =""
 
+  linkhome =""
+
   clickBurger() {
     this.clicked = !this.clicked
   }
@@ -40,4 +42,9 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  logout(){
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    localStorage.removeItem("status")
+  }
 }

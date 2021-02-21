@@ -4,7 +4,18 @@
 
 export const environment = {
   production: false,
-  backUrl: "http://localhost:3000"
+  backUrl: "http://localhost:3000",
+
+  firebaseConfig : {
+    apiKey: "AIzaSyBAD6wvsEuVWxGsqNC1EkvoWitH3PAMFXI",
+    authDomain: "incomm-b218b.firebaseapp.com",
+    databaseURL: "https://incomm-b218b-default-rtdb.firebaseio.com",
+    projectId: "incomm-b218b",
+    storageBucket: "incomm-b218b.appspot.com",
+    messagingSenderId: "325919518646",
+    appId: "1:325919518646:web:da55b93c13bfb774bb1b17"
+  }
+  
 };
 
 

@@ -32,11 +32,15 @@ import { ProfileCompanyOffersEditComponent } from './profile/profile-company/pro
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { CompanyPageComponent } from './company-page/company-page.component';
 import { OfferComponent } from './offers-list/offer/offer.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { environment } from "../../../environments/environment";
 
 export function playerFactory() {
   return import('lottie-web');
 }
-
 
 @NgModule({
   declarations: [
@@ -77,7 +81,13 @@ export function playerFactory() {
     HttpClientModule,
     LottieModule.forRoot({player: playerFactory}),
     FormsModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    NgxQRCodeModule,
+    LottieModule.forRoot({ player: playerFactory }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    FormsModule,
   ]
 })
 export class IncomModule { }
