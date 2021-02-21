@@ -14,6 +14,14 @@
   line-height: 2.3;
 }
 
+.topnav a:hover{
+  background-color: #3daca6;
+}
+
+.topnav a:focus{
+  background-color: #3daca6;
+}
+
 .topnav a .logo {
   max-width: 150px;
   margin-right: 40px;
