@@ -88,8 +88,7 @@ export class GenerateCvComponent implements OnInit {
   public QRcode: boolean = false;
 
   displayQrcode() {
-    this.getPDF(this.currentUser['user_id']);
-    console.log(this.currentUser['cv_id']);
+    this.getPDF(this.candidate['candidate_id']);
     this.QRcode = true;
   }
 
