@@ -1,4 +1,4 @@
-<div class="card-body pt-15 profile_class">
+<div class="card-body profile_class" style="height: 100%;">
   <div class="mb-10 text-center">
     <div class="symbol symbol-60 symbol-circle symbol-xl-90">
       <div class="symbol-label" *ngIf="candidateOrCompany != undefined && status =='candidate'"
@@ -43,7 +43,7 @@
       [options]="options"></ng-lottie>
     <div *ngIf="loading==false">
       <div *ngFor="let el of selectedCompany" class="card-container card-body col-md-3 col-sm-3">
-        <div class="card-entreprise card card-custom gutter-b">
+        <div routerLink="/incom/company/{{el.company_id}}" style="outline:none; cursor: pointer;" class="card-entreprise card card-custom gutter-b">
           <div class=" titleEntreprise card-header">
             <div style="background-image:url('{{el.logo}}')" class="card-img card-body">
             </div>

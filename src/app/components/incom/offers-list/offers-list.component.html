@@ -1,4 +1,4 @@
-<div class="card-body pt-15 profile_class">
+<div class="card-body profile_class" style="height: 100%;">
   <div class="mb-10 text-center">
     <div class="symbol symbol-60 symbol-circle symbol-xl-90">
       <div class="symbol-label" *ngIf="candidateOrCompany != undefined && status =='candidate'"
@@ -32,104 +32,7 @@
   </div>
 </div>
 
-
-<div *ngFor="let offer of selectedOffers">
-  <div class="card card-custom gutter-b" style="margin: 3%;">
-    <div class=" card-body">
-      <div class="d-flex">
-        <div class="flex-grow-1">
-          <div class="d-flex align-items-center justify-content-between flex-wrap mt-2">
-            <div class="mr-3">
-              <h3 class="card-label text-dark"><i class="flaticon2-contract icon-xl text-primary mr-2"></i>{{
-                offer.title
-                }}
-                <small style="color:gray">postée le
-                  {{ getDate(offer.start_date) | date:'dd/MM/yyy'}}</small>
-              </h3>
-              <div class="d-flex flex-wrap my-2">
-                <a class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
-                  <i class="flaticon-map mr-2"></i>{{ getSector(offer["offer_sector_id"]) }}</a>
-                <a class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
-                  <i class="flaticon-suitcase mr-2"></i>{{ getCompany(offer["company_id"]) }}</a>
-                <a class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
-                  <i class="flaticon-file-2 mr-2"></i>{{ getContract(offer["contract_id"]) }}</a>
-                <a class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
-                  <i class="flaticon2-pin"></i>
-                  {{ offer.city }}
-                  ({{ offer.department }})
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex align-items-center flex-wrap justify-content-between">
-            <div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5">
-              {{ getContent(offer.content)}}
-              <div *ngIf="offer.department > 1">Content to render when condition is true.</div>
-            </div>
-          </div>
-          <div class="my-lg-0 my-1 d-flex justify-content-end">
-            <a [routerLink]="" (click)="manageLike(offer)" style="width: fit-content;"
-              class="btn btn-success font-weight-bold mr-2">
-              <i class="flaticon-like"></i> J'aime
-            </a>
-            <a [routerLink]=""  (click)="manageLike(offer)" style="width: fit-content;"
-              class="btn btn-success font-weight-bold mr-2">
-              <i class="flaticon-like"></i> Je desaime
-            </a>
-            <a href="#" style="width: fit-content;" data-toggle="modal" data-target="#exampleModalScrollable"
-              class="btn btn-light-primary font-weight-bold mr-2">
-              <i class="flaticon-search"></i> Voir
-            </a>
-          </div>
-          <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
-            aria-labelledby="staticBackdrop" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="card-label text-dark"><i class="flaticon2-contract icon-xl text-primary mr-2"></i>{{
-                    offer.title }}
-                    <small style="color:gray">postée le
-                      {{ getDate(offer.start_date) | date:'dd/MM/yyy'}}</small>
-                  </h3>
-                </div>
-                <div class="modal-body" style="height: 400px;">
-                  <div class="d-flex align-items-center justify-content-between flex-wrap">
-                    <div class="d-flex flex-wrap my-2">
-                      <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-2 mb-lg-0 mb-2"
-                        style="color:gray">
-                        <i class="flaticon-map text-success mr-2"></i>{{ getSector(offer["offer_sector_id"]) }}</a>
-                      <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-2 mb-lg-0 mb-2"
-                        style="color:gray">
-                        <i class="flaticon-suitcase text-success mr-2"></i>{{ getCompany(offer["company_id"]) }}</a>
-                      <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-2 mb-lg-0 mb-2"
-                        style="color:gray">
-                        <i class="flaticon-file-2 text-success mr-2"></i>{{ getContract(offer["contract_id"]) }}</a>
-                      <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-2 mb-lg-0 mb-2"
-                        style="color:gray">
-                        <i class="flaticon-coins text-success mr-2"></i>{{offer["salary"]}}€/mois</a>
-                      <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-2 mb-lg-0 mb-2"
-                        style="color:gray">
-                        <i
-                          class="flaticon-time-2 text-success mr-2"></i>{{getDate(offer["start_date"])|date:'dd/MM/yyy'}}-{{getDate(offer["end_date"])|date:'dd/MM/yyy'}}</a>
-                      <a href="#" class="text-hover-primary font-weight-bold mr-lg-8 mr-2 mb-lg-0 mb-2"
-                        style="color:gray">
-                        <i class="flaticon2-pin text-success"></i>
-                        {{ offer.city }}
-                        ({{ offer.department }})
-                      </a>
-                    </div>
-                  </div>
-                  {{offer.content}}
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-light-primary font-weight-bold"
-                    data-dismiss="modal">Fermer</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- ICI APPEL APP-OFFER -->
+<div class="lists"  *ngIf="selectedOffers != null" style="margin:3%">
+  <app-offer id="offer"  [offer]='offer' *ngFor="let offer of selectedOffers"></app-offer>
 </div>

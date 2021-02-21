@@ -63,3 +63,7 @@ i {
     text-align: left;
   }
 }
+
+.profile{
+  justify-content: flex-end;
+}
