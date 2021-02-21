@@ -29,6 +29,7 @@ export class ProfileCandidateComponent implements OnInit {
     gender : "",
     birthdate : ""
   }
+  complete = ""
 
 
   constructor(public backService: BackendService, private router: Router, private datePipe : DatePipe) {
@@ -79,17 +80,17 @@ export class ProfileCandidateComponent implements OnInit {
 
     let user = {
       user_id : this.currentUser.user_id,
-      lastname : this.currentUser.lastname,
-      firstname : this.currentUser.firstname,
-      email : this.currentUser.email,
+      lastname : this.formdata.lastname,
+      firstname : this.formdata.firstname,
+      email : this.formdata.email,
       password : this.currentUser.password,
-      gender : this.currentUser.gender,
-      birthdate : this.currentUser.birthdate,
-      address: this.currentUser.address,
-      phone : this.currentUser.phone,
-      city : this.currentUser.city,
-      postcode: this.currentUser.postcode,
-      situation: this.currentUser.current_situation,
+      gender : this.formdata.gender,
+      birthdate : this.formdata.birthdate,
+      address: this.formdata.address,
+      phone : this.formdata.phone,
+      city : this.formdata.city,
+      postcode: this.formdata.postcode,
+      current_situation_id: this.formdata.current_situation_id,
     }
     this.backService.updateUser(this.currentUser.user_id, user).subscribe({
       next : (response) => {
@@ -101,6 +102,7 @@ export class ProfileCandidateComponent implements OnInit {
         console.log('Error updating user')
       },
       complete:() => {
+        this.complete = "Le profil a été mis à jour"
       }
     })
   }
@@ -137,15 +139,15 @@ export class ProfileCandidateComponent implements OnInit {
   updateCandidate(id){
     let candidate = {
       user_id: id,
-      phone: this.currentUser.phonenumber,
-      address: this.currentUser.address,
-      postcode: this.currentUser.postcode,
-      city: this.currentUser.city,
-      contract_id : this.currentUser.contract,
+      phone: this.formdata.phone,
+      address: this.formdata.address,
+      postcode: this.formdata.postcode,
+      city: this.formdata.city,
+      current_situation_id : this.formdata.current_situation_id,
       avatar_path : this.currentUser.avatar_path
     }
 
-    this.backService.updateCandidate(candidate).subscribe({
+    this.backService.updateCandidateByuserId(this.candidate['candidate_id'] ,candidate).subscribe({
       next: (response) => {
         console.log(response)
       },
