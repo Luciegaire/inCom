@@ -22,7 +22,6 @@ export class OffersListComponent implements OnInit {
 
   contract = ""
 
-  likesOffers : []
   sectors : []
 
   constructor(private backService : BackendService) { }
@@ -106,80 +105,6 @@ export class OffersListComponent implements OnInit {
     })
   }
 
-  getLikes(){
-    this.backService.getLikesOfferByUserID(this.user.user_id).subscribe({
-      next: (response) => {
-        this.likesOffers = response
-        console.log(response)
-      },
-      error: () => {
-        console.log("Erreur retriving likes")
-      },
-      complete: () => {
-
-      }
-    })
-  }
-
-  like(offer){
-    let like = {
-      user_id: this.user.user_id,
-      offer_id: offer.offer_id
-    }
-    this.backService.createLikeOffer(like).subscribe({
-      next : (response) =>{
-        offer["isLiked"] = 1
-        this.ngOnInit()
-      },
-      error: () => {
-        console.log("Error like!")
-      },
-    })
-  }
-
-  unlike(offer){
-    let like = {
-      user_id: this.user.user_id,
-      offer_id: offer.offer_id
-    }
-
-    this.backService.deleteLikeOffer(like.offer_id, like.user_id).subscribe({
-      next : (response) =>{
-        offer["isLiked"] = 0
-        this.ngOnInit()
-      },
-      error: () => {
-        console.log("Error unlike!")
-      },
-    })
-  }
-
-
-  manageLike(offer) {
-    let likes = []
-    console.log(this.user.user_id)
-    this.backService.getLikesOfferByOfferIdAndUserId(offer.offer_id, this.user.user_id).subscribe({
-      next : (response) =>{
-          likes = response
-          if(likes.length == 0){
-            console.log("not liked")
-            this.like(offer)
-          }
-          else{
-            console.log("is liked")
-            this.unlike(offer)
-          }
-      },
-      error: () => {
-        console.log("Error retrieving likes")
-      },
-      complete: () => {
-      }
-    })
-
-
-  }
-
   getCompanyByIdUser(id : number){
     this.backService.getCompanyByUserId(id).subscribe({
       next: (response) => {
@@ -214,7 +139,6 @@ export class OffersListComponent implements OnInit {
     this.getBusinessSectors()
     this.getOffers()
     this.user = JSON.parse(localStorage.getItem('user'));
-    //console.log(this.user)
     this.status = localStorage.getItem('status')
     if(this.status == "candidate"){
       this.getCandidate(this.user['user_id'])
@@ -222,7 +146,6 @@ export class OffersListComponent implements OnInit {
     else {
       this.getCompanyByIdUser(this.user['user_id'])
     }
-    this.getLikes()
   }
 
 }

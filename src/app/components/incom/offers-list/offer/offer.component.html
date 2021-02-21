@@ -23,6 +23,8 @@
             </div>
           </div>
         </div>
+
+
         <div class="d-flex align-items-center flex-wrap justify-content-between">
           <div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5">
             {{ getContent(offer.content)}}
@@ -30,22 +32,38 @@
           </div>
         </div>
         <div class="my-lg-0 my-1 d-flex justify-content-end">
-          <a [routerLink]=""  style="width: fit-content;"
-            class="btn btn-success font-weight-bold mr-2">
-            <i class="flaticon-like"></i> J'aime
+
+          <a  href="#"  style="width: fit-content;" data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-sm btn-text-dark-50 btn-hover-icon-primary btn-hover-text-primary bg-hover-light-primary font-weight-bolder rounded font-size-sm p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
           </a>
-          <a [routerLink]=""  style="width: fit-content;"
-            class="btn btn-success font-weight-bold mr-2">
-            <i class="flaticon-like"></i> Je desaime
+
+          <a  href="#"  style="width: fit-content;" data-toggle="modal" data-target="#modalCandidate" class="btn btn-sm btn-text-dark-50 btn-hover-icon-primary btn-hover-text-primary bg-hover-light-primary font-weight-bolder rounded font-size-sm p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+              <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
           </a>
-          <a href="#" style="width: fit-content;" data-toggle="modal" data-target="#exampleModalScrollable"
-            class="btn btn-light-primary font-weight-bold mr-2">
-            <i class="flaticon-search"></i> Voir
+
+
+          <a  [routerLink]="" *ngIf="isLike == false" (click)="like(offer)" class="btn btn-sm btn-text-dark-50 btn-hover-icon-success btn-hover-text-success bg-hover-light-success font-weight-bolder rounded font-size-sm p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
+              <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z"/>
+              <path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z"/>
+            </svg>
           </a>
+
+          <a  [routerLink]="" *ngIf="isLike == true" (click)="unlike(offer)" class="btn btn-sm  btn-icon-success btn-text-success bg-light-success font-weight-bolder rounded font-size-sm p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
+              <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
+              <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
+            </svg>
+          </a>
+
         </div>
         <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
           aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h3 class="card-label text-dark"><i class="flaticon2-contract icon-xl text-primary mr-2"></i>{{offer.title}}
@@ -89,6 +107,43 @@
             </div>
           </div>
         </div>
+
+        <div class="modal fade" id="modalCandidate" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg"   role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="card-label text-dark">Formulaire d'inscription
+              </h3>
+            </div>
+            <div class="modal-body" style="height: 400px;">
+              <form>
+                <div class="card-body">
+
+                 <div class="form-group">
+                  <label>CV</label>
+                  <div></div>
+                  <div class="custom-file">
+                   <input type="file" class="custom-file-input" id="customFile"/>
+                   <label class="custom-file-label" for="customFile">Choisissez un fichier</label>
+                  </div>
+                 </div>
+                 <div class="form-group mb-1">
+                  <label for="motivationLetter">Lettre de motivation <span class="text-danger">*</span></label>
+                  <textarea class="form-control" id="motivationLetter" rows="3" style="height: 200px;"></textarea>
+                 </div>
+                </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light-danger font-weight-bold"
+                data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-light-primary font-weight-bold"
+                data-dismiss="modal">Postuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
