@@ -233,6 +233,9 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/company/companyByUser/${id}`, {headers : this.headers})
   }
 
+  getRandomCompanies(){
+    return this.http.get<any>(`${environment.backUrl}/company-random`, {headers : this.headers})
+  };
 
   createApplication(data) {
     return this.http.post<any>(`${environment.backUrl}/apply_offer`, data, this.optionRequete)
