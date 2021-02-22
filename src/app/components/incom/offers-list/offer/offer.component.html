@@ -6,7 +6,7 @@
           <div class="mr-3">
             <h3 class="card-label text-dark"><i class="flaticon2-contract icon-xl text-primary mr-2"></i>{{offer.title}}
               <small style="color:gray">postée le
-                {{ getDate(offer.start_date) | date:'dd/MM/yyy'}}</small>
+                {{ getDate(offer.posted_at) | date:'dd/MM/yyy'}}</small>
             </h3>
             <div class="d-flex flex-wrap my-2">
               <a *ngIf="sectors != undefined" class="text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2" style="color:gray">
@@ -63,7 +63,7 @@
         </div>
         <div class="modal fade" id="modal{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
           aria-hidden="true">
-          <div class="modal-dialog modal-dialog-scrollable modal-lg" style="height:90%" role="document">
+          <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h3 class="card-label text-dark"><i class="flaticon2-contract icon-xl text-primary mr-2"></i>{{offer.title}}
@@ -110,7 +110,7 @@
 
         <div class="modal fade" id="candidate{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg"  style="height:90%" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h3 class="card-label text-dark">Formulaire d'inscription
