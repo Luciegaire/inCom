@@ -15,9 +15,9 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class GenerateCvComponent implements OnInit {
 
-  currentUser: any ="";
+  currentUser: any = "";
   user_has_cv: boolean;
-  loader:boolean = false;
+  loader: boolean = false;
 
 
   selectedImage: any = null;
@@ -28,16 +28,16 @@ export class GenerateCvComponent implements OnInit {
 
   msg: string = 'error';
   qrCodeURL: string = '';
-  candidate : {};
+  candidate: {};
 
-  constructor(@Inject(AngularFireStorage) private storage: AngularFireStorage, @Inject(FileService) private fileService: FileService, private BackendService : BackendService) { }
+  constructor(@Inject(AngularFireStorage) private storage: AngularFireStorage, @Inject(FileService) private fileService: FileService, private BackendService: BackendService) { }
 
   ngOnInit() {
     this.fileService.getImageDetailList();
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.currentUser['user_id']);
   }
-  
+
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
   }
@@ -51,19 +51,19 @@ export class GenerateCvComponent implements OnInit {
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.url = url;
-          this.fileService.insertImageDetails(this.id, this.url);
+          this.fileService.insertImageDetails(this.id, this.url, this.id.toString());
           this.loader = false;
           this.opensweetalert();
           this.user_has_cv = true;
-          this.BackendService.updateCandidateCV(this.id,{cv_id : "true"}).subscribe({
+          this.BackendService.updateCandidateCV(this.id, { cv_id: "true" }).subscribe({
             next: (response) => {
               this.candidate['cv_id'] = "true";
             },
-            error: () =>{
+            error: () => {
               console.log("erreur update candidate cv_id")
             },
-            complete: () =>{
-            }          
+            complete: () => {
+            }
           });
         })
       })
@@ -72,7 +72,7 @@ export class GenerateCvComponent implements OnInit {
 
 
   userCV() {
-    if (this.candidate['cv_id']==='true'){
+    if (this.candidate['cv_id'] === 'true') {
       this.user_has_cv = true;
     } else {
       this.user_has_cv = false;
@@ -116,34 +116,57 @@ export class GenerateCvComponent implements OnInit {
   }
 
 
-  getCandidate(id : number){
+  getCandidate(id: number) {
     this.BackendService.getCandidateById(id).subscribe({
       next: (response) => {
         //console.log(response)
         this.candidate = response
       },
-      error: () =>{
+      error: () => {
         console.log("erreur récupération candidate")
       },
-      complete: () =>{
+      complete: () => {
         this.userCV();
       }
     })
   }
 
-  opensweetalert()
-  {
+  opensweetalert() {
     Swal.fire({
-        text: 'Votre CV a bien été enregistré !',
-        icon: 'success'
-      });
+      text: 'Votre CV a bien été enregistré !',
+      icon: 'success'
+    });
   }
-  
-  opensweetalertError()
-  {
+
+  opensweetalertError() {
     Swal.fire({
-        text: 'Oups... une errreur est survenue ! Veuillez réessayer plus tard.',
-        icon: 'error'
-      });
+      text: 'Oups... une errreur est survenue ! Veuillez réessayer plus tard.',
+      icon: 'error'
+    });
+  }
+
+  opensweetalertRemove() {
+    Swal.fire({
+      text: 'Votre CV a bien été retiré !',
+      icon: 'success'
+    });
+  }
+
+  deleteCV() {
+    this.fileService.deleteImageDetailList(this.candidate['candidate_id'].toString());
+    this.BackendService.updateCandidateCV(this.id, { cv_id: null }).subscribe({
+      next: (response) => {
+        this.candidate['cv_id'] = null;
+      },
+      error: () => {
+        console.log("erreur update candidate cv_id")
+      },
+      complete: () => {
+        this.userCV();
+        this.file = '';
+        this.opensweetalertRemove();
+      }
+    });
+    
   }
 }

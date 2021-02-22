@@ -21,18 +21,22 @@ export class FileService {
     url: ''
   };
 
-  constructor(@Inject(AngularFireDatabase) private firebase: AngularFireDatabase, private http: HttpClient, public af: AngularFireDatabase) {}
+  constructor(@Inject(AngularFireDatabase) private firebase: AngularFireDatabase, private http: HttpClient, public af: AngularFireDatabase) { }
 
   getImageDetailList() {
     this.imageDetailList = this.firebase.list('imageDetails');
   }
 
-  insertImageDetails(id, url) {
+  deleteImageDetailList(key) {
+    this.imageDetailList.remove(key);
+  }
+
+  insertImageDetails(id, url, key) {
     this.dataSet = {
       id: id,
       url: url
     };
-    this.imageDetailList.push(this.dataSet);
+    this.imageDetailList.update(key, this.dataSet);
   }
 
 }

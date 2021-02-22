@@ -20,9 +20,14 @@
           <small *ngIf="file!=null" class="text-danger mt-1">Attention pensez bien à enregistrer votre CV !</small>
         </div>
       </div>
-      <button *ngIf="!QRcode && user_has_cv" (click)="displayQrcode()" class="btn btn-primary">
-        <i class="flaticon-edit"></i>Générer mon QR code
-      </button>
+      <div *ngIf="!QRcode && user_has_cv" class="d-flex justify-content-between">
+        <button (click)="displayQrcode()" class="btn btn-primary">
+          <i class="flaticon-edit"></i>Générer mon QR code
+        </button>
+        <button type="reset" class="btn btn-danger mr-2" (click)="deleteCV()">
+          <i class="flaticon2-trash"></i>
+          Supprimer votre CV</button>
+      </div>
       <div *ngIf="QRcode && qrCodeURL!='' ">
         <ngx-qrcode [elementType]="elementType" [value]="qrCodeURL" class="qrcode" [scale]="scale" errorCorrectionLevel="M">
         </ngx-qrcode>
