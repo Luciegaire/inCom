@@ -75,7 +75,7 @@ export class SignupCompanieComponent implements OnInit {
     let employee ={
       company_id: company_id,
       user_id: user_id,
-      role: "admin"
+      role: "Administrateur"
     }
 
     this.backService.createEmployee(employee).subscribe({
