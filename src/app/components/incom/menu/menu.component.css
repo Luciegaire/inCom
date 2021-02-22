@@ -43,7 +43,7 @@ i {
   color: #ffffff;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 935px) {
   .topnav a:not(:first-child) {
     display: none;
   }
@@ -54,7 +54,7 @@ i {
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 935px) {
   .topnav.responsive {
     position: relative;
   }
