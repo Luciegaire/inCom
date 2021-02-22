@@ -264,7 +264,7 @@ export class OfferComponent implements OnInit {
             this.msg = element.url;
         });
         if (this.msg === 'error') {
-          alert('No record found');
+          //alert('No record found');
         }
         else {
           console.log(this.msg);
@@ -303,7 +303,10 @@ export class OfferComponent implements OnInit {
       },
       complete: () =>{
         this.userCV();
-        this.getPDF(this.candidate['candidate_id']);
+        if(this.user_has_cv == true){
+          this.getPDF(this.candidate['candidate_id']);
+        }
+
       }
     })
   }
