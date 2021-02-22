@@ -74,7 +74,9 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/user/`+id)
   };
 
-
+  getCandidateByUserId(id){
+    return this.http.get<any>(`${environment.backUrl}/candidate-user/`+id)
+  }
   deleteUserByID(id){
     return this.http.delete<any>(`${environment.backUrl}/user/`+id)
   };
