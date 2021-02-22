@@ -15,6 +15,8 @@ export class CommentComponent implements OnInit {
   user: any = ""
   lastname: string = ""
   firstname: string = ""
+  canidateOrCompany : {}
+  status = ""
 
   @Output() idComment: EventEmitter<number> =   new EventEmitter();
 
@@ -30,11 +32,34 @@ export class CommentComponent implements OnInit {
         console.log("Error retrieving user!")
       },
     })
-
+    this.getCompany()
   }
 
   getDate(date){
     return new Date(date)
+  }
+
+  getCompany(){
+    this.backend.getCompanyByUserId(this.comment.user_id).subscribe({
+      next : (response) =>{
+        console.log("réponse company", response)
+        this.canidateOrCompany = response
+        this.status = "company"
+      },
+      error: () => {
+        this.backend.getCandidateByUserId(this.comment.user_id).subscribe({
+          next : (response) =>{
+            console.log("réponse canidate", response)
+            this.canidateOrCompany = response
+            this.status = "candidate"
+          },
+          error: () => {
+            console.log("ERREUR CANDIDAT")
+          },
+        });
+        console.log("EEREUR ENTREPORSE")
+      },
+    });
   }
 
   removeComment(){

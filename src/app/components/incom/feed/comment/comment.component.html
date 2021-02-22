@@ -1,9 +1,12 @@
 <div class="d-flex py-5">
   <!--begin::Symbol-->
   <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-    <span class="symbol-label">
-      <img src="/metronic/theme/html/demo2/dist/assets/media/svg/avatars/009-boy-4.svg" class="h-75 align-self-end" alt="">
+    <span *ngIf="canidateOrCompany != {} && canidateOrCompany != undefined && status == 'company'" class="symbol-label">
+        <img src="{{canidateOrCompany['logo']}}" class="h-100 align-self-end" alt="">
     </span>
+    <span *ngIf="canidateOrCompany != {} && canidateOrCompany != undefined && status == 'candidate'" class="symbol-label">
+      <img src="../../../../../../../assets/img/avatars/{{canidateOrCompany['avatar_path']}}" class="h-100 align-self-end" alt="">
+  </span>
   </div>
   <!--end::Symbol-->
   <!--begin::Info-->
