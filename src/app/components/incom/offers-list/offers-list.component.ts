@@ -135,6 +135,8 @@ export class OffersListComponent implements OnInit {
   }
 
 
+
+
   ngOnInit(): void {
     this.getBusinessSectors()
     this.getOffers()
