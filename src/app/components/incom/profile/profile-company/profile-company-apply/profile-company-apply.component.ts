@@ -32,9 +32,9 @@ export class ProfileCompanyApplyComponent implements OnInit {
       complete: () => {
         this.applications.forEach(application => {
           var res
+          var res2
           this.backend.getUserByID(application.user_id).subscribe({
             next : (response) =>{
-              console.log("user !",response)
               res = response
             },
             error: () => {
@@ -45,6 +45,19 @@ export class ProfileCompanyApplyComponent implements OnInit {
               application['firstname'] = res.firstname
               application['lastname'] = res.lastname
               application['email'] = res.email
+            }
+          })
+
+          this.backend.getOfferByID(application.offer_id).subscribe({
+            next : (response) =>{
+              console.log(response)
+              res2 = response
+            },
+            error: () => {
+              console.log("Error retrieving user!")
+            },
+            complete: () => {
+              application['title'] = res2.title
             }
           })
 
