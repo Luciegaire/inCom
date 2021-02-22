@@ -1,1 +1,16 @@
-<p>profile-offers works!</p>
+<div style="margin: 3%;">
+  <div class="card card-custom">
+    <div class="card-header py-3">
+      <div class="card-title align-items-start flex-column">
+        <h3 class="card-label font-weight-bolder text-dark">Offres enregistrées</h3>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="lists" *ngIf="listOffersLiked.length !== 0" style="margin:3%">
+        <app-offer id="offer" [offer]='offer' *ngFor="let offer of listOffersLiked"></app-offer>
+      </div>
+      <p class="text-dark" *ngIf="listOffersLiked.length === 0">Vous n'avez enregistré aucune offre pour le moment.</p>
+    </div>
+  </div>
+</div>

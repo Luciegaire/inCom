@@ -10,7 +10,8 @@
     </div>
 
     <div class="card-body">
-      <div *ngIf="!user_has_cv" class="form-group">
+      <div *ngIf="loader" class="d-flex justify-content-center lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div *ngIf="!user_has_cv && !loader" class="form-group">
         <label>Vous n'avez pas encore de CV enregistré. Enregistrer le ci-dessous au format pdf : </label>
         <div class="custom-file">
           <input type="file" (change)="showPreview($event)" [(ngModel)]="file" class="custom-file-input" accept="application/pdf" id="customFile" />

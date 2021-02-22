@@ -3,13 +3,7 @@ import { NgxQrcodeElementTypes } from '@techiediaries/ngx-qrcode';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
 import { FileService } from 'src/app/services/file.service';
-import { Observable, of as observableOf } from 'rxjs';
-import { HttpClient, HttpResponse, HttpHeaders, HttpRequest } from '@angular/common/http'
-import { AngularFireFunctions } from "@angular/fire/functions";
-import { updateLanguageServiceSourceFile } from 'typescript';
 import { BackendService } from 'src/app/services/backend.service';
-
-
 
 
 @Component({
@@ -19,8 +13,9 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class GenerateCvComponent implements OnInit {
 
-  currentUser: any =""
+  currentUser: any ="";
   user_has_cv: boolean;
+  loader:boolean = false;
 
 
   selectedImage: any = null;
@@ -40,11 +35,13 @@ export class GenerateCvComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.getCandidate(this.currentUser['user_id']);
   }
+  
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
   }
 
   save() {
+    this.loader = true;
     this.id = this.candidate['candidate_id'] //user_id
     var name = this.selectedImage.name;
     const fileRef = this.storage.ref(name);
@@ -53,11 +50,11 @@ export class GenerateCvComponent implements OnInit {
         fileRef.getDownloadURL().subscribe((url) => {
           this.url = url;
           this.fileService.insertImageDetails(this.id, this.url);
+          this.loader = false;
           alert('Votre CV a bien été enregistré !');
           this.user_has_cv = true;
           this.BackendService.updateCandidateCV(this.id,{cv_id : "true"}).subscribe({
             next: (response) => {
-              //console.log(response)
               this.candidate['cv_id'] = "true";
             },
             error: () =>{

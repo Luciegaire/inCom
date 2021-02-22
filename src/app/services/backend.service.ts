@@ -189,6 +189,10 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/offer/${id}`, {headers : this.headers})
   };
 
+  getOffersByUserIdLike(id){
+    return this.http.get<any>(`${environment.backUrl}/offer-liked/${id}`, {headers : this.headers})
+  };
+
   updateOffer(id, data){
     return this.http.put<any>(`${environment.backUrl}/offer/`+id, data, this.optionRequete)
   }
