@@ -34,8 +34,7 @@ export class ProfileCompanyAccountCreationComponent implements OnInit {
     password: "",
     cpassword: "",
     gender: "",
-    birthdate: "",
-    avatar_path: ""
+    birthdate: ""
   };
 
   employeedata = {
@@ -57,10 +56,6 @@ export class ProfileCompanyAccountCreationComponent implements OnInit {
 
   changed(id:number){
     this.changeStatus.emit(id);
-  }
-
-  changeCurrentAvatar(path: string) {
-    this.userdata.avatar_path = path
   }
 
   createUser(){

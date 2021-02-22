@@ -11,15 +11,6 @@
     <!--begin::Body-->
     <div class="card-body">
       <div class="form-group row">
-        <label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
-        <div class="col-lg-9 col-xl-6">
-          <img *ngFor="let path of avatarTbl" (click)="changeCurrentAvatar(path)"
-          [ngClass]="{'currentAvatar' : path == userdata.avatar_path}" class="avatar" style="max-width: 40px;"
-          src="../../../../assets/img/avatars/{{path}}" />
-        </div>
-      </div>
-
-      <div class="form-group row">
         <label class="col-xl-3 col-lg-3 col-form-label">Role</label>
         <div class="col-lg-9 col-xl-6">
           <select [(ngModel)]="this.employeedata.role" class="form-control form-control-lg form-control-solid"  name="role" required>

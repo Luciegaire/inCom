@@ -21,7 +21,7 @@
         <i class="flaticon-file-2 mr-2 icon-xl text-primary"></i>Nos offres</a>
         <a *ngIf="status == 'candidate'" class="font-weight-bolder font-size-h4 text-dark-75 text-hover-primary">
           <i class="flaticon-visible mr-2 icon-xl text-primary"></i>À découvrir</a>
-          <div class="mt-2">
+          <div *ngIf="status == 'candidate'" class="mt-2">
             <ul style="list-style:none;">
               <li *ngFor="let company of toDiscover">
                 <a routerLink="/incom/company/{{ company.company_id }}"
@@ -31,7 +31,7 @@
           </div>
     </div>
   </div>
-  <div class="listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
+  <div *ngIf="status != 'candidate'" class="listSectors navi navi-bold navi-hover navi-active navi-link-rounded">
     <div *ngFor="let elem of tabLittleOffers" class="navi-item mb-2">
         <p style="font-size: 16px;">{{elem.title}}</p>
     </div>
