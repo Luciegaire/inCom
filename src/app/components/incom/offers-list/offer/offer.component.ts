@@ -184,9 +184,8 @@ export class OfferComponent implements OnInit {
     return finalDate
   }
 
-  apply(id){
-    this.getApplication(id)
-    console.log(this.statusApply)
+  apply(){
+    console.log(this.formdata)
     var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
     var validate = form.checkValidity()
 
@@ -199,14 +198,15 @@ export class OfferComponent implements OnInit {
     if(validate){
       if(this.user_has_cv == true){
         if(this.statusApply.length == 0){
-          this.getPDF(this.candidate['candidate_id']);
+
           this.formdata.date = this.dateNow()
           console.log(this.formdata)
           this.backService.createApplication(this.formdata).subscribe({
             next: (response) => {
               console.log(response)
-              //this.statusFormApply = 1
               this.statusForm = 1
+              this.ngOnInit()
+
             },
             error: () =>{
               console.log("erreur creation application")
@@ -288,6 +288,8 @@ export class OfferComponent implements OnInit {
     this.getContracts()
     this.getLike()
     this.getCandidate(this.user['user_id']);
+    this.getApplication(this.offer.offer_id)
+
   }
 
   getCandidate(id : number){
@@ -301,6 +303,7 @@ export class OfferComponent implements OnInit {
       },
       complete: () =>{
         this.userCV();
+        this.getPDF(this.candidate['candidate_id']);
       }
     })
   }
