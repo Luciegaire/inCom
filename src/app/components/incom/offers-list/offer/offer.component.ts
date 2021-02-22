@@ -288,8 +288,6 @@ export class OfferComponent implements OnInit {
     this.getContracts()
     this.getLike()
     this.getCandidate(this.user['user_id']);
-
-
   }
 
   getCandidate(id : number){

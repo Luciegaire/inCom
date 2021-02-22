@@ -20,27 +20,11 @@ export class ProfileCompanyApplyComponent implements OnInit {
     this.getApplicationByCompany()
   }
 
-  getUserByID(id){
-    this.backend.getUserByID(id).subscribe({
-      next : (response) =>{
-        console.log(response)
-      },
-      error: () => {
-        console.log("Error retrieving user!")
-      },
-      complete: () => {
-
-      }
-    })
-  }
-
   getApplicationByCompany(){
     this.backend.getApplicationCompany(this.user.company_id).subscribe({
       next: (res) => {
         console.log(res)
         this.applications = res
-
-
       },
       error: () => {
         console.log("erreur retrieving application")
@@ -50,7 +34,7 @@ export class ProfileCompanyApplyComponent implements OnInit {
           var res
           this.backend.getUserByID(application.user_id).subscribe({
             next : (response) =>{
-              console.log(response)
+              console.log("user !",response)
               res = response
             },
             error: () => {
@@ -60,7 +44,7 @@ export class ProfileCompanyApplyComponent implements OnInit {
               console.log(res)
               application['firstname'] = res.firstname
               application['lastname'] = res.lastname
-              console.log(this.applications)
+              application['email'] = res.email
             }
           })
 
