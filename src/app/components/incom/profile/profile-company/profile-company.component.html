@@ -15,6 +15,8 @@
   <a [routerLink]="" (click)="status=1" [ngClass]="status == 1 ? 'hover_btn_cote' : ''"
     class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Gestion des
     offres</a>
+    <a [routerLink]="" (click)="status=7" [ngClass]="status == 1 ? 'hover_btn_cote' : ''"
+    class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Candidatures</a>
   <a [routerLink]="" (click)="status=5" [ngClass]="status == 5 ? 'hover_btn_cote' : ''"
     class="btn btn-hover-light-primary font-weight-bold py-3 px-6 mb-2 text-center btn-block">Informations
     personnels</a>
@@ -34,4 +36,5 @@
   </app-profile-company-profile-perso>
   <app-profile-company-offers-edit [userIDSelected]="userIDSelected" *ngIf="status==6"
     (changeStatus)="statusChange($event)"></app-profile-company-offers-edit>
+  <app-profile-company-apply *ngIf="status==7" (changeStatus)="statusChange($event)" ></app-profile-company-apply>
 </div>

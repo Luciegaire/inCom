@@ -244,6 +244,10 @@ export class BackendService {
     return this.http.get<any>(`${environment.backUrl}/apply_offer/${user_id}/${offer_id}`, {headers : this.headers})
   }
 
+  getApplicationCompany(company_id){
+    return this.http.get<any>(`${environment.backUrl}/apply_offer/company/${company_id}`, {headers : this.headers})
+  }
+
 
 
 }
