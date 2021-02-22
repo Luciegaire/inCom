@@ -4,6 +4,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
 import { FileService } from 'src/app/services/file.service';
 import { BackendService } from 'src/app/services/backend.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 
 
 @Component({
@@ -51,7 +53,7 @@ export class GenerateCvComponent implements OnInit {
           this.url = url;
           this.fileService.insertImageDetails(this.id, this.url);
           this.loader = false;
-          alert('Votre CV a bien été enregistré !');
+          this.opensweetalert();
           this.user_has_cv = true;
           this.BackendService.updateCandidateCV(this.id,{cv_id : "true"}).subscribe({
             next: (response) => {
@@ -102,7 +104,7 @@ export class GenerateCvComponent implements OnInit {
             this.msg = element.url;
         });
         if (this.msg === 'error') {
-          alert('No record found');
+          this.opensweetalertError();
         }
         else {
           console.log(this.msg);
@@ -129,4 +131,19 @@ export class GenerateCvComponent implements OnInit {
     })
   }
 
+  opensweetalert()
+  {
+    Swal.fire({
+        text: 'Votre CV a bien été enregistré !',
+        icon: 'success'
+      });
+  }
+  
+  opensweetalertError()
+  {
+    Swal.fire({
+        text: 'Oups... une errreur est survenue ! Veuillez réessayer plus tard.',
+        icon: 'error'
+      });
+  }
 }

@@ -40,6 +40,8 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from "../environments/environment";
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 export function playerFactory() {
   return import('lottie-web');
@@ -87,6 +89,7 @@ export function playerFactory() {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    SweetAlert2Module
   ],
   providers: [[{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]],
   bootstrap: [AppComponent]
