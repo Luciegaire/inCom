@@ -31,15 +31,16 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    var stat = localStorage.getItem('status').toString()
-    this.status = localStorage.getItem('status').toString() == "candidate"
-    console.log("statu", status)
-    if (stat == "candidate"){
-      this.linkprofile = "/incom/profile-page"
-    }
-    else{
-      this.linkprofile = "/incom/profile-company"
-    }
+      var stat = localStorage.getItem('status').toString()
+      this.status = localStorage.getItem('status').toString() == "candidate"
+      console.log("statu", status)
+      if (stat == "candidate"){
+        this.linkprofile = "/incom/profile-page"
+      }
+      else{
+        this.linkprofile = "/incom/profile-company"
+      }
+
   }
 
   logout(){

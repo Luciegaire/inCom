@@ -235,7 +235,7 @@ export class OfferComponent implements OnInit {
 
 
   getApplication(id){
-    console.log(id)
+    console.log("ici id company",id)
     this.backService.getApplication(this.user.user_id, id).subscribe({
       next: (response) => {
         console.log("taille: " + response.length)

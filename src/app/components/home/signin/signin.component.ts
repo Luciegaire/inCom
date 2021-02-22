@@ -64,6 +64,7 @@ export class SigninComponent implements OnInit {
                     console.log("candidat")
                     localStorage.setItem('status', "candidate");
                     localStorage.setItem('user', JSON.stringify(res))
+                    this.router.navigateByUrl('/incom/feed');
                   },
                   error: () => {
                     this.backService.getEmployeeById(response.user.user_id).subscribe({
@@ -71,14 +72,15 @@ export class SigninComponent implements OnInit {
                         console.log("emplouee")
                         localStorage.setItem('status', "employee");
                         localStorage.setItem('user', JSON.stringify(res))
+                        this.router.navigateByUrl('/incom/feed');
                       },
                       error: () => {
                         this.statusForm = 2
+                        this.router.navigateByUrl('/incom/feed');
                       }
                     })
                   }
                 })
-                this.router.navigateByUrl('/incom/feed');
               }
             },
             error: () => {
