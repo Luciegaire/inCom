@@ -20,7 +20,15 @@
       <a *ngIf="status != 'candidate'" class="font-weight-bolder font-size-h4 text-dark-75 text-hover-primary">
         <i class="flaticon-file-2 mr-2 icon-xl text-primary"></i>Nos offres</a>
         <a *ngIf="status == 'candidate'" class="font-weight-bolder font-size-h4 text-dark-75 text-hover-primary">
-          <i class="flaticon-visible mr-2 icon-xl text-primary"></i>Centres d'intérêt</a>
+          <i class="flaticon-visible mr-2 icon-xl text-primary"></i>À découvrir</a>
+          <div class="mt-2">
+            <ul style="list-style:none;">
+              <li *ngFor="let company of toDiscover">
+                <a routerLink="/incom/company/{{ company.company_id }}"
+                  class="btn btn-light-success font-weight-bold mt-2">{{ company.name }}</a>
+              </li>
+            </ul>
+          </div>
     </div>
   </div>
   <div class="listSectors navi navi-bold navi-hover navi-active navi-link-rounded">

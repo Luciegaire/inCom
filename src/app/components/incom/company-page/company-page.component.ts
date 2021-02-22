@@ -30,6 +30,8 @@ export class CompanyPageComponent implements OnInit {
   sectors : []
   tabLittleOffers : []
 
+  toDiscover = [];
+
 
   getDate(date){
     return new Date(date)
@@ -212,7 +214,21 @@ export class CompanyPageComponent implements OnInit {
     }
   }
 
+  getRandomCompanies(){
+    this.backendService.getRandomCompanies().subscribe({
+      next : (response) =>{
+        console.log("offers", response)
+        this.toDiscover = response
+        console.log(this.toDiscover)
+      },
+      error: () => {
+        console.log("Error retrieving posts")
+      },
+    })
+  }
+
   ngOnInit(): void {
+    this.getRandomCompanies();
     this.route.params.subscribe(routeParams => {
       if (routeParams) {
         console.log("paramètres de la route", routeParams)

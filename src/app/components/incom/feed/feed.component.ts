@@ -14,6 +14,7 @@ export class FeedComponent implements OnInit {
   posts:any[] = []
   candidateOrCompany : {}
   contract = ""
+  toDiscover = [];
 
   tabLittleOffers : []
 
@@ -22,6 +23,22 @@ export class FeedComponent implements OnInit {
   constructor(public backend: BackendService) {
 
   }
+
+
+  getRandomCompanies(){
+    this.backend.getRandomCompanies().subscribe({
+      next : (response) =>{
+        console.log("offers", response)
+        this.toDiscover = response
+        console.log(this.toDiscover)
+      },
+      error: () => {
+        console.log("Error retrieving posts")
+      },
+    })
+  }
+
+
 
   getOffers(id){
     this.backend.getOffersByCompanyId(id).subscribe({
@@ -108,6 +125,7 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRandomCompanies();
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.currentStatusUser = localStorage.getItem("status")
     console.log("current statut user",this.currentStatusUser)
