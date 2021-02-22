@@ -1,0 +1,13 @@
+.card-header {
+  border: none;
+}
+
+.card-footer {
+  border: none;
+}
+
+.card-title {
+  left: 40%;
+  right: 40%;
+  font-size: x-large !important;
+}
